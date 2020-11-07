@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.clases.Pasajero;
 import model.ws.ConexionWS;
+import model.ws.ContratoWS;
 import model.ws.PasajeroWS;
 import model.ws.RegistroServiciosWS;
 
@@ -190,14 +191,17 @@ public class ServicioRegistros extends javax.swing.JFrame {
 
     private void btnImprimirBoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirBoucherActionPerformed
         try {
-            boolean ok = conn.insertRegistroServicio(pasajero.getId(), servicio);
+            String idContrato = new ContratoWS().getIdContratoPorIdPasajero(pasajero.getId());
+            System.out.println(idContrato);
+            
+            boolean ok = conn.insertRegistroServicio(pasajero.getId(), idContrato ,servicio);
             if(ok == true){
                 JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO");
             }else{
                 JOptionPane.showMessageDialog(this, "ERROR DE REGISTRO EN SQL");
             }
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "ERROR EN ALGO");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "RUT No Encontrado: "+ex.getMessage());
         }
     }//GEN-LAST:event_btnImprimirBoucherActionPerformed
 

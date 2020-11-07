@@ -6,14 +6,16 @@ package model.clases;
  */
 public class Pasajero {
     private String id;
+    private String codigo;
     private String nombre;
     private String apellidoP;
     private String apellidoM;
     private String rut;
     private String direccion;
 
-    public Pasajero(String id, String nombre, String apellidoP, String apellidoM, String rut, String direccion) {
+    public Pasajero(String id, String codigo, String nombre, String apellidoP, String apellidoM, String rut, String direccion) {
         this.id = id;
+        this.codigo = codigo;
         this.nombre = nombre;
         this.apellidoP = apellidoP;
         this.apellidoM = apellidoM;
@@ -24,6 +26,15 @@ public class Pasajero {
     public Pasajero() {
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+    
+    
     public String getId() {
         return id;
     }

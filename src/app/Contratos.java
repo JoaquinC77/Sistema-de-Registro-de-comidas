@@ -29,7 +29,7 @@ public class Contratos extends javax.swing.JFrame {
     private Empresa empresa;
     private ContratoWS conn;
     private DefaultTableModel dtmModelo;
-    public static String idEstaticoContrato;
+    public static String codigoEstatico;
 
     public Contratos() {
         initComponents();
@@ -271,7 +271,7 @@ public class Contratos extends javax.swing.JFrame {
             if((fila > -1) && (columna > -1)){
                 System.out.println(dtmModelo.getValueAt(fila,0));
                 
-                idEstaticoContrato = (String) dtmModelo.getValueAt(fila,0);
+                codigoEstatico = (String) dtmModelo.getValueAt(fila,0);
                 
                 new ContratoVer().setVisible(true);
                 this.setVisible(false);

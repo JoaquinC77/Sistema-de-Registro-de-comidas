@@ -1,26 +1,56 @@
 package app;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import model.clases.Contrato;
+import model.clases.Encargado;
 import model.ws.ContratoWS;
+import model.ws.EncargadoWS;
 
 /**
  *
  * @author JOAQUIN CABELLO
  */
 public class ContratoVer extends javax.swing.JFrame {
+
     private ContratoWS conn;
-    
+    private DefaultTableModel modelDatos, modelVigencia, modelAdmin;
+    private Contrato contrato;
+
     public ContratoVer() {
-        initComponents();
-        
-        conn = new ContratoWS();
-        
-        String idContrato = Contratos.idEstaticoContrato;
-        
-        lblTituloContrato.setText("");
+        try {
+            initComponents();
+
+            conn = new ContratoWS();
+            
+            System.out.println(Contratos.codigoEstatico);
+            
+            contrato = conn.getContratoForCodigo(Contratos.codigoEstatico);
+
+            lblTituloContrato.setText("Contrato: " + contrato.getCodigo());
+
+            //Se rescatan los datos del administrador
+            Encargado en = new EncargadoWS().getEncargadoForId(contrato.getIdAdmin());
+            
+            
+            //se cargan las tablas
+            cargarTablaDatosContrato();
+            cargarTablaVigenciaContrato();
+            cargarTablaDatosAdmin(en);
+            
+
+        } catch (Exception ex) {
+            //JOptionPane.showMessageDialog(this, "ERROR AL CARGAR LOS DATOS DEL CONTRATO" + ex.getMessage());
+            System.out.println(ex.getMessage());
+            System.out.println("--------------");
+            System.out.println(ex.getLocalizedMessage());
+        }
     }
 
-
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -211,6 +241,74 @@ public class ContratoVer extends javax.swing.JFrame {
                 new ContratoVer().setVisible(true);
             }
         });
+    }
+
+    public void cargarTablaDatosContrato() {
+        //LLenado de la tabla de datos del contrato
+        modelDatos = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; //To change body of generated methods, choose Tools | Templates.
+            }
+        };
+        modelDatos.addColumn("Numero");
+        modelDatos.addColumn("Empresa");
+        modelDatos.addColumn("Nombre");
+
+        Object[] filaDatos = new Object[3];
+
+        filaDatos[0] = contrato.getCodigo();
+        filaDatos[1] = contrato.getIdEmpresa();
+        filaDatos[2] = contrato.getNombre();
+
+        modelDatos.addRow(filaDatos);
+
+        tblDatosContrato1.setModel(modelDatos);
+    }
+
+    public void cargarTablaVigenciaContrato() {
+        //LLenado de la tabla de datos de fechas de vigencia de contrato
+        modelVigencia = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; //To change body of generated methods, choose Tools | Templates.
+            }
+        };
+        modelVigencia.addColumn("Fecha Inicio");
+        modelVigencia.addColumn("Fecha Fin");
+
+        Object[] filaDatoVigencia = new Object[3];
+
+        filaDatoVigencia[0] = contrato.getFechaInicio();
+        filaDatoVigencia[1] = contrato.getFechaFin();
+
+        modelVigencia.addRow(filaDatoVigencia);
+
+        tblVigenciaContrato1.setModel(modelVigencia);
+    }
+    
+    public void cargarTablaDatosAdmin(Encargado en){
+        //LLenado de la tabla de datos del administrador
+            modelAdmin = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false; //To change body of generated methods, choose Tools | Templates.
+                }
+            };
+            modelAdmin.addColumn("Nombre");
+            modelAdmin.addColumn("RUT");
+            modelAdmin.addColumn("E-Mail");
+            modelAdmin.addColumn("Telefono");
+
+            Object[] filaDatosAdmin = new Object[4];
+
+            filaDatosAdmin[0] = en.getNombre();
+            filaDatosAdmin[1] = en.getRut();
+            filaDatosAdmin[2] = en.getEmail();
+            filaDatosAdmin[3] = en.getTelefono();
+
+            modelAdmin.addRow(filaDatosAdmin);
+            tblContactoAdmin.setModel(modelAdmin);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

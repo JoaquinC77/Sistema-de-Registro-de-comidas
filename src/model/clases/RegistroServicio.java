@@ -12,17 +12,27 @@ package model.clases;
 public class RegistroServicio {
     private String id;
     private String idPasajero;
+    private String idContrato;
     private String idServicio;
     private String fecha;
 
-    public RegistroServicio(String id, String idPasajero, String idServicio, String fecha) {
+    public RegistroServicio(String id, String idPasajero, String idContrato ,String idServicio, String fecha) {
         this.id = id;
         this.idPasajero = idPasajero;
+        this.idContrato = idContrato;
         this.idServicio = idServicio;
         this.fecha = fecha;
     }
 
     public RegistroServicio() {
+    }
+
+    public String getIdContrato() {
+        return idContrato;
+    }
+
+    public void setIdContrato(String idContrato) {
+        this.idContrato = idContrato;
     }
 
     public String getId() {

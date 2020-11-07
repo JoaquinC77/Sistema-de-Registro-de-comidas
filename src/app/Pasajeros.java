@@ -73,7 +73,7 @@ public class Pasajeros extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblDatosPasajero);
 
-        btnNuevoPasajero.setText("Nuevo Pasajero");
+        btnNuevoPasajero.setText("Registro/Asignacion");
         btnNuevoPasajero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoPasajeroActionPerformed(evt);

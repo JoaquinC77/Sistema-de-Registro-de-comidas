@@ -21,6 +21,7 @@ import model.ws.EncargadoWS;
  */
 public class EmpresaCrear extends javax.swing.JFrame {
     private EmpresaWS conn;
+    private String codigo;
     
     public EmpresaCrear() {
         initComponents();

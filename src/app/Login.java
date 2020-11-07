@@ -40,8 +40,8 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         txtRut = new javax.swing.JTextField();
-        txtPass = new javax.swing.JTextField();
         btnIngresar = new javax.swing.JButton();
+        txtPass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -55,8 +55,6 @@ public class Login extends javax.swing.JFrame {
         txtRut.setToolTipText("INGRESAR RUT");
         txtRut.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
         txtRut.setName(""); // NOI18N
-
-        txtPass.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         btnIngresar.setText("INGRESAR");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -73,9 +71,9 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtRut)
-                    .addComponent(txtPass)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                    .addComponent(btnIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtPass))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -85,16 +83,14 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         txtRut.getAccessibleContext().setAccessibleName("INGRESAR RUT");
-        txtPass.getAccessibleContext().setAccessibleName("INGRESAR CONTRASEÑA");
-        txtPass.getAccessibleContext().setAccessibleDescription("INGRESAR CONTRASEÑA");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -187,7 +183,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField txtPass;
+    private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtRut;
     // End of variables declaration//GEN-END:variables
 }

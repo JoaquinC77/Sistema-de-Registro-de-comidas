@@ -19,10 +19,10 @@ public class RegistroServiciosWS {
         this.urlWS = "http://localhost:8080";
     }
 
-    public boolean insertRegistroServicio(String idPasajero, String idServicio) throws MalformedURLException, IOException {
+    public boolean insertRegistroServicio(String idPasajero, String idContrato, String idServicio) throws MalformedURLException, IOException {
         //boolean ok = false;
 
-        String rutaCompleta = urlWS + "/registroServicio?idPas=" + idPasajero + "&idSer=" + idServicio;
+        String rutaCompleta = urlWS + "/registroServicio?idPas=" + idPasajero + "&idContra=" +idContrato+"&idSer=" + idServicio;
         System.out.println("------------------------");
         System.out.println(rutaCompleta);
         System.out.println("------------------------");

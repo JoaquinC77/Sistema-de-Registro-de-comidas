@@ -20,12 +20,40 @@ import model.clases.Contrato;
  * @author JOAQUIN CABELLO
  */
 public class ContratoWS {
+
     private String urlWs;
 
     public ContratoWS() {
         this.urlWs = "http://localhost:8080";
     }
-    
+
+    public String getIdContratoPorIdPasajero(String idPasajero) throws MalformedURLException, IOException {
+        String idContrato = "-1";
+
+        String urlWS = this.urlWs + "/getIdContratoPorIdPasajero?idPasaj=" + idPasajero;
+
+        System.out.println(urlWS);
+        URL url = new URL(urlWS);
+
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Accept", "application/json");
+        if (conn.getResponseCode() != 200) {
+            throw new RuntimeException("Failed : HTTP Error code : "
+                    + conn.getResponseCode());
+        }
+        InputStreamReader in = new InputStreamReader(conn.getInputStream());
+        BufferedReader br = new BufferedReader(in);
+        String output;
+
+        while ((output = br.readLine()) != null) {
+            //System.out.println(output);
+            idContrato = output;
+        }
+
+        return idContrato;
+    }
+
     public List<Contrato> getContratosForIDEmpresa(String idEmpresa) throws MalformedURLException, IOException {
         List<Contrato> lista = new ArrayList<>();
 
@@ -62,12 +90,12 @@ public class ContratoWS {
 
         return lista;
     }
-    
-        public boolean insertContrato(Contrato c) throws IOException, MalformedURLException {
+
+    public boolean insertContrato(Contrato c) throws IOException, MalformedURLException {
         //insertContrato
         //idEmpresa nombre  idAdmin  fechaInicio  fechaFin  estado
 
-        String parametros = "codigo="+c.getCodigo()+"&idEmpresa=" + c.getIdEmpresa() + "&nombre=" + URLEncoder.encode(c.getNombre(), "UTF-8") + "&idAdmin=" + c.getIdAdmin() + "&fechaInicio=" + c.getFechaInicio() + "&fechaFin=" + c.getFechaFin() + "&estado=" + c.getEstado();
+        String parametros = "codigo=" + c.getCodigo() + "&idEmpresa=" + c.getIdEmpresa() + "&nombre=" + URLEncoder.encode(c.getNombre(), "UTF-8") + "&idAdmin=" + c.getIdAdmin() + "&fechaInicio=" + c.getFechaInicio() + "&fechaFin=" + c.getFechaFin() + "&estado=" + c.getEstado();
 
         String rutaCompleta = urlWs + "/insertContrato?" + parametros;
 
@@ -97,6 +125,72 @@ public class ContratoWS {
 
         return false;
     }
+
+    public Contrato getContratoForId(String idContrato) throws MalformedURLException, IOException {
+        Contrato contrato = null;
+
+        String urlWS = this.urlWs + "/contratoPorId?idContrato=" + idContrato;
+        URL url = new URL(urlWS);
+
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Accept", "application/json");
+        if (conn.getResponseCode() != 200) {
+            throw new RuntimeException("Failed : HTTP Error code : "
+                    + conn.getResponseCode());
+        }
+        InputStreamReader in = new InputStreamReader(conn.getInputStream());
+        BufferedReader br = new BufferedReader(in);
+        String output;
+
+        while ((output = br.readLine()) != null) {
+            //System.out.println(output);
+            JsonParser parser = new JsonParser();
+
+            JsonArray jsonLista = parser.parse(output).getAsJsonArray();
+            
+
+            System.out.println(jsonLista);
+
+            for (int i = 0; i < jsonLista.size(); i++) {
+                JsonObject jsonObject = (JsonObject) jsonLista.get(i);
+                contrato = new Gson().fromJson(jsonObject, Contrato.class);
+            }
+        }
+
+        return contrato;
+    }
     
-    
+      public Contrato getContratoForCodigo(String codigo) throws MalformedURLException, IOException {
+        Contrato contrato = null;
+
+        String urlWS = this.urlWs + "/contratoPorCodigo?codigo=" + codigo;
+        URL url = new URL(urlWS);
+
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Accept", "application/json");
+        if (conn.getResponseCode() != 200) {
+            throw new RuntimeException("Failed : HTTP Error code : "
+                    + conn.getResponseCode());
+        }
+        InputStreamReader in = new InputStreamReader(conn.getInputStream());
+        BufferedReader br = new BufferedReader(in);
+        String output;
+
+        while ((output = br.readLine()) != null) {
+            //System.out.println(output);
+            JsonParser parser = new JsonParser();
+
+
+            JsonObject jsonObject2 = (JsonObject) parser.parse(output);
+            contrato = new Gson().fromJson(jsonObject2, Contrato.class);
+
+            System.out.println(jsonObject2);
+
+        }
+
+        return contrato;
+    }
+
 }
