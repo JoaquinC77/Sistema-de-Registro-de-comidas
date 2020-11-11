@@ -8,12 +8,14 @@ package app;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import javax.swing.JOptionPane;
 import model.clases.Usuario;
+import model.ws.LoginWS;
 
 /**
  *
@@ -31,6 +33,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         
         this.setResizable(false);
+        this.setLocationRelativeTo(this);
     }
 
 
@@ -55,11 +58,22 @@ public class Login extends javax.swing.JFrame {
         txtRut.setToolTipText("INGRESAR RUT");
         txtRut.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
         txtRut.setName(""); // NOI18N
+        txtRut.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtRutKeyReleased(evt);
+            }
+        });
 
         btnIngresar.setText("INGRESAR");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarActionPerformed(evt);
+            }
+        });
+
+        txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPassKeyReleased(evt);
             }
         });
 
@@ -99,52 +113,24 @@ public class Login extends javax.swing.JFrame {
         String rut, pass;
         
         rut = txtRut.getText();
-        pass = txtPass.getText();
+        pass = String.valueOf(txtPass.getPassword());
         
-        
-        try{
-            String urlWS = "http://localhost:8080/usuario?rut="+rut+"&pass="+pass;
-            URL url = new URL(urlWS);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("Accept", "application/json");
-            if (conn.getResponseCode() != 200) {
-                throw new RuntimeException("Failed : HTTP Error code : "
-                        + conn.getResponseCode());
-            }
-            InputStreamReader in = new InputStreamReader(conn.getInputStream());
-            BufferedReader br = new BufferedReader(in);
-            String output;
-            
-            
-            while ((output = br.readLine()) != null) {                
-                System.out.println(output);
-                JsonParser parser = new JsonParser();
-                JsonObject json = (JsonObject) parser.parse(output);
-                
-                Usuario usuario = new Gson().fromJson(json, Usuario.class);
-                System.out.println(usuario.toString());
-                
-                if(usuario.getTipo().equals("0")){
-                    tipouser = "0";
-                    new InicioUser().setVisible(true);
-                    this.setEnabled(false);
-                    this.setVisible(false);
-                }else if(usuario.getTipo().equals("1")){
-                    tipouser = "1";
-                    new InicioTrabajador().setVisible(true);
-                    this.setEnabled(false);
-                    this.setVisible(false);
-                }
-                
-            }
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(this, "Error de ingreso");
-            txtPass.setText("");
-        }
+        iniciarSesion(rut, pass);
         
     }//GEN-LAST:event_btnIngresarActionPerformed
 
+    private void txtPassKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyReleased
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            iniciarSesion(txtRut.getText(), String.valueOf(txtPass.getPassword()));
+        }
+    }//GEN-LAST:event_txtPassKeyReleased
+
+    private void txtRutKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutKeyReleased
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            txtRut.transferFocus();
+        }
+    }//GEN-LAST:event_txtRutKeyReleased
+   
     /**
      * @param args the command line arguments
      */
@@ -179,7 +165,27 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    public void iniciarSesion(String rut, String pass){
+        try{
+            
+            Usuario usuario = new LoginWS().loginIniciar(rut, pass);
+            if(usuario.getTipo().equals("0")){
+                    tipouser = "0";
+                    new InicioUser().setVisible(true);
+                    this.setEnabled(false);
+                    this.setVisible(false);
+                }else if(usuario.getTipo().equals("1")){
+                    tipouser = "1";
+                    new InicioTrabajador().setVisible(true);
+                    this.setEnabled(false);
+                    this.setVisible(false);
+                }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this, "Error de ingreso");
+            txtPass.setText("");
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
     private javax.swing.JLabel jLabel1;

@@ -73,7 +73,6 @@ public class ContratoCrear extends javax.swing.JFrame {
         cboEmpresas = new javax.swing.JComboBox<>();
         txtFechaFin = new javax.swing.JFormattedTextField();
         txtFechaInicio = new javax.swing.JFormattedTextField();
-        txtCodigo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,8 +123,6 @@ public class ContratoCrear extends javax.swing.JFrame {
         txtFechaInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
         txtFechaInicio.setText("AAAA/MM/DD");
 
-        txtCodigo.setText("Numero Momentaneo");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,9 +160,7 @@ public class ContratoCrear extends javax.swing.JFrame {
                             .addComponent(lblTituloContrato)
                             .addComponent(cboEmpresas, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCodigo)
-                            .addComponent(txtNombreContrato, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))))
+                        .addComponent(txtNombreContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -183,9 +178,7 @@ public class ContratoCrear extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboEmpresas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNombreContrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel4)
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -239,7 +232,7 @@ public class ContratoCrear extends javax.swing.JFrame {
             
             // se debe de generar codigo numerico aleatorio para la columna codigo
             
-            Contrato contrato = new Contrato("", txtCodigo.getText(),empresa.getId(), nombre, String.valueOf(idAdmin), fechaInicio, fechaFin, "1");
+            Contrato contrato = new Contrato("", "",empresa.getId(), nombre, String.valueOf(idAdmin), fechaInicio, fechaFin, "1");
 
             System.out.println(contrato);
 
@@ -314,7 +307,6 @@ public class ContratoCrear extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblTituloContrato;
-    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtEmailAdmin;
     private javax.swing.JFormattedTextField txtFechaFin;
     private javax.swing.JFormattedTextField txtFechaInicio;

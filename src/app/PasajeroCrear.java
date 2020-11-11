@@ -1,5 +1,7 @@
 package app;
 
+import java.awt.Event;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,7 +48,6 @@ public class PasajeroCrear extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         btnAsignarContrato = new javax.swing.JButton();
         btnAsignarEmpresa = new javax.swing.JButton();
-        txtCodigoMomentaneo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,6 +70,11 @@ public class PasajeroCrear extends javax.swing.JFrame {
         txtRut.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtRutFocusLost(evt);
+            }
+        });
+        txtRut.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtRutKeyReleased(evt);
             }
         });
 
@@ -102,8 +108,6 @@ public class PasajeroCrear extends javax.swing.JFrame {
             }
         });
 
-        txtCodigoMomentaneo.setText("CODIGO MOMENTANEO");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,9 +138,7 @@ public class PasajeroCrear extends javax.swing.JFrame {
                             .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCodigoMomentaneo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtApellidoP, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(txtApellidoP, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -151,9 +153,7 @@ public class PasajeroCrear extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCodigoMomentaneo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,17 +182,27 @@ public class PasajeroCrear extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         int confirmacion = JOptionPane.showConfirmDialog(this, "Desea Registrar a " + txtNombre.getText() + " " + txtApellidoP.getText(), "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        pasajero = new Pasajero("", txtCodigoMomentaneo.getText(), txtNombre.getText(), txtApellidoP.getText(), txtApellidoM.getText(), txtRut.getText(), txtDireccion.getText());
-        
+        pasajero = new Pasajero("", "", txtNombre.getText(), txtApellidoP.getText(), txtApellidoM.getText(), txtRut.getText(), txtDireccion.getText());
+
         //0=yes, 1=no, 2=cancel
         if (confirmacion == 0) {
             try {
-                conn.insertPasajero(pasajero);
-                
-                btnAsignarEmpresa.setEnabled(true);
-                btnAsignarContrato.setEnabled(true);
-                
-                JOptionPane.showMessageDialog(this, "Registro Exitoso","OK",JOptionPane.INFORMATION_MESSAGE);
+                boolean ok = conn.insertPasajero(pasajero);
+
+                if (ok == true) {
+                    pasajero = conn.getPasajero(txtRut.getText());
+
+                    btnAsignarEmpresa.setEnabled(true);
+                    btnAsignarContrato.setEnabled(true);
+
+                    JOptionPane.showMessageDialog(this, "Registro Exitoso", "OK", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error 500", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+                    btnAsignarEmpresa.setEnabled(false);
+                    btnAsignarContrato.setEnabled(false);
+                }
+
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Error al asignar huesped: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }
@@ -223,11 +233,10 @@ public class PasajeroCrear extends javax.swing.JFrame {
                 txtApellidoP.setText(pasajero.getApellidoP());
                 txtApellidoM.setText(pasajero.getApellidoM());
                 txtDireccion.setText(pasajero.getDireccion());
-                txtCodigoMomentaneo.setText(pasajero.getCodigo());
 
                 btnAsignarEmpresa.setEnabled(true);
                 btnAsignarContrato.setEnabled(true);
-                
+
                 btnGuardar.setEnabled(false);
             }
         } catch (Exception ex) {
@@ -235,6 +244,12 @@ public class PasajeroCrear extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_txtRutFocusLost
+
+    private void txtRutKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutKeyReleased
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            txtRut.transferFocus();
+        }
+    }//GEN-LAST:event_txtRutKeyReleased
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -279,7 +294,6 @@ public class PasajeroCrear extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField txtApellidoM;
     private javax.swing.JTextField txtApellidoP;
-    private javax.swing.JTextField txtCodigoMomentaneo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtRut;

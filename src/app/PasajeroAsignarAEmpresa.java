@@ -182,6 +182,9 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
         //0=yes, 1=no, 2=cancel
         if (confirmacion == 0) {
             try {
+                System.out.println("---------------");
+                System.out.println("id p"+pasajero.getId());
+                System.out.println("---------------");
                 new EmpresaPasajeroWS().insertEmpresaPasajero(pasajero.getId(), empresa.getId());
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Error al asignar huesped: "+ex.getMessage(),"ERROR",JOptionPane.ERROR_MESSAGE);
