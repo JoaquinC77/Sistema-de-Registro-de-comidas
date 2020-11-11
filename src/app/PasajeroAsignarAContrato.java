@@ -1,24 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package app;
+
+import javax.swing.table.DefaultTableModel;
+import model.clases.Pasajero;
 
 /**
  *
  * @author JOAQUIN CABELLO
  */
 public class PasajeroAsignarAContrato extends javax.swing.JFrame {
-    //consulta empresas por pasajero
-    //consulta contratos por empresa
-    //insert listo solo falta rescatar datos
+    private Pasajero pasajero;
     
-    /**
-     * Creates new form PasajeroAsignarAContrato
-     */
     public PasajeroAsignarAContrato() {
         initComponents();
+        
+        pasajero =  PasajeroCrear.pasajero;
+        
+        
     }
     
     @SuppressWarnings("unchecked")
@@ -202,9 +199,7 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -235,6 +230,22 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
                 new PasajeroAsignarAContrato().setVisible(true);
             }
         });
+    }
+    
+    public void cargarTabla(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("RUT");
+        model.addColumn("Nombre");
+        model.addColumn("Apellido");
+        
+        Object[] fila = new Object[3];
+        fila[0] = pasajero.getRut();
+        fila[1] = pasajero.getNombre();
+        fila[2] = pasajero.getApellidoP();
+        
+        model.addRow(fila);
+        
+        tblDatosPasajero.setModel(model);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
