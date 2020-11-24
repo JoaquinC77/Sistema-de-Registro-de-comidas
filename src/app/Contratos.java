@@ -220,17 +220,8 @@ public class Contratos extends javax.swing.JFrame {
 
         try {
             List<Contrato> listaContratos = conn.getContratosForIDEmpresa(empresa.getId());
-
-            for (Contrato c : listaContratos) {
-                Object[] fila = new Object[4];
-
-                fila[0] = c.getCodigo();
-                fila[1] = c.getNombre();
-                fila[2] = c.getFechaInicio();
-                fila[3] = c.getFechaFin();
-
-                dtmModelo.addRow(fila);
-            }
+            
+            cargartabla(listaContratos);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "No hay contratos con esta empresa");
         }
@@ -261,23 +252,36 @@ public class Contratos extends javax.swing.JFrame {
                 System.out.println("Empresa no encontrada");
             }
         }
-        */
+         */
     }//GEN-LAST:event_txtRutABuscarKeyReleased
 
     private void tblDatosEmpresaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatosEmpresaMouseClicked
         if (evt.getClickCount() == 2) {
             int fila = tblDatosEmpresa.rowAtPoint(evt.getPoint());
             int columna = tblDatosEmpresa.columnAtPoint(evt.getPoint());
-            if((fila > -1) && (columna > -1)){
-                System.out.println(dtmModelo.getValueAt(fila,0));
-                
-                codigoEstatico = (String) dtmModelo.getValueAt(fila,0);
-                
+            if ((fila > -1) && (columna > -1)) {
+                System.out.println(dtmModelo.getValueAt(fila, 0));
+
+                codigoEstatico = (String) dtmModelo.getValueAt(fila, 0);
+
                 new ContratoVer().setVisible(true);
                 this.setVisible(false);
             }
         }
     }//GEN-LAST:event_tblDatosEmpresaMouseClicked
+
+    private void cargartabla(List<Contrato> lista) {
+        for (Contrato c : lista) {
+            Object[] fila = new Object[4];
+
+            fila[0] = c.getCodigo();
+            fila[1] = c.getNombre();
+            fila[2] = c.getFechaInicio();
+            fila[3] = c.getFechaFin();
+
+            dtmModelo.addRow(fila);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -338,8 +342,8 @@ public class Contratos extends javax.swing.JFrame {
         dtmModelo.addColumn("Fecha Inicio");
         dtmModelo.addColumn("Fecha Fin");
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnNuevoConrato;

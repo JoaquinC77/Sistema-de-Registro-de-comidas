@@ -20,13 +20,16 @@ import model.ws.EncargadoWS;
  * @author JOAQUIN CABELLO
  */
 public class EmpresaCrear extends javax.swing.JFrame {
+
     private EmpresaWS conn;
     private String codigo;
-    
+    private Encargado representante;
+
     public EmpresaCrear() {
         initComponents();
-        
+
         conn = new EmpresaWS();
+        representante = null;
     }
 
     /**
@@ -93,6 +96,11 @@ public class EmpresaCrear extends javax.swing.JFrame {
         txtNombreRepre.setText("Nombre");
 
         txtRutRepre.setText("RUT");
+        txtRutRepre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtRutRepreFocusLost(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -185,20 +193,23 @@ public class EmpresaCrear extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        Encargado representante = new Encargado("", txtNombreRepre.getText(), txtRutRepre.getText(), txtPuestoRepre.getText(), txtTelefonoRepre.getText(), txtEmailRepre.getText());
-        
         try {
-            new EncargadoWS().insertEncargado(representante);
-            
-            int idRepresentante = new EncargadoWS().getUltimoIdRepresentante();
-            
-            System.out.println(idRepresentante);
-            
-            conn.insertEmpresa(new Empresa("", txtNombre.getText(), txtRut.getText(), txtDireccion.getText(), String.valueOf(idRepresentante)));
-            
-            
+            if (representante == null) {
+                representante = new Encargado("", txtNombreRepre.getText(), txtRutRepre.getText(), txtPuestoRepre.getText(), txtTelefonoRepre.getText(), txtEmailRepre.getText());
+                new EncargadoWS().insertEncargado(representante);
+
+                int idRepresentante = new EncargadoWS().getUltimoIdRepresentante();
+
+                System.out.println(idRepresentante);
+                conn.insertEmpresa(new Empresa("", txtNombre.getText(), txtRut.getText(), txtDireccion.getText(), String.valueOf(idRepresentante)));
+
+            } else {
+                conn.insertEmpresa(new Empresa("", txtNombre.getText(), txtRut.getText(), txtDireccion.getText(), representante.getId()));
+
+            }
+
             JOptionPane.showMessageDialog(this, "Registro Exitoso");
-            
+
             txtDireccion.setText("");
             txtEmailRepre.setText("");
             txtNombre.setText("");
@@ -207,12 +218,27 @@ public class EmpresaCrear extends javax.swing.JFrame {
             txtRut.setText("");
             txtRutRepre.setText("");
             txtTelefonoRepre.setText("");
-            
-            
+
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "ERROR AL REGISTRAR");
         }
     }//GEN-LAST:event_btnCrearActionPerformed
+
+    private void txtRutRepreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRutRepreFocusLost
+        try {
+            String rut = txtRutRepre.getText();
+            if (new EncargadoWS().getEncargadoForRut(rut) != null) {
+                representante = new EncargadoWS().getEncargadoForRut(rut);
+
+                txtNombreRepre.setText(representante.getNombre());
+                txtPuestoRepre.setText(representante.getPuesto());
+                txtEmailRepre.setText(representante.getEmail());
+                txtTelefonoRepre.setText(representante.getTelefono());
+            }
+        } catch (Exception ex) {
+            System.out.println("Entro en el cach");
+        }
+    }//GEN-LAST:event_txtRutRepreFocusLost
 
     /**
      * @param args the command line arguments

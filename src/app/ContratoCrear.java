@@ -31,7 +31,9 @@ public class ContratoCrear extends javax.swing.JFrame {
     private List<Empresa> lista;
     private Empresa empresa;
     private ContratoWS conn;
-
+    private Encargado adminContrato;
+    private Contrato contrato;
+    
     /**
      * Creates new form ContratoCrear
      */
@@ -39,6 +41,7 @@ public class ContratoCrear extends javax.swing.JFrame {
         initComponents();
 
         conn = new ContratoWS();
+        adminContrato = null;
 
         try {
             lista = new EmpresaWS().getAllEmpresas();
@@ -114,6 +117,11 @@ public class ContratoCrear extends javax.swing.JFrame {
         jLabel5.setText("Contacto Administrador");
 
         txtRutAdmin.setText("11111111-1");
+        txtRutAdmin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtRutAdminFocusLost(evt);
+            }
+        });
 
         txtNombreContrato.setText("Nombre Contrato");
 
@@ -217,36 +225,60 @@ public class ContratoCrear extends javax.swing.JFrame {
         String nombre = txtNombreContrato.getText();
         String fechaInicio = txtFechaInicio.getText();
         String fechaFin = txtFechaFin.getText();
-        String nombreAdmin = txtNombreAdmin.getText();
-        String rutAdmin = txtRutAdmin.getText();
-        String puesto = txtPuestoAdmin.getText();
-        String telefono = txtTelefonoAdmin.getText();
-        String email = txtEmailAdmin.getText();
-
-        Encargado adminContrato = new Encargado("", nombreAdmin, rutAdmin, puesto, telefono, email);
 
         try {
+            if (adminContrato == null) {
+                String nombreAdmin = txtNombreAdmin.getText();
+                String rutAdmin = txtRutAdmin.getText();
+                String puesto = txtPuestoAdmin.getText();
+                String telefono = txtTelefonoAdmin.getText();
+                String email = txtEmailAdmin.getText();
 
-            new EncargadoWS().insertEncargado(adminContrato);
-            int idAdmin = new EncargadoWS().getUltimoIdRepresentante();
-            
-            // se debe de generar codigo numerico aleatorio para la columna codigo
-            
-            Contrato contrato = new Contrato("", "",empresa.getId(), nombre, String.valueOf(idAdmin), fechaInicio, fechaFin, "1");
+                adminContrato = new Encargado("", nombreAdmin, rutAdmin, puesto, telefono, email);
+
+                new EncargadoWS().insertEncargado(adminContrato);
+                int idAdmin = new EncargadoWS().getUltimoIdRepresentante();
+
+                // se debe de generar codigo numerico aleatorio para la columna codigo
+                contrato = new Contrato("", "", empresa.getId(), nombre, String.valueOf(idAdmin), fechaInicio, fechaFin, "1");
+
+            } else {
+                // se debe de generar codigo numerico aleatorio para la columna codigo
+                contrato = new Contrato("", "", empresa.getId(), nombre, adminContrato.getId(), fechaInicio, fechaFin, "1");
+
+            }
 
             System.out.println(contrato);
 
-            conn.insertContrato(contrato);
+            if(conn.insertContrato(contrato) == false){
+                JOptionPane.showMessageDialog(this, "Error al registrar contrato y/o datos de administrador");
+            }
 
             JOptionPane.showMessageDialog(this, "Registro Exitoso");
             limpiarPantalla();
-            
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error al registrar contrato y/o datos de administrador");
         }
 
 
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void txtRutAdminFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRutAdminFocusLost
+        try {
+            String rut = txtRutAdmin.getText();
+            if (new EncargadoWS().getEncargadoForRut(rut) != null) {
+                adminContrato = new EncargadoWS().getEncargadoForRut(rut);
+
+                txtNombreAdmin.setText(adminContrato.getNombre());
+                txtPuestoAdmin.setText(adminContrato.getPuesto());
+                txtEmailAdmin.setText(adminContrato.getEmail());
+                txtTelefonoAdmin.setText(adminContrato.getTelefono());
+            }
+        } catch (Exception ex) {
+            System.out.println("Entro en el cach");
+        }
+    }//GEN-LAST:event_txtRutAdminFocusLost
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -290,10 +322,10 @@ public class ContratoCrear extends javax.swing.JFrame {
         txtRutAdmin.setText("");
         txtTelefonoAdmin.setText("");
     }
-    
-    public int generarCodigo(){
-       int cod = ThreadLocalRandom.current().nextInt(100, 100000000 + 1);
-       return cod;
+
+    public int generarCodigo() {
+        int cod = ThreadLocalRandom.current().nextInt(100, 100000000 + 1);
+        return cod;
     }
 
 

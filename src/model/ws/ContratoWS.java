@@ -125,6 +125,40 @@ public class ContratoWS {
 
         return false;
     }
+    
+    
+    public boolean updateContrato(Contrato c) throws IOException, MalformedURLException {
+        
+        String parametros = "idContrato="+c.getId()+"&fechaInicio="+c.getFechaInicio()+"&fechaFin="+c.getFechaFin();
+
+        String rutaCompleta = urlWs + "/updateContrato?" + parametros;
+
+        System.out.println("------------------------");
+        System.out.println(rutaCompleta);
+        System.out.println("------------------------");
+        HttpURLConnection conn = (HttpURLConnection) new URL(rutaCompleta).openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Accept", "application/json");
+        if (conn.getResponseCode() != 200) {
+            throw new RuntimeException("Failed : HTTP Error code : "
+                    + conn.getResponseCode());
+        }
+
+        InputStreamReader in = new InputStreamReader(conn.getInputStream());
+        BufferedReader br = new BufferedReader(in);
+        String output;
+
+        while ((output = br.readLine()) != null) {
+            //System.out.println(output);
+
+            boolean ok = Boolean.parseBoolean(output);
+            System.out.println(ok);
+            return ok;
+
+        }
+
+        return false;
+    }
 
     public Contrato getContratoForId(String idContrato) throws MalformedURLException, IOException {
         Contrato contrato = null;
