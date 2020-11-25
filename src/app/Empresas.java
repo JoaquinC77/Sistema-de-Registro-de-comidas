@@ -38,7 +38,7 @@ import model.ws.EncargadoWS;
 public class Empresas extends javax.swing.JFrame {
 
     private List<Empresa> lista;
-    private Empresa empresa;
+    public static Empresa empresa;
     private EmpresaWS conn;
 
     public Empresas() {
@@ -51,12 +51,13 @@ public class Empresas extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error de servidor");
         }
-        
+
         for (Empresa em : lista) {
             cboEmpresas.addItem(em);
         }
-    }
 
+        btnEditar.setEnabled(false);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -69,7 +70,6 @@ public class Empresas extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         cboEmpresas = new javax.swing.JComboBox<>();
-        btnBuscar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
@@ -92,6 +92,7 @@ public class Empresas extends javax.swing.JFrame {
         lblTelefonoRepre = new javax.swing.JLabel();
         lblEmailRepre = new javax.swing.JLabel();
         txtRutBuscar = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,14 +106,12 @@ public class Empresas extends javax.swing.JFrame {
         jLabel3.setText("Empresas");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel4.setText("Buscar Empresas: ");
+        jLabel4.setText("Buscar Empresas por RUT: ");
 
         cboEmpresas.setName(""); // NOI18N
-
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+        cboEmpresas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
+                cboEmpresasActionPerformed(evt);
             }
         });
 
@@ -190,6 +189,9 @@ public class Empresas extends javax.swing.JFrame {
             }
         });
 
+        jLabel15.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel15.setText("Busca En Lista de empresas: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -234,14 +236,14 @@ public class Empresas extends javax.swing.JFrame {
                             .addComponent(jSeparator2))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cboEmpresas, 0, 176, Short.MAX_VALUE)
                             .addComponent(txtRutBuscar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
@@ -267,18 +269,15 @@ public class Empresas extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtRutBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cboEmpresas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtRutBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cboEmpresas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
@@ -322,7 +321,7 @@ public class Empresas extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(118, 118, 118)
                         .addComponent(lblEmailRepre, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -339,6 +338,7 @@ public class Empresas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+
         new EmpresaEditar().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnEditarActionPerformed
@@ -348,8 +348,34 @@ public class Empresas extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnNuevaEmpresaActionPerformed
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        Empresa empresa = (Empresa) cboEmpresas.getSelectedItem();
+    private void txtRutBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutBuscarKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            try {
+                empresa = conn.getEmpresaPorRut(txtRutBuscar.getText());
+
+                lblNombreEmpresa.setText(empresa.getNombre());
+                lblRutEmpresa.setText(empresa.getRut());
+                lblDireccion.setText(empresa.getDireccion());
+
+                Encargado encargado = new EncargadoWS().getEncargadoForId(empresa.getIdRepresentante());
+
+                lblNombreRepre.setText(encargado.getNombre());
+                lblRutRepre.setText(encargado.getRut());
+                lblTelefonoRepre.setText(encargado.getTelefono());
+                lblEmailRepre.setText(encargado.getEmail());
+                lblPuestoRepre.setText(encargado.getPuesto());
+
+                btnEditar.setEnabled(true);
+            } catch (IOException ex) {
+                Logger.getLogger(Empresas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }//GEN-LAST:event_txtRutBuscarKeyReleased
+
+    private void cboEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEmpresasActionPerformed
+        empresa = (Empresa) cboEmpresas.getSelectedItem();
 
         lblNombreEmpresa.setText(empresa.getNombre());
         lblRutEmpresa.setText(empresa.getRut());
@@ -364,34 +390,12 @@ public class Empresas extends javax.swing.JFrame {
             lblEmailRepre.setText(encargado.getEmail());
             lblPuestoRepre.setText(encargado.getPuesto());
 
+            btnEditar.setEnabled(true);
+
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "ERROR DE SERVIDOR");
         }
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void txtRutBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutBuscarKeyReleased
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            
-        // Voy a buscar únicamente comparando el código
-            boolean encontrado = false;
-            for (int x = 0; x < lista.size(); x++) {
-                Empresa e = lista.get(x);
-                if (e.getRut().equals(txtRutBuscar.getText())) {
-                    encontrado = true;
-                    
-                    empresa = e;
-                    
-                    break; // Terminar ciclo, pues ya lo encontramos
-                }
-            }
-        // Al terminar el ciclo comprobamos si se movió la variable
-            if (encontrado) {
-                System.out.println("Empresa encontrada");
-            } else {
-                System.out.println("Empresa no encontrada");
-            }
-        }
-    }//GEN-LAST:event_txtRutBuscarKeyReleased
+    }//GEN-LAST:event_cboEmpresasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -429,7 +433,6 @@ public class Empresas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnNuevaEmpresa;
     private javax.swing.JButton btnVolver;
@@ -440,6 +443,7 @@ public class Empresas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

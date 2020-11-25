@@ -77,7 +77,7 @@ public class EmpresaCrear extends javax.swing.JFrame {
 
         txtEmailRepre.setText("@gmail.com");
 
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setText("Volver");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);

@@ -5,6 +5,8 @@
  */
 package app;
 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.List;
@@ -78,6 +80,12 @@ public class Contratos extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel4.setText("Buscar Empresas: ");
+
+        cboEmpresas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboEmpresasActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -216,11 +224,13 @@ public class Contratos extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         Empresa empresa = (Empresa) cboEmpresas.getSelectedItem();
 
+        limpiarTabla();
+
         lblTituloContratosAEmpresas.setText("Contratos: " + empresa.getNombre());
 
         try {
             List<Contrato> listaContratos = conn.getContratosForIDEmpresa(empresa.getId());
-            
+
             cargartabla(listaContratos);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "No hay contratos con esta empresa");
@@ -230,29 +240,25 @@ public class Contratos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtRutABuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutABuscarKeyReleased
-        /*
+
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                String rut = txtRutABuscar.getText();
 
-            // Voy a buscar únicamente comparando el código
-            boolean encontrado = false;
-            for (int x = 0; x < lista.size(); x++) {
-                Empresa e = lista.get(x);
-                if (e.getRut().equals(txtRutABuscar.getText())) {
-                    encontrado = true;
+                if (new EmpresaWS().getEmpresaPorRut(rut) != null) {
+                    empresa = new EmpresaWS().getEmpresaPorRut(rut);
+                    List<Contrato> listaContratos = conn.getContratosForIDEmpresa(empresa.getId());
 
-                    empresa = e;
-
-                    break; // Terminar ciclo, pues ya lo encontramos
+                    limpiarTabla();
+                    cargartabla(listaContratos);
+                } else {
+                    System.out.println("objeto null no existe");
                 }
-            }
-            // Al terminar el ciclo comprobamos si se movió la variable
-            if (encontrado) {
-                System.out.println("Empresa encontrada");
-            } else {
-                System.out.println("Empresa no encontrada");
+            } catch (IOException ex) {
+                System.out.println("Cayo en el cach");
             }
         }
-         */
+
     }//GEN-LAST:event_txtRutABuscarKeyReleased
 
     private void tblDatosEmpresaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatosEmpresaMouseClicked
@@ -269,6 +275,23 @@ public class Contratos extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_tblDatosEmpresaMouseClicked
+
+    private void cboEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEmpresasActionPerformed
+        if (dtmModelo != null) {
+            empresa = (Empresa) cboEmpresas.getSelectedItem();
+            
+            limpiarTabla();
+            
+            try {
+                List<Contrato> listaContratos = conn.getContratosForIDEmpresa(empresa.getId());
+
+                cargartabla(listaContratos);
+            } catch (IOException ex) {
+                System.out.println("Cayo en el catch");
+            }
+        }
+    }//GEN-LAST:event_cboEmpresasActionPerformed
+
 
     private void cargartabla(List<Contrato> lista) {
         for (Contrato c : lista) {
@@ -343,7 +366,13 @@ public class Contratos extends javax.swing.JFrame {
         dtmModelo.addColumn("Fecha Fin");
     }
 
-
+    private void limpiarTabla() {
+        if (dtmModelo.getRowCount() > 0) {
+            for (int i = dtmModelo.getRowCount() - 1; i > -1; i--) {
+                dtmModelo.removeRow(i);
+            }
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnNuevoConrato;
