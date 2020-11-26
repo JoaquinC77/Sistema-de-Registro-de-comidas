@@ -1,23 +1,85 @@
 package app;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.clases.Contrato;
+import model.clases.Empresa;
 import model.clases.Pasajero;
+import model.ws.ContratoPasajeroWS;
+import model.ws.ContratoWS;
+import model.ws.EmpresaWS;
 
 /**
  *
  * @author JOAQUIN CABELLO
  */
 public class PasajeroAsignarAContrato extends javax.swing.JFrame {
+
     private Pasajero pasajero;
-    
+    private ContratoPasajeroWS conn;
+    private EmpresaWS connEmpresa;
+    private ContratoWS connContrato;
+    private List<Empresa> listaEmpresa;
+    private List<Contrato> listaContrato;
+    private Empresa empresa;
+    private DefaultTableModel dtmModeloContrato;
+    private DefaultTableModel dtmModeloPasajero;
+    private Contrato contrato;
+
     public PasajeroAsignarAContrato() {
-        initComponents();
-        
-        pasajero =  PasajeroCrear.pasajero;
-        
-        
+        try {
+            initComponents();
+            
+            this.setLocationRelativeTo(null);
+
+            dtmModeloContrato = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;//To change body of generated methods, choose Tools | Templates.
+                }
+            };
+
+            dtmModeloPasajero = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;//To change body of generated methods, choose Tools | Templates.
+                }
+            };
+
+            pasajero = PasajeroCrear.pasajero;
+
+            connEmpresa = new EmpresaWS();
+            connContrato = new ContratoWS();
+            conn = new ContratoPasajeroWS();
+
+            listaEmpresa = connEmpresa.getEmpresaPorIDPasajero(pasajero.getId());
+
+            llenarCBOEmpresa(listaEmpresa);
+
+            tblDatosContrato.setModel(dtmModeloContrato);
+            dtmModeloContrato.addColumn("FECHA INICIO");
+            dtmModeloContrato.addColumn("FECHA FIN");
+
+            tblDatosPasajero.setModel(dtmModeloPasajero);
+            dtmModeloPasajero.addColumn("RUT");
+            dtmModeloPasajero.addColumn("NOMBRE");
+            dtmModeloPasajero.addColumn("APELLIDO PATERNO");
+            dtmModeloPasajero.addColumn("APELLIDO MATERNO");
+
+            cargarTablaPasajero(pasajero);
+        } catch (IOException ex) {
+            Logger.getLogger(PasajeroAsignarAContrato.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -40,8 +102,8 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         btnAsignar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        txtFechaEntrada = new javax.swing.JTextField();
-        txtFechaSalida = new javax.swing.JTextField();
+        dateChooserFechaInicio = new com.toedter.calendar.JDateChooser();
+        dateChooserFechaFin = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,12 +132,20 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel4.setText("Asignacion");
 
-        cboEmpresas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboEmpresas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboEmpresasActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel5.setText("Empresas");
 
-        cboContratos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboContratos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboContratosActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel6.setText("Contratos de Empresa");
@@ -94,17 +164,18 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
         jLabel7.setText("Vigencia de Contrato");
 
         btnAsignar.setText("Asignar");
+        btnAsignar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignarActionPerformed(evt);
+            }
+        });
 
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setText("Volver");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
             }
         });
-
-        txtFechaEntrada.setText("AAAA/MM/DD");
-
-        txtFechaSalida.setText("AAAA/MM/DD");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,33 +188,35 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addComponent(cboEmpresas, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cboEmpresas, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboContratos, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(59, 59, 59))
+                            .addComponent(cboContratos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
                     .addComponent(jSeparator1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jSeparator3)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(dateChooserFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(dateChooserFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel4)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(104, 104, 104)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtFechaEntrada, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnAsignar, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
-                            .addComponent(txtFechaSalida))))
+                        .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -177,17 +250,18 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(dateChooserFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dateChooserFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFechaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAsignar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -199,6 +273,53 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void cboEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEmpresasActionPerformed
+        try {
+            empresa = (Empresa) cboEmpresas.getSelectedItem();
+
+            listaContrato = connContrato.getContratosForIDEmpresa(empresa.getId());
+            
+            cboContratos.removeAllItems();
+            
+            llenarCBOContrato(listaContrato);
+        } catch (IOException ex) {
+            Logger.getLogger(PasajeroAsignarAContrato.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_cboEmpresasActionPerformed
+
+    private void cboContratosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboContratosActionPerformed
+        limpiartablaContrato();
+        
+        if(cboContratos.getSelectedItem() != null){
+            contrato = (Contrato) cboContratos.getSelectedItem();
+            
+            cargartablaFecha(contrato);
+        }
+        
+        
+
+        
+    }//GEN-LAST:event_cboContratosActionPerformed
+
+    private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/dd");
+            
+            String fechaInicio = String.valueOf(sdf.format(dateChooserFechaInicio.getDate()));
+            String fechaFin = String.valueOf(sdf.format(dateChooserFechaFin.getDate()));
+            
+            if(conn.insertContratoPasajero(pasajero.getId(), contrato.getId(), fechaInicio, fechaFin)){
+                JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO","EXITO",JOptionPane.PLAIN_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(this, "ERROR DE INGRESO","ERROR",JOptionPane.ERROR_MESSAGE);
+            }
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(PasajeroAsignarAContrato.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAsignarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -231,28 +352,54 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
             }
         });
     }
+
+    public void llenarCBOEmpresa(List<Empresa> lista) {
+        for (Empresa em : lista) {
+            cboEmpresas.addItem(em);
+        }
+    }
+
+    public void llenarCBOContrato(List<Contrato> lista) {
+        for (Contrato c : lista) {
+            cboContratos.addItem(c);
+        }
+    }
+
+    private void cargartablaFecha(Contrato co) {
+        Object[] fila = new Object[2];
+
+        fila[0] = co.getFechaInicio();
+        fila[1] = co.getFechaFin();
+
+        dtmModeloContrato.addRow(fila);
+    }
+
+    private void cargarTablaPasajero(Pasajero p) {
+        Object[] fila = new Object[4];
+
+        fila[0] = p.getRut();
+        fila[1] = p.getNombre();
+        fila[2] = p.getApellidoP();
+        fila[3] = p.getApellidoM();
+
+        dtmModeloPasajero.addRow(fila);
+    }
     
-    public void cargarTabla(){
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("RUT");
-        model.addColumn("Nombre");
-        model.addColumn("Apellido");
-        
-        Object[] fila = new Object[3];
-        fila[0] = pasajero.getRut();
-        fila[1] = pasajero.getNombre();
-        fila[2] = pasajero.getApellidoP();
-        
-        model.addRow(fila);
-        
-        tblDatosPasajero.setModel(model);
+    private void limpiartablaContrato(){
+        if (dtmModeloContrato.getRowCount() > 0) {
+            for (int i = dtmModeloContrato.getRowCount() - 1; i > -1; i--) {
+                dtmModeloContrato.removeRow(i);
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAsignar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JComboBox<String> cboContratos;
-    private javax.swing.JComboBox<String> cboEmpresas;
+    private javax.swing.JComboBox<Contrato> cboContratos;
+    private javax.swing.JComboBox<Empresa> cboEmpresas;
+    private com.toedter.calendar.JDateChooser dateChooserFechaFin;
+    private com.toedter.calendar.JDateChooser dateChooserFechaInicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -267,7 +414,5 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTable tblDatosContrato;
     private javax.swing.JTable tblDatosPasajero;
-    private javax.swing.JTextField txtFechaEntrada;
-    private javax.swing.JTextField txtFechaSalida;
     // End of variables declaration//GEN-END:variables
 }

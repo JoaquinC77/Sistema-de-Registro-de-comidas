@@ -16,6 +16,7 @@ public class InicioTrabajador extends javax.swing.JFrame {
      */
     public InicioTrabajador() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

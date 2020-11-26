@@ -24,6 +24,7 @@ public class ContratoVer extends javax.swing.JFrame {
     public ContratoVer() {
         try {
             initComponents();
+            this.setLocationRelativeTo(null);
 
             conn = new ContratoWS();
             

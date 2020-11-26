@@ -35,6 +35,7 @@ public class Contratos extends javax.swing.JFrame {
 
     public Contratos() {
         initComponents();
+        this.setLocationRelativeTo(null);
 
         conn = new ContratoWS();
 

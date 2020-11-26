@@ -23,6 +23,7 @@ public class ContratoEditar extends javax.swing.JFrame {
 
     public ContratoEditar() {
         initComponents();
+        this.setLocationRelativeTo(null);
 
         try {
             conn = new ContratoWS();

@@ -28,6 +28,7 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
      */
     public PasajeroAsignarAEmpresa() {
         initComponents();
+        this.setLocationRelativeTo(null);
         
         pasajero = PasajeroCrear.pasajero;
         txtRutHuesped.setText(pasajero.getRut());

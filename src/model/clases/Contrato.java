@@ -103,8 +103,7 @@ public class Contrato {
 
     @Override
     public String toString() {
-        return "Contrato fecha inicio"+fechaInicio+" Fecha fin "+fechaFin+
-                " estado "+estado+ " nombrecontrato "+nombre;
+        return nombre;
     }
     
     

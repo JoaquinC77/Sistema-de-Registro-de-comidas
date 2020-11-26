@@ -30,46 +30,109 @@ import model.clases.Pasajero;
  */
 public class ConexionWS {
 
-    private String urlWS;
     private URL url;
+    private HttpURLConnection conn;
 
     public ConexionWS() {
-        this.urlWS = "http://localhost:8080";
     }
 
-    /*
-    try {
-            String urlWS = "http://localhost:8080/empresas";
-            URL url = new URL(urlWS);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("Accept", "application/json");
-            if (conn.getResponseCode() != 200) {
-                throw new RuntimeException("Failed : HTTP Error code : "
-                        + conn.getResponseCode());
-            }
-            InputStreamReader in = new InputStreamReader(conn.getInputStream());
-            BufferedReader br = new BufferedReader(in);
-            String output;
-
-            while ((output = br.readLine()) != null) {
-                //System.out.println(output);
-                JsonParser parser = new JsonParser();
-
-                JsonArray jsonLista = parser.parse(output).getAsJsonArray();
-                lista = new ArrayList<>();
-
-                System.out.println(jsonLista);
-
-                for (int i = 0; i < jsonLista.size(); i++) {
-                    JsonObject jsonObject = (JsonObject) jsonLista.get(i);
-                    Empresa empresa = new Gson().fromJson(jsonObject, Empresa.class);
-
-                    lista.add(empresa);
-                }
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error de servidor");
+    public JsonObject getJsonObject(URL url) throws IOException {
+        conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Accept", "application/json");
+        if (conn.getResponseCode() != 200) {
+            throw new RuntimeException("Failed : HTTP Error code : "
+                    + conn.getResponseCode());
         }
-     */
+        InputStreamReader in = new InputStreamReader(conn.getInputStream());
+        BufferedReader br = new BufferedReader(in);
+        String output;
+
+        while ((output = br.readLine()) != null) {
+            //System.out.println(output);
+            JsonParser parser = new JsonParser();
+
+            JsonObject jsonObject = (JsonObject) parser.parse(output);
+            System.out.println(jsonObject);
+
+            return jsonObject;
+
+        }
+
+        return null;
+    }
+
+    public JsonArray getJsonArray(URL url) throws IOException {
+        conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Accept", "application/json");
+        if (conn.getResponseCode() != 200) {
+            throw new RuntimeException("Failed : HTTP Error code : "
+                    + conn.getResponseCode());
+        }
+        InputStreamReader in = new InputStreamReader(conn.getInputStream());
+        BufferedReader br = new BufferedReader(in);
+        String output;
+
+        while ((output = br.readLine()) != null) {
+            //System.out.println(output);
+            JsonParser parser = new JsonParser();
+
+            JsonArray jsonLista = parser.parse(output).getAsJsonArray();
+
+            System.out.println(jsonLista);
+
+            return jsonLista;
+        }
+
+        return null;
+    }
+
+    public boolean getTrueORFalseResponse(String ruta) throws MalformedURLException, IOException {
+        conn = (HttpURLConnection) new URL(ruta).openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Accept", "application/json");
+        if (conn.getResponseCode() != 200) {
+            throw new RuntimeException("Failed : HTTP Error code : "
+                    + conn.getResponseCode());
+        }
+
+        InputStreamReader in = new InputStreamReader(conn.getInputStream());
+        BufferedReader br = new BufferedReader(in);
+        String output;
+
+        while ((output = br.readLine()) != null) {
+            //System.out.println(output);
+
+            boolean ok = Boolean.parseBoolean(output);
+            System.out.println(ok);
+            return ok;
+
+        }
+
+        return false;
+    }
+
+    public String getStringResponse(URL url) throws IOException {
+        conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Accept", "application/json");
+        if (conn.getResponseCode() != 200) {
+            throw new RuntimeException("Failed : HTTP Error code : "
+                    + conn.getResponseCode());
+        }
+        InputStreamReader in = new InputStreamReader(conn.getInputStream());
+        BufferedReader br = new BufferedReader(in);
+        String output;
+        
+        String response = null;
+
+        while ((output = br.readLine()) != null) {
+            //System.out.println(output);
+            response = output;
+        }
+
+        return response;
+    }
+
 }

@@ -39,6 +39,7 @@ public class ContratoCrear extends javax.swing.JFrame {
      */
     public ContratoCrear() {
         initComponents();
+        this.setLocationRelativeTo(null);
 
         conn = new ContratoWS();
         adminContrato = null;

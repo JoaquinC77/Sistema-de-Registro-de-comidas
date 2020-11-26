@@ -23,6 +23,8 @@ public class EmpresaWS {
 
     private String urlWS;
     private HttpURLConnection conn;
+    private List<Empresa> listaEmpresa;
+    private Empresa empresa;
 
     public EmpresaWS() {
         this.urlWS = "http://localhost:8080";
@@ -66,6 +68,8 @@ public class EmpresaWS {
 
         return false;
     }
+    
+    
 
     public boolean updateEmpres(Empresa e) throws MalformedURLException, IOException {
         String parametros = "id=" + e.getId() + "&nombre=" + URLEncoder.encode(e.getNombre(), "UTF-8") + "&direccion=" + URLEncoder.encode(e.getDireccion(), "UTF-8");
@@ -101,9 +105,10 @@ public class EmpresaWS {
         return false;
 
     }
+    
 
     public Empresa getEmpresaPorRut(String rut) throws MalformedURLException, IOException {
-        Empresa empresa = null;
+        empresa = null;
 
         String urlWS = this.urlWS + "/getEmpresaRut?rut=" + rut;
         URL url = new URL(urlWS);
@@ -134,10 +139,50 @@ public class EmpresaWS {
 
         return empresa;
     }
+    
+    
+    public List<Empresa> getEmpresaPorIDPasajero(String id) throws MalformedURLException, IOException {
+        
+        empresa = null;
+        listaEmpresa = new ArrayList<>();
+
+        String urlWS = this.urlWS + "/getEmpresaIDPasajero?id=" + id;
+        URL url = new URL(urlWS);
+
+        conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Accept", "application/json");
+        if (conn.getResponseCode() != 200) {
+            throw new RuntimeException("Failed : HTTP Error code : "
+                    + conn.getResponseCode());
+        }
+        InputStreamReader in = new InputStreamReader(conn.getInputStream());
+        BufferedReader br = new BufferedReader(in);
+        String output;
+
+        while ((output = br.readLine()) != null) {
+            //System.out.println(output);
+            JsonParser parser = new JsonParser();
+
+            JsonArray jsonLista = parser.parse(output).getAsJsonArray();
+            listaEmpresa = new ArrayList<>();
+
+            System.out.println(jsonLista);
+
+            for (int i = 0; i < jsonLista.size(); i++) {
+                JsonObject jsonObject = (JsonObject) jsonLista.get(i);
+                empresa = new Gson().fromJson(jsonObject, Empresa.class);
+
+                listaEmpresa.add(empresa);
+            }
+        }
+
+        return listaEmpresa;
+    }
 
     public List<Empresa> getAllEmpresas() throws MalformedURLException, IOException {
 
-        List<Empresa> lista = null;
+        listaEmpresa = null;
 
         String urlWS = this.urlWS + "/empresas";
         URL url = new URL(urlWS);
@@ -158,19 +203,19 @@ public class EmpresaWS {
             JsonParser parser = new JsonParser();
 
             JsonArray jsonLista = parser.parse(output).getAsJsonArray();
-            lista = new ArrayList<>();
+            listaEmpresa = new ArrayList<>();
 
             System.out.println(jsonLista);
 
             for (int i = 0; i < jsonLista.size(); i++) {
                 JsonObject jsonObject = (JsonObject) jsonLista.get(i);
-                Empresa empresa = new Gson().fromJson(jsonObject, Empresa.class);
+                empresa = new Gson().fromJson(jsonObject, Empresa.class);
 
-                lista.add(empresa);
+                listaEmpresa.add(empresa);
             }
         }
 
-        return lista;
+        return listaEmpresa;
     }
 
 }

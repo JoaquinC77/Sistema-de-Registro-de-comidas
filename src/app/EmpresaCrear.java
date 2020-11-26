@@ -27,6 +27,7 @@ public class EmpresaCrear extends javax.swing.JFrame {
 
     public EmpresaCrear() {
         initComponents();
+        this.setLocationRelativeTo(null);
 
         conn = new EmpresaWS();
         representante = null;

@@ -24,6 +24,7 @@ public class Pasajeros extends javax.swing.JFrame {
 
     public Pasajeros() {
         initComponents();
+        this.setLocationRelativeTo(null);
 
         model = new DefaultTableModel(){
             @Override

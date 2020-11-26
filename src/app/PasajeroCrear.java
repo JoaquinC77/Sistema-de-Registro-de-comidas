@@ -24,6 +24,7 @@ public class PasajeroCrear extends javax.swing.JFrame {
      */
     public PasajeroCrear() {
         initComponents();
+        this.setLocationRelativeTo(null);
 
         btnAsignarEmpresa.setEnabled(false);
         btnAsignarContrato.setEnabled(false);

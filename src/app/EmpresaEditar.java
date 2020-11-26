@@ -25,6 +25,7 @@ public class EmpresaEditar extends javax.swing.JFrame {
 
     public EmpresaEditar() {
         initComponents();
+        this.setLocationRelativeTo(null);
 
         connEmpresa = new EmpresaWS();
         connEncargado = new EncargadoWS();

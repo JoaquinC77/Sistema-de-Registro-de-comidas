@@ -43,6 +43,7 @@ public class Empresas extends javax.swing.JFrame {
 
     public Empresas() {
         initComponents();
+        this.setLocationRelativeTo(null);
 
         conn = new EmpresaWS();
 
