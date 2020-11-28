@@ -53,7 +53,7 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
                 }
             };
 
-            pasajero = PasajeroCrear.pasajero;
+            pasajero = Pasajeros.pasajero;
 
             connEmpresa = new EmpresaWS();
             connContrato = new ContratoWS();

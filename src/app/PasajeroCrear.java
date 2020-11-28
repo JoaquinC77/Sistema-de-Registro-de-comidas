@@ -26,8 +26,6 @@ public class PasajeroCrear extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
 
-        btnAsignarEmpresa.setEnabled(false);
-        btnAsignarContrato.setEnabled(false);
 
         conn = new PasajeroWS();
     }
@@ -47,8 +45,6 @@ public class PasajeroCrear extends javax.swing.JFrame {
         txtDireccion = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
-        btnAsignarContrato = new javax.swing.JButton();
-        btnAsignarEmpresa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,20 +91,6 @@ public class PasajeroCrear extends javax.swing.JFrame {
             }
         });
 
-        btnAsignarContrato.setText("Asignar Contrato");
-        btnAsignarContrato.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAsignarContratoActionPerformed(evt);
-            }
-        });
-
-        btnAsignarEmpresa.setText("Asignar Empresa");
-        btnAsignarEmpresa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAsignarEmpresaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,16 +101,12 @@ public class PasajeroCrear extends javax.swing.JFrame {
                     .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAsignarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAsignarContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtApellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -166,19 +144,12 @@ public class PasajeroCrear extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAsignarContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAsignarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAsignarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarContratoActionPerformed
-        new PasajeroAsignarAContrato().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnAsignarContratoActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         int confirmacion = JOptionPane.showConfirmDialog(this, "Desea Registrar a " + txtNombre.getText() + " " + txtApellidoP.getText(), "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -193,15 +164,13 @@ public class PasajeroCrear extends javax.swing.JFrame {
                 if (ok == true) {
                     pasajero = conn.getPasajero(txtRut.getText());
 
-                    btnAsignarEmpresa.setEnabled(true);
-                    btnAsignarContrato.setEnabled(true);
+
 
                     JOptionPane.showMessageDialog(this, "Registro Exitoso", "OK", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(this, "Error 500", "ERROR", JOptionPane.ERROR_MESSAGE);
 
-                    btnAsignarEmpresa.setEnabled(false);
-                    btnAsignarContrato.setEnabled(false);
+
                 }
 
             } catch (IOException ex) {
@@ -217,11 +186,6 @@ public class PasajeroCrear extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnAsignarEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarEmpresaActionPerformed
-        new PasajeroAsignarAEmpresa().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnAsignarEmpresaActionPerformed
-
     private void txtRutFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRutFocusLost
         String rut = txtRut.getText();
 
@@ -234,9 +198,6 @@ public class PasajeroCrear extends javax.swing.JFrame {
                 txtApellidoP.setText(pasajero.getApellidoP());
                 txtApellidoM.setText(pasajero.getApellidoM());
                 txtDireccion.setText(pasajero.getDireccion());
-
-                btnAsignarEmpresa.setEnabled(true);
-                btnAsignarContrato.setEnabled(true);
 
                 btnGuardar.setEnabled(false);
             }
@@ -285,8 +246,6 @@ public class PasajeroCrear extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAsignarContrato;
-    private javax.swing.JButton btnAsignarEmpresa;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JLabel jLabel1;

@@ -29,17 +29,13 @@
                   <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel2" min="-2" pref="35" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="25" max="32767" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="369" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnGuardar" min="-2" pref="100" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnAsignarEmpresa" min="-2" pref="122" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnAsignarContrato" min="-2" pref="122" max="-2" attributes="0"/>
+                      <Component id="btnGuardar" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="txtApellidoM" min="-2" pref="135" max="-2" attributes="0"/>
@@ -88,8 +84,6 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnCancelar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="btnGuardar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="btnAsignarContrato" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="btnAsignarEmpresa" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -164,22 +158,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnAsignarContrato">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Asignar Contrato"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsignarContratoActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnAsignarEmpresa">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Asignar Empresa"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsignarEmpresaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

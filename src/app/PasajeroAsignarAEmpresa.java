@@ -30,16 +30,17 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         
-        pasajero = PasajeroCrear.pasajero;
+        pasajero = Pasajeros.pasajero;
+
         txtRutHuesped.setText(pasajero.getRut());
-        lblNombreHuesped.setText(pasajero.getNombre()+" "+pasajero.getApellidoP());
+        lblNombreHuesped.setText(pasajero.getNombre() + " " + pasajero.getApellidoP());
         txtRutHuesped.setEnabled(false);
-        
+
         try {
             conn = new EmpresaWS();
             List<Empresa> lista = conn.getAllEmpresas();
             cargarCboEmpresas(lista);
-            
+
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Error al cargar empresas");
         }
@@ -173,7 +174,7 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
 
     private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
         empresa = (Empresa) cboEmpresas.getSelectedItem();
-        
+
         int confirmacion = JOptionPane.showConfirmDialog(this,
                 "Desea Asignar Pasajero: " + pasajero.getNombre() + " " + pasajero.getApellidoP() + " A empresa: " + empresa.getNombre(),
                 "Confirmacion",
@@ -184,11 +185,11 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
         if (confirmacion == 0) {
             try {
                 System.out.println("---------------");
-                System.out.println("id p"+pasajero.getId());
+                System.out.println("id p" + pasajero.getId());
                 System.out.println("---------------");
                 new EmpresaPasajeroWS().insertEmpresaPasajero(pasajero.getId(), empresa.getId());
             } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Error al asignar huesped: "+ex.getMessage(),"ERROR",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Error al asignar huesped: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         } else if (confirmacion == 1) {
             System.out.println("Has pulsado No");

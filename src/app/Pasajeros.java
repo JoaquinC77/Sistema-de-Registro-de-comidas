@@ -18,19 +18,24 @@ public class Pasajeros extends javax.swing.JFrame {
     /**
      * Creates new form Pasajeros
      */
-    private Pasajero pasajero;
+    public static Pasajero pasajero;
     private PasajeroWS conn;
     private DefaultTableModel model;
 
     public Pasajeros() {
         initComponents();
+
+        btnAsignacionEmpresa.setEnabled(false);
+        btnAsignacionContrato.setEnabled(false);
+
         this.setLocationRelativeTo(null);
 
-        model = new DefaultTableModel(){
+        model = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;//To change body of generated methods, choose Tools | Templates.
-            }};
+            }
+        };
 
         conn = new PasajeroWS();
     }
@@ -52,11 +57,15 @@ public class Pasajeros extends javax.swing.JFrame {
         tblDatosPasajero = new javax.swing.JTable();
         btnNuevoPasajero = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        btnAsignacionEmpresa = new javax.swing.JButton();
+        btnAsignacionContrato = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel4.setText("Buscar Pasajero: ");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 137, -1, -1));
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -64,24 +73,32 @@ public class Pasajeros extends javax.swing.JFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, 90, 30));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("HOTEL INFORMATICO");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 11, 369, 65));
 
         jLabel2.setText("logo");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 15, 35, 65));
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel3.setText("Pasajero");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 98, -1, -1));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 118, 546, 10));
 
         txtRut.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtRutKeyReleased(evt);
             }
         });
+        getContentPane().add(txtRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 176, 30));
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel5.setText("Datos:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 196, -1, -1));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 546, 10));
 
         tblDatosPasajero.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,12 +121,15 @@ public class Pasajeros extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblDatosPasajero);
 
-        btnNuevoPasajero.setText("Registro/Asignacion");
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 221, 540, 100));
+
+        btnNuevoPasajero.setText("Registro");
         btnNuevoPasajero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoPasajeroActionPerformed(evt);
             }
         });
+        getContentPane().add(btnNuevoPasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 124, 40));
 
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -117,68 +137,23 @@ public class Pasajeros extends javax.swing.JFrame {
                 btnVolverActionPerformed(evt);
             }
         });
+        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 349, 126, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnNuevoPasajero))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnBuscar))
-                .addGap(23, 23, 23)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNuevoPasajero, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
+        btnAsignacionEmpresa.setText("Asign/Empresas");
+        btnAsignacionEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignacionEmpresaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAsignacionEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 349, 127, 40));
+
+        btnAsignacionContrato.setText("Asign/Contrato");
+        btnAsignacionContrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignacionContratoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAsignacionContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, 120, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -202,6 +177,10 @@ public class Pasajeros extends javax.swing.JFrame {
         buscarPasajero(txtRut.getText());
 
         cargarTabla();
+
+        btnAsignacionEmpresa.setEnabled(true);
+        btnAsignacionContrato.setEnabled(true);
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtRutKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutKeyReleased
@@ -209,8 +188,21 @@ public class Pasajeros extends javax.swing.JFrame {
             buscarPasajero(txtRut.getText());
 
             cargarTabla();
+
+            btnAsignacionEmpresa.setEnabled(true);
+            btnAsignacionContrato.setEnabled(true);
         }
     }//GEN-LAST:event_txtRutKeyReleased
+
+    private void btnAsignacionEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignacionEmpresaActionPerformed
+        new PasajeroAsignarAEmpresa().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAsignacionEmpresaActionPerformed
+
+    private void btnAsignacionContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignacionContratoActionPerformed
+        new PasajeroAsignarAContrato().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAsignacionContratoActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -272,6 +264,8 @@ public class Pasajeros extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAsignacionContrato;
+    private javax.swing.JButton btnAsignacionEmpresa;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnNuevoPasajero;
     private javax.swing.JButton btnVolver;

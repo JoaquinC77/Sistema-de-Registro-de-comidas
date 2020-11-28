@@ -32,35 +32,33 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="369" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane2" alignment="1" pref="0" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="txtNombreAdmin" min="-2" pref="160" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="txtRutAdmin" min="-2" pref="160" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jScrollPane2" alignment="1" pref="830" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="txtPuestoAdmin" min="-2" pref="160" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="txtTelefonoAdmin" min="-2" pref="160" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="txtFechaInicio" min="-2" pref="160" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="txtFechaFin" min="-2" pref="160" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblTituloContrato" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtEmailAdmin" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="btnCancelar" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                       <Component id="btnGuardar" min="-2" pref="160" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="lblFechaInicio" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtNombreAdmin" alignment="0" pref="160" max="32767" attributes="0"/>
+                          <Component id="lblTituloContrato" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtEmailAdmin" alignment="0" pref="160" max="32767" attributes="0"/>
+                          <Component id="txtFechaInicio" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="510" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtRutAdmin" pref="160" max="32767" attributes="0"/>
+                          <Component id="txtFechaFin" max="32767" attributes="0"/>
+                          <Component id="lblFechaFin" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -83,12 +81,22 @@
               <Component id="jScrollPane2" min="-2" pref="95" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtFechaInicio" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtFechaFin" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Component id="lblFechaInicio" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtFechaInicio" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblFechaFin" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="txtFechaFin" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -166,8 +174,6 @@
         <Property name="text" type="java.lang.String" value="Vigencia"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtFechaFin">
-    </Component>
     <Component class="javax.swing.JTextField" name="txtNombreAdmin">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -177,8 +183,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Contacto Administrador"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtFechaInicio">
     </Component>
     <Component class="javax.swing.JTextField" name="txtRutAdmin">
     </Component>
@@ -203,6 +207,30 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="txtFechaFin">
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="txtFechaInicio">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblFechaInicio">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel3"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+            <EmptyBorder/>
+          </Border>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblFechaFin">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel3"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+            <EmptyBorder/>
+          </Border>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
