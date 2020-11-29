@@ -61,6 +61,9 @@ public class Pasajeros extends javax.swing.JFrame {
         btnAsignacionContrato = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -78,7 +81,7 @@ public class Pasajeros extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("HOTEL INFORMATICO");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(187, 11, 369, 65));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 369, 65));
 
         jLabel2.setText("logo");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 15, 35, 65));
@@ -158,6 +161,11 @@ public class Pasajeros extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAsignacionEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignacionEmpresaActionPerformed
+        new PasajeroAsignarAEmpresa().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAsignacionEmpresaActionPerformed
+
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         if (Login.tipouser.equals("0")) {
             new InicioUser().setVisible(true);
@@ -168,11 +176,6 @@ public class Pasajeros extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void btnNuevoPasajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPasajeroActionPerformed
-        new PasajeroCrear().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnNuevoPasajeroActionPerformed
-
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         buscarPasajero(txtRut.getText());
 
@@ -180,8 +183,12 @@ public class Pasajeros extends javax.swing.JFrame {
 
         btnAsignacionEmpresa.setEnabled(true);
         btnAsignacionContrato.setEnabled(true);
-
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnNuevoPasajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPasajeroActionPerformed
+        new PasajeroCrear().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnNuevoPasajeroActionPerformed
 
     private void txtRutKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -193,11 +200,6 @@ public class Pasajeros extends javax.swing.JFrame {
             btnAsignacionContrato.setEnabled(true);
         }
     }//GEN-LAST:event_txtRutKeyReleased
-
-    private void btnAsignacionEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignacionEmpresaActionPerformed
-        new PasajeroAsignarAEmpresa().setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnAsignacionEmpresaActionPerformed
 
     private void btnAsignacionContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignacionContratoActionPerformed
         new PasajeroAsignarAContrato().setVisible(true);
