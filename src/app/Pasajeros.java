@@ -1,9 +1,11 @@
 package app;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.clases.Pasajero;
@@ -44,10 +46,11 @@ public class Pasajeros extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        lblExit = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         txtRut = new javax.swing.JTextField();
@@ -59,6 +62,7 @@ public class Pasajeros extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
         btnAsignacionEmpresa = new javax.swing.JButton();
         btnAsignacionContrato = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -66,42 +70,76 @@ public class Pasajeros extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel4.setText("Buscar Pasajero: ");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 137, -1, -1));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_Food_C214_2427858.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 70));
+
+        lblExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_delete_51514.png"))); // NOI18N
+        lblExit.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                lblExitMouseMoved(evt);
+            }
+        });
+        lblExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblExitMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblExitMouseExited(evt);
+            }
+        });
+        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
+        jLabel4.setText("Buscar Pasajero: ");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+
+        btnBuscar.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_5_330396.png"))); // NOI18N
         btnBuscar.setText("Buscar");
+        btnBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnBuscar.setContentAreaFilled(false);
+        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnBuscarMouseMoved(evt);
+            }
+        });
+        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBuscarMouseExited(evt);
+            }
+        });
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, 90, 30));
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, 120, 50));
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("HOTEL INFORMATICO");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 369, 65));
-
-        jLabel2.setText("logo");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 15, 35, 65));
-
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         jLabel3.setText("Pasajero");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 98, -1, -1));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 118, 546, 10));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 660, 10));
 
+        txtRut.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
+        txtRut.setForeground(new java.awt.Color(153, 153, 153));
+        txtRut.setBorder(null);
         txtRut.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtRutKeyReleased(evt);
             }
         });
-        getContentPane().add(txtRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 176, 30));
+        jPanel1.add(txtRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 210, 40));
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         jLabel5.setText("Datos:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 196, -1, -1));
-        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 546, 10));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 660, 10));
 
         tblDatosPasajero.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,39 +162,100 @@ public class Pasajeros extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblDatosPasajero);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 221, 540, 100));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 660, 110));
 
+        btnNuevoPasajero.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
+        btnNuevoPasajero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_add_user_1902270.png"))); // NOI18N
         btnNuevoPasajero.setText("Registro");
+        btnNuevoPasajero.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnNuevoPasajero.setContentAreaFilled(false);
+        btnNuevoPasajero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevoPasajero.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnNuevoPasajeroMouseMoved(evt);
+            }
+        });
+        btnNuevoPasajero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnNuevoPasajeroMouseExited(evt);
+            }
+        });
         btnNuevoPasajero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoPasajeroActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNuevoPasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 124, 40));
+        jPanel1.add(btnNuevoPasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 420, 120, 40));
 
+        btnVolver.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_gtk-go-back-ltr_79911.png"))); // NOI18N
         btnVolver.setText("Volver");
+        btnVolver.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnVolver.setContentAreaFilled(false);
+        btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVolver.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnVolverMouseMoved(evt);
+            }
+        });
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVolverMouseExited(evt);
+            }
+        });
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 349, 126, 40));
+        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 120, 40));
 
+        btnAsignacionEmpresa.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
         btnAsignacionEmpresa.setText("Asign/Empresas");
+        btnAsignacionEmpresa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnAsignacionEmpresa.setContentAreaFilled(false);
+        btnAsignacionEmpresa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAsignacionEmpresa.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnAsignacionEmpresaMouseMoved(evt);
+            }
+        });
+        btnAsignacionEmpresa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAsignacionEmpresaMouseExited(evt);
+            }
+        });
         btnAsignacionEmpresa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAsignacionEmpresaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAsignacionEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 349, 127, 40));
+        jPanel1.add(btnAsignacionEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, 160, 40));
 
+        btnAsignacionContrato.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
         btnAsignacionContrato.setText("Asign/Contrato");
+        btnAsignacionContrato.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnAsignacionContrato.setContentAreaFilled(false);
+        btnAsignacionContrato.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAsignacionContrato.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnAsignacionContratoMouseMoved(evt);
+            }
+        });
+        btnAsignacionContrato.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAsignacionContratoMouseExited(evt);
+            }
+        });
         btnAsignacionContrato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAsignacionContratoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAsignacionContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, 120, 40));
+        jPanel1.add(btnAsignacionContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 420, 160, 40));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 210, 10));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -168,7 +267,7 @@ public class Pasajeros extends javax.swing.JFrame {
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         if (Login.tipouser.equals("0")) {
-            new InicioUser().setVisible(true);
+            new InicioUsuario().setVisible(true);
             this.setVisible(false);
         } else if (Login.tipouser.equals("1")) {
             new InicioTrabajador().setVisible(true);
@@ -205,6 +304,58 @@ public class Pasajeros extends javax.swing.JFrame {
         new PasajeroAsignarAContrato().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnAsignacionContratoActionPerformed
+
+    private void btnBuscarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseExited
+        btnBuscar.setBorder(BorderFactory.createEmptyBorder());
+    }//GEN-LAST:event_btnBuscarMouseExited
+
+    private void btnBuscarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseMoved
+        btnBuscar.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+    }//GEN-LAST:event_btnBuscarMouseMoved
+
+    private void btnNuevoPasajeroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoPasajeroMouseExited
+        btnNuevoPasajero.setBorder(BorderFactory.createEmptyBorder());
+    }//GEN-LAST:event_btnNuevoPasajeroMouseExited
+
+    private void btnNuevoPasajeroMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoPasajeroMouseMoved
+        btnNuevoPasajero.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+    }//GEN-LAST:event_btnNuevoPasajeroMouseMoved
+
+    private void btnAsignacionContratoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignacionContratoMouseExited
+        btnAsignacionContrato.setBorder(BorderFactory.createEmptyBorder());
+    }//GEN-LAST:event_btnAsignacionContratoMouseExited
+
+    private void btnAsignacionContratoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignacionContratoMouseMoved
+        btnAsignacionContrato.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+    }//GEN-LAST:event_btnAsignacionContratoMouseMoved
+
+    private void btnAsignacionEmpresaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignacionEmpresaMouseExited
+        btnAsignacionEmpresa.setBorder(BorderFactory.createEmptyBorder());
+    }//GEN-LAST:event_btnAsignacionEmpresaMouseExited
+
+    private void btnAsignacionEmpresaMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignacionEmpresaMouseMoved
+        btnAsignacionEmpresa.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+    }//GEN-LAST:event_btnAsignacionEmpresaMouseMoved
+
+    private void btnVolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseExited
+        btnVolver.setBorder(BorderFactory.createEmptyBorder());
+    }//GEN-LAST:event_btnVolverMouseExited
+
+    private void btnVolverMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseMoved
+        btnVolver.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+    }//GEN-LAST:event_btnVolverMouseMoved
+
+    private void lblExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseExited
+        lblExit.setBorder(BorderFactory.createEmptyBorder());
+    }//GEN-LAST:event_lblExitMouseExited
+
+    private void lblExitMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseMoved
+        lblExit.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+    }//GEN-LAST:event_lblExitMouseMoved
+
+    private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_lblExitMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -271,14 +422,16 @@ public class Pasajeros extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnNuevoPasajero;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JLabel lblExit;
     private javax.swing.JTable tblDatosPasajero;
     private javax.swing.JTextField txtRut;
     // End of variables declaration//GEN-END:variables

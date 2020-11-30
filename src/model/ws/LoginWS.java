@@ -1,7 +1,7 @@
 package model.ws;
 
 import app.InicioTrabajador;
-import app.InicioUser;
+import app.InicioUsuario;
 import static app.Login.tipouser;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;

@@ -56,13 +56,12 @@ public class Login extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblExit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(java.awt.Color.white);
         setUndecorated(true);
-        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -73,7 +72,7 @@ public class Login extends javax.swing.JFrame {
         txtRut.setForeground(new java.awt.Color(153, 153, 153));
         txtRut.setToolTipText("INGRESAR RUT");
         txtRut.setBorder(null);
-        txtRut.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
+        txtRut.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtRut.setName(""); // NOI18N
         txtRut.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -83,11 +82,11 @@ public class Login extends javax.swing.JFrame {
         jPanel1.add(txtRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 220, 30));
         txtRut.getAccessibleContext().setAccessibleName("INGRESAR RUT");
 
-        btnIngresar.setBackground(new java.awt.Color(153, 153, 153));
+        btnIngresar.setBackground(new java.awt.Color(255, 255, 255));
         btnIngresar.setForeground(new java.awt.Color(238, 112, 82));
         btnIngresar.setText("INGRESAR");
         btnIngresar.setToolTipText("");
-        btnIngresar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(238, 112, 82), 1, true));
+        btnIngresar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
         btnIngresar.setContentAreaFilled(false);
         btnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIngresar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -142,14 +141,22 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_unlock__access__key__password_2542133.png"))); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 30, 30));
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_delete_51514.png"))); // NOI18N
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
+        lblExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_delete_51514.png"))); // NOI18N
+        lblExit.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                lblExitMouseMoved(evt);
             }
         });
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
+        lblExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblExitMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblExitMouseExited(evt);
+            }
+        });
+        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 370));
 
@@ -178,17 +185,26 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtRutKeyReleased
 
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+    private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked
         System.exit(0);
-    }//GEN-LAST:event_jLabel6MouseClicked
+    }//GEN-LAST:event_lblExitMouseClicked
 
     private void btnIngresarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMouseMoved
-        btnIngresar.setBorder(BorderFactory.createLineBorder(new Color(153, 153, 153)));
+        btnIngresar.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+        
     }//GEN-LAST:event_btnIngresarMouseMoved
 
     private void btnIngresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMouseExited
-        btnIngresar.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+        btnIngresar.setBorder(BorderFactory.createLineBorder(new Color(153,153,153)));
     }//GEN-LAST:event_btnIngresarMouseExited
+
+    private void lblExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseExited
+        lblExit.setBorder(BorderFactory.createEmptyBorder());
+    }//GEN-LAST:event_lblExitMouseExited
+
+    private void lblExitMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseMoved
+        lblExit.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+    }//GEN-LAST:event_lblExitMouseMoved
    
     /**
      * @param args the command line arguments
@@ -229,9 +245,10 @@ public class Login extends javax.swing.JFrame {
         try{
             
             Usuario usuario = new LoginWS().loginIniciar(rut, pass);
+
             if(usuario.getTipo().equals("0")){
                     tipouser = "0";
-                    new InicioUser().setVisible(true);
+                    new InicioUsuario().setVisible(true);
                     this.setEnabled(false);
                     this.setVisible(false);
                 }else if(usuario.getTipo().equals("1")){
@@ -241,7 +258,7 @@ public class Login extends javax.swing.JFrame {
                     this.setVisible(false);
                 }
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(this, "Error de ingreso");
+            JOptionPane.showMessageDialog(this, "Error de ingreso: "+ex.getLocalizedMessage());
             txtPass.setText("");
         }
     }
@@ -252,10 +269,10 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblExit;
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtRut;
     // End of variables declaration//GEN-END:variables
