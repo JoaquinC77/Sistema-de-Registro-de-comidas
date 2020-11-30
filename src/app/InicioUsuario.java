@@ -20,7 +20,6 @@ public class InicioUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         btnConsultarServicios = new javax.swing.JButton();
@@ -30,6 +29,7 @@ public class InicioUsuario extends javax.swing.JFrame {
         btnPasajeros = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         lblExit = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -39,11 +39,6 @@ public class InicioUsuario extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_Food_C214_2427858.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 65));
 
         jLabel3.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         jLabel3.setText("Servicios");
@@ -168,6 +163,11 @@ public class InicioUsuario extends javax.swing.JFrame {
         });
         jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGOSISTEMA_80PIX.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 410));
 
         pack();
@@ -179,16 +179,17 @@ public class InicioUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnContratosActionPerformed
 
     private void btnConsultarServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarServiciosActionPerformed
-        new Empresas().setVisible(true);
-        this.setVisible(false);
+        JOptionPane.showMessageDialog(null, "TRABAJANDO EN ELLO","LOANDIG",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnConsultarServiciosActionPerformed
 
     private void btnEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpresasActionPerformed
-        // TODO add your handling code here:
+        new Empresas().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnEmpresasActionPerformed
 
     private void btnPasajerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasajerosActionPerformed
-        // TODO add your handling code here:
+        new Pasajeros().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnPasajerosActionPerformed
 
     private void btnContratosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnContratosMouseExited
