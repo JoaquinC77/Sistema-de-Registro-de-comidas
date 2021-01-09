@@ -278,6 +278,7 @@ public class Pasajeros extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         buscarPasajero(txtRut.getText());
 
+        limpiarTabla();
         cargarTabla();
 
         btnAsignacionEmpresa.setEnabled(true);
@@ -290,13 +291,18 @@ public class Pasajeros extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevoPasajeroActionPerformed
 
     private void txtRutKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutKeyReleased
+        limpiarTabla();
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            buscarPasajero(txtRut.getText());
+            boolean ok = buscarPasajero(txtRut.getText());
+            if (ok == false) {
+                JOptionPane.showMessageDialog(this, "NO SE ENCUENTRA PASAJERO ", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else {
+                cargarTabla();
 
-            cargarTabla();
+                btnAsignacionEmpresa.setEnabled(true);
+                btnAsignacionContrato.setEnabled(true);
+            }
 
-            btnAsignacionEmpresa.setEnabled(true);
-            btnAsignacionContrato.setEnabled(true);
         }
     }//GEN-LAST:event_txtRutKeyReleased
 
@@ -310,7 +316,7 @@ public class Pasajeros extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarMouseExited
 
     private void btnBuscarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseMoved
-        btnBuscar.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+        btnBuscar.setBorder(BorderFactory.createLineBorder(new Color(238, 112, 82)));
     }//GEN-LAST:event_btnBuscarMouseMoved
 
     private void btnNuevoPasajeroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoPasajeroMouseExited
@@ -318,7 +324,7 @@ public class Pasajeros extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevoPasajeroMouseExited
 
     private void btnNuevoPasajeroMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoPasajeroMouseMoved
-        btnNuevoPasajero.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+        btnNuevoPasajero.setBorder(BorderFactory.createLineBorder(new Color(238, 112, 82)));
     }//GEN-LAST:event_btnNuevoPasajeroMouseMoved
 
     private void btnAsignacionContratoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignacionContratoMouseExited
@@ -326,7 +332,7 @@ public class Pasajeros extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAsignacionContratoMouseExited
 
     private void btnAsignacionContratoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignacionContratoMouseMoved
-        btnAsignacionContrato.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+        btnAsignacionContrato.setBorder(BorderFactory.createLineBorder(new Color(238, 112, 82)));
     }//GEN-LAST:event_btnAsignacionContratoMouseMoved
 
     private void btnAsignacionEmpresaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignacionEmpresaMouseExited
@@ -334,7 +340,7 @@ public class Pasajeros extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAsignacionEmpresaMouseExited
 
     private void btnAsignacionEmpresaMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignacionEmpresaMouseMoved
-        btnAsignacionEmpresa.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+        btnAsignacionEmpresa.setBorder(BorderFactory.createLineBorder(new Color(238, 112, 82)));
     }//GEN-LAST:event_btnAsignacionEmpresaMouseMoved
 
     private void btnVolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseExited
@@ -342,7 +348,7 @@ public class Pasajeros extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverMouseExited
 
     private void btnVolverMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseMoved
-        btnVolver.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+        btnVolver.setBorder(BorderFactory.createLineBorder(new Color(238, 112, 82)));
     }//GEN-LAST:event_btnVolverMouseMoved
 
     private void lblExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseExited
@@ -350,7 +356,7 @@ public class Pasajeros extends javax.swing.JFrame {
     }//GEN-LAST:event_lblExitMouseExited
 
     private void lblExitMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseMoved
-        lblExit.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+        lblExit.setBorder(BorderFactory.createLineBorder(new Color(238, 112, 82)));
     }//GEN-LAST:event_lblExitMouseMoved
 
     private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked
@@ -389,11 +395,16 @@ public class Pasajeros extends javax.swing.JFrame {
         });
     }
 
-    public void buscarPasajero(String rut) {
+    public boolean buscarPasajero(String rut) {
         try {
-            pasajero = conn.getPasajero(rut);
+            if (conn.getPasajero(rut) == null) {
+                return false;
+            } else {
+                pasajero = conn.getPasajero(rut);
+                return true;
+            }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
     }
 
@@ -414,6 +425,14 @@ public class Pasajeros extends javax.swing.JFrame {
         model.addRow(fila);
 
         tblDatosPasajero.setModel(model);
+    }
+
+    private void limpiarTabla() {
+        if (model.getRowCount() > 0) {
+            for (int i = model.getRowCount() - 1; i > -1; i--) {
+                model.removeRow(i);
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
