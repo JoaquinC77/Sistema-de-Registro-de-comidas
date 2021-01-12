@@ -5,6 +5,10 @@
  */
 package app;
 
+import app.uieditor.PropiedadesCBO;
+import app.uieditor.PropiedadesJDATECHOOSER;
+import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -14,6 +18,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.IntStream;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import model.clases.Contrato;
 import model.clases.Empresa;
@@ -44,6 +49,8 @@ public class ContratoCrear extends javax.swing.JFrame {
 
         conn = new ContratoWS();
         adminContrato = null;
+        
+        cboEmpresas.setUI(PropiedadesCBO.createUI(rootPane));
 
         try {
             lista = new EmpresaWS().getAllEmpresas();
@@ -61,141 +68,289 @@ public class ContratoCrear extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         lblTituloContrato = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
-        txtPuestoAdmin = new javax.swing.JTextField();
-        txtTelefonoAdmin = new javax.swing.JTextField();
-        txtEmailAdmin = new javax.swing.JTextField();
-        btnGuardar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        txtNombreAdmin = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtRutAdmin = new javax.swing.JTextField();
-        txtNombreContrato = new javax.swing.JTextField();
-        cboEmpresas = new javax.swing.JComboBox<>();
-        txtFechaInicio = new com.toedter.calendar.JDateChooser();
-        txtFechaFin = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        cboEmpresas = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        txtFechaFin = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        txtFechaInicio = new com.toedter.calendar.JDateChooser();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        lblExit = new javax.swing.JLabel();
+        btnCancelar = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
+        txtRutAdmin = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        txtNombreAdmin = new javax.swing.JTextField();
+        txtPuestoAdmin = new javax.swing.JTextField();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        txtTelefonoAdmin = new javax.swing.JTextField();
+        txtEmailAdmin = new javax.swing.JTextField();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+        txtNombreContrato = new javax.swing.JTextField();
+        jSeparator7 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblTituloContrato.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        lblTituloContrato.setText("Contrato: Crear");
-        getContentPane().add(lblTituloContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 118, 770, 10));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("HOTEL INFORMATICO");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 369, 65));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 15, 369, 60));
 
-        txtPuestoAdmin.setText("Administrador");
-        getContentPane().add(txtPuestoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, 160, 30));
+        lblTituloContrato.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
+        lblTituloContrato.setText("Contrato: Crear");
+        jPanel1.add(lblTituloContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 790, 10));
 
-        txtTelefonoAdmin.setText("80808080");
-        getContentPane().add(txtTelefonoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 330, 160, 30));
+        jLabel3.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        jLabel3.setText("Empresa:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
 
-        txtEmailAdmin.setText("@gmail.com");
-        getContentPane().add(txtEmailAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 160, 30));
+        jLabel6.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        jLabel6.setText("Nombre: ");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, -1, -1));
 
-        btnGuardar.setText("Guardar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
+        cboEmpresas.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
+        cboEmpresas.setForeground(new java.awt.Color(238, 112, 82));
+        cboEmpresas.setBorder(null);
+        cboEmpresas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(cboEmpresas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 250, 30));
+
+        jLabel4.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
+        jLabel4.setText("Vigencia");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
+
+        txtFechaFin.setBackground(new java.awt.Color(255, 255, 255));
+        txtFechaFin.setForeground(new java.awt.Color(238, 112, 82));
+        txtFechaFin.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
+        jPanel1.add(txtFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 230, 160, 30));
+
+        jLabel7.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        jLabel7.setText("Fecha Fin:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 230, -1, -1));
+
+        txtFechaInicio.setBackground(new java.awt.Color(255, 255, 255));
+        txtFechaInicio.setForeground(new java.awt.Color(238, 112, 82));
+        txtFechaInicio.setToolTipText("");
+        txtFechaInicio.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
+        jPanel1.add(txtFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 160, 30));
+
+        jLabel9.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        jLabel9.setText("Fecha Inicial: ");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
+        jLabel5.setText("Contacto Administrador");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        jLabel13.setText("RUT: ");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        jLabel8.setText("Telefono Celular");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 320, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        jLabel11.setText("Nombre:");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        jLabel12.setText("Puesto: ");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        jLabel10.setText("Correo Electronico:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, -1, -1));
+
+        lblExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_delete_51514.png"))); // NOI18N
+        lblExit.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                lblExitMouseMoved(evt);
             }
         });
-        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 470, 160, 46));
+        lblExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblExitMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblExitMouseExited(evt);
+            }
+        });
+        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, -1, -1));
 
+        btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
+        btnCancelar.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(238, 112, 82));
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_gtk-go-back-ltr_79911.png"))); // NOI18N
+        btnCancelar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnCancelar.setContentAreaFilled(false);
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseMoved(evt);
+            }
+        });
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCancelarMouseExited(evt);
+            }
+        });
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 446, 150, 70));
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 150, 40));
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel4.setText("Vigencia");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
+        btnGuardar.setBackground(new java.awt.Color(153, 153, 153));
+        btnGuardar.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(238, 112, 82));
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_save_floppy_disk_3380379.png"))); // NOI18N
+        btnGuardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnGuardar.setContentAreaFilled(false);
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnGuardarMouseMoved(evt);
+            }
+        });
+        btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnGuardarMouseExited(evt);
+            }
+        });
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 490, 150, 40));
 
-        txtNombreAdmin.setText("Nombre Admin");
-        getContentPane().add(txtNombreAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 160, 30));
-
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel5.setText("Contacto Administrador");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
-
-        txtRutAdmin.setText("11111111-1");
+        txtRutAdmin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtRutAdmin.setForeground(new java.awt.Color(153, 153, 153));
+        txtRutAdmin.setToolTipText("INGRESAR RUT");
+        txtRutAdmin.setBorder(null);
+        txtRutAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtRutAdmin.setName(""); // NOI18N
         txtRutAdmin.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtRutAdminFocusLost(evt);
             }
         });
-        getContentPane().add(txtRutAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 160, 30));
+        txtRutAdmin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtRutAdminKeyReleased(evt);
+            }
+        });
+        jPanel1.add(txtRutAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 180, 30));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, 220, 10));
 
-        txtNombreContrato.setText("Nombre Contrato");
-        getContentPane().add(txtNombreContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, 230, -1));
+        txtNombreAdmin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtNombreAdmin.setForeground(new java.awt.Color(153, 153, 153));
+        txtNombreAdmin.setToolTipText("INGRESAR RUT");
+        txtNombreAdmin.setBorder(null);
+        txtNombreAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtNombreAdmin.setName(""); // NOI18N
+        jPanel1.add(txtNombreAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 180, 30));
 
-        getContentPane().add(cboEmpresas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 250, -1));
-        getContentPane().add(txtFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 160, 30));
-        getContentPane().add(txtFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 220, 160, 30));
+        txtPuestoAdmin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtPuestoAdmin.setForeground(new java.awt.Color(153, 153, 153));
+        txtPuestoAdmin.setToolTipText("INGRESAR RUT");
+        txtPuestoAdmin.setBorder(null);
+        txtPuestoAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtPuestoAdmin.setName(""); // NOI18N
+        jPanel1.add(txtPuestoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 350, 180, 30));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 180, 10));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 180, 10));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("Empresa:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+        txtTelefonoAdmin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtTelefonoAdmin.setForeground(new java.awt.Color(153, 153, 153));
+        txtTelefonoAdmin.setToolTipText("INGRESAR RUT");
+        txtTelefonoAdmin.setBorder(null);
+        txtTelefonoAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtTelefonoAdmin.setName(""); // NOI18N
+        jPanel1.add(txtTelefonoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 350, 180, 30));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Nombre: ");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, -1, -1));
+        txtEmailAdmin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtEmailAdmin.setForeground(new java.awt.Color(153, 153, 153));
+        txtEmailAdmin.setToolTipText("INGRESAR RUT");
+        txtEmailAdmin.setBorder(null);
+        txtEmailAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtEmailAdmin.setName(""); // NOI18N
+        jPanel1.add(txtEmailAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 180, 30));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 380, 180, 10));
+        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 380, 180, 10));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("Fecha Fin:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, -1, -1));
+        txtNombreContrato.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtNombreContrato.setForeground(new java.awt.Color(153, 153, 153));
+        txtNombreContrato.setToolTipText("INGRESAR RUT");
+        txtNombreContrato.setBorder(null);
+        txtNombreContrato.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtNombreContrato.setName(""); // NOI18N
+        jPanel1.add(txtNombreContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, 220, 30));
+        jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 180, 10));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("Telefono Celular");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 310, -1, -1));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGOSISTEMA.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 50));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("Fecha Inicial: ");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setText("Correo Electronico:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel11.setText("Nombre:");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, -1, -1));
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel12.setText("Puesto: ");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, -1, -1));
-
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel13.setText("RUT: ");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, -1));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 530));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 540));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblExitMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseMoved
+        lblExit.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+    }//GEN-LAST:event_lblExitMouseMoved
+
+    private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_lblExitMouseClicked
+
+    private void lblExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseExited
+        lblExit.setBorder(BorderFactory.createEmptyBorder());
+    }//GEN-LAST:event_lblExitMouseExited
+
+    private void btnCancelarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseMoved
+        btnCancelar.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+    }//GEN-LAST:event_btnCancelarMouseMoved
+
+    private void btnCancelarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseExited
+        btnCancelar.setBorder(BorderFactory.createLineBorder(new Color(153,153,153)));
+    }//GEN-LAST:event_btnCancelarMouseExited
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         new Contratos().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnGuardarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseMoved
+        btnGuardar.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+    }//GEN-LAST:event_btnGuardarMouseMoved
+
+    private void btnGuardarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseExited
+        btnGuardar.setBorder(BorderFactory.createLineBorder(new Color(153,153,153)));
+    }//GEN-LAST:event_btnGuardarMouseExited
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         Empresa empresa = (Empresa) cboEmpresas.getSelectedItem();
@@ -239,8 +394,13 @@ public class ContratoCrear extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al registrar contrato y/o datos de administrador");
         }
 
-
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void txtRutAdminKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutAdminKeyReleased
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            txtRutAdmin.transferFocus();
+        }
+    }//GEN-LAST:event_txtRutAdminKeyReleased
 
     private void txtRutAdminFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRutAdminFocusLost
         try {
@@ -322,7 +482,15 @@ public class ContratoCrear extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JLabel lblExit;
     private javax.swing.JLabel lblTituloContrato;
     private javax.swing.JTextField txtEmailAdmin;
     private com.toedter.calendar.JDateChooser txtFechaFin;
