@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Santo%20Tomás/Desktop/TISIS/Proyecto%20de%20tesis/Tesis/src/app/ContratoCrear.java</file>
+            <file>file:/C:/Users/Santo%20Tomás/Desktop/TISIS/Proyecto%20de%20tesis/Tesis/src/app/Pasajeros.java</file>
+            <file>file:/C:/Users/Santo%20Tomás/Desktop/TISIS/Proyecto%20de%20tesis/Tesis/src/app/PasajeroEditar.java</file>
+            <file>file:/C:/Users/Santo%20Tomás/Desktop/TISIS/Proyecto%20de%20tesis/Tesis/src/model/ws/EmpresaPasajeroWS.java</file>
+            <file>file:/C:/Users/Santo%20Tomás/Desktop/TISIS/Proyecto%20de%20tesis/Tesis/src/app/PasajeroAsignarAEmpresa.java</file>
         </group>
     </open-files>
 </project-private>

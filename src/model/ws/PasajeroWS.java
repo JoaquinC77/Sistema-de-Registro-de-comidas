@@ -19,38 +19,25 @@ import model.clases.Pasajero;
 public class PasajeroWS {
 
     private String urlWS;
+    private ConexionWS convert;
 
     public PasajeroWS() {
         this.urlWS = "http://localhost:8080";
+        convert = new ConexionWS();
     }
 
     public Pasajero getPasajero(String rut) throws MalformedURLException, IOException {
         Pasajero p = null;
 
         String rutaCompleta = urlWS + "/pasajeroRut?rut=" + rut;
+        URL url = new URL(rutaCompleta);
         System.out.println("------------------------");
         System.out.println(rutaCompleta);
         System.out.println("------------------------");
-        HttpURLConnection conn = (HttpURLConnection) new URL(rutaCompleta).openConnection();
-        conn.setRequestMethod("GET");
-        conn.setRequestProperty("Accept", "application/json");
-        if (conn.getResponseCode() != 200) {
-            throw new RuntimeException("Failed : HTTP Error code : "
-                    + conn.getResponseCode());
-        }
-
-        InputStreamReader in = new InputStreamReader(conn.getInputStream());
-        BufferedReader br = new BufferedReader(in);
-        String output;
-
-        while ((output = br.readLine()) != null) {
-            //System.out.println(output);
-            JsonParser parser = new JsonParser();
-
-            JsonObject jsonObject = (JsonObject) parser.parse(output);
-
-            p = new Gson().fromJson(jsonObject, Pasajero.class);
-        }
+        
+        JsonObject jsonObject = convert.getJsonObject(url);
+        
+        p = new Gson().fromJson(jsonObject, Pasajero.class);
 
         return p;
 

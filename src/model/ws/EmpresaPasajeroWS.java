@@ -1,11 +1,14 @@
 package model.ws;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import model.clases.EmpresaPasajero;
 
 /**
  *
@@ -51,5 +54,38 @@ public class EmpresaPasajeroWS {
         return false;
     }
     
+    public boolean updateEmpresPasajero(String idEmpresaNueva, String idPasajero, String idEmpresaAntigua) throws MalformedURLException, IOException{
+        String parametros = "idPasajero="+idPasajero+"&idEmpresaNueva="+idEmpresaNueva+"&idEmpresaAntigua="+idEmpresaAntigua;
+        //Ruta completa del host+parametros a enviar
+        String rutaCompleta = urlWS + "/updateEmpresaPasajero?" + parametros;
+        
+        System.out.println("------------------------");
+        System.out.println(rutaCompleta);
+        System.out.println("------------------------");
+        
+        boolean ok = Boolean.parseBoolean(new ConexionWS().getStringResponse(new URL(rutaCompleta)));
+        
+        return ok;
+    }
+    
+    public EmpresaPasajero getEmpresaPasajeroForIdPasajero(String idPasajero) throws MalformedURLException, IOException{
+        String parametros = "idPasajero="+idPasajero;
+         //Ruta completa del host+parametros a enviar
+        String rutaCompleta = urlWS + "/getEmpresaPasajeroForIDPasajero?" + parametros;
+        
+        System.out.println("------------------------");
+        System.out.println(rutaCompleta);
+        System.out.println("------------------------");
+        
+        JsonObject jsonObject = new ConexionWS().getJsonObject(new URL(rutaCompleta));
+        
+        EmpresaPasajero ep = new Gson().fromJson(jsonObject, EmpresaPasajero.class);
+        
+        if(ep != null){
+            return ep;
+        }else{
+            return null;
+        }
+    }
     
 }

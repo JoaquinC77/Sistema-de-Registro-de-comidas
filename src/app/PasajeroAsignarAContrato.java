@@ -59,9 +59,11 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
             connContrato = new ContratoWS();
             conn = new ContratoPasajeroWS();
 
-            listaEmpresa = connEmpresa.getEmpresaPorIDPasajero(pasajero.getId());
-
-            llenarCBOEmpresa(listaEmpresa);
+            empresa = connEmpresa.getEmpresaForIDPasajero(pasajero.getId());
+            lblEmpresaNombre.setText(empresa.getNombre());
+            
+            listaContrato = connContrato.getContratosForIDEmpresa(empresa.getId());
+            llenarCBOContrato(listaContrato);
 
             tblDatosContrato.setModel(dtmModeloContrato);
             dtmModeloContrato.addColumn("FECHA INICIO");
@@ -92,7 +94,6 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
         tblDatosPasajero = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        cboEmpresas = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         cboContratos = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
@@ -104,6 +105,7 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         dateChooserFechaInicio = new com.toedter.calendar.JDateChooser();
         dateChooserFechaFin = new com.toedter.calendar.JDateChooser();
+        lblEmpresaNombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -132,14 +134,8 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel4.setText("Asignacion");
 
-        cboEmpresas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboEmpresasActionPerformed(evt);
-            }
-        });
-
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jLabel5.setText("Empresas");
+        jLabel5.setText("Ultima Empresa Asociada Al RUT de Pasajero: ");
 
         cboContratos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,6 +173,9 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
             }
         });
 
+        lblEmpresaNombre.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        lblEmpresaNombre.setText("  :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -186,9 +185,9 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator2)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(cboEmpresas, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblEmpresaNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -239,14 +238,14 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cboEmpresas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel5))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cboContratos, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cboContratos, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEmpresaNombre))))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -272,21 +271,6 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
         new Pasajeros().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void cboEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEmpresasActionPerformed
-        try {
-            empresa = (Empresa) cboEmpresas.getSelectedItem();
-
-            listaContrato = connContrato.getContratosForIDEmpresa(empresa.getId());
-            
-            cboContratos.removeAllItems();
-            
-            llenarCBOContrato(listaContrato);
-        } catch (IOException ex) {
-            Logger.getLogger(PasajeroAsignarAContrato.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_cboEmpresasActionPerformed
 
     private void cboContratosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboContratosActionPerformed
         limpiartablaContrato();
@@ -353,12 +337,6 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
         });
     }
 
-    public void llenarCBOEmpresa(List<Empresa> lista) {
-        for (Empresa em : lista) {
-            cboEmpresas.addItem(em);
-        }
-    }
-
     public void llenarCBOContrato(List<Contrato> lista) {
         for (Contrato c : lista) {
             cboContratos.addItem(c);
@@ -373,6 +351,7 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
 
         dtmModeloContrato.addRow(fila);
     }
+    
 
     private void cargarTablaPasajero(Pasajero p) {
         Object[] fila = new Object[4];
@@ -397,7 +376,6 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
     private javax.swing.JButton btnAsignar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JComboBox<Contrato> cboContratos;
-    private javax.swing.JComboBox<Empresa> cboEmpresas;
     private com.toedter.calendar.JDateChooser dateChooserFechaFin;
     private com.toedter.calendar.JDateChooser dateChooserFechaInicio;
     private javax.swing.JLabel jLabel1;
@@ -412,6 +390,7 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JLabel lblEmpresaNombre;
     private javax.swing.JTable tblDatosContrato;
     private javax.swing.JTable tblDatosPasajero;
     // End of variables declaration//GEN-END:variables

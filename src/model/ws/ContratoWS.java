@@ -114,5 +114,18 @@ public class ContratoWS {
 
         return contrato;
     }
+    
+    public Contrato getContratoForIDEmpresaIDPasajero(String idPasajero, String idEmpresa) throws MalformedURLException, IOException {
+        Contrato contrato = null;
+
+        String urlWS = this.urlWs + "/getContratoForIDEmpresaIDPasajero?idPasajero="+idPasajero+"&idEmpresa="+idEmpresa;
+        URL url = new URL(urlWS);
+
+        JsonObject jsonObject = new ConexionWS().getJsonObject(url);
+
+        contrato = new Gson().fromJson(jsonObject, Contrato.class);
+
+        return contrato;
+    }
 
 }

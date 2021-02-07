@@ -5,16 +5,8 @@
  */
 package app;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import java.awt.Color;
-import java.awt.Window;
 import java.awt.event.KeyEvent;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import model.clases.Usuario;

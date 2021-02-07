@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package app;
 
 import app.uieditor.PropiedadesCBO;
@@ -191,6 +186,7 @@ public class Contratos extends javax.swing.JFrame {
         lblTituloContratosAEmpresas.setText("Contratos \"Empresa Seleccionada\":");
         jPanel1.add(lblTituloContratosAEmpresas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
 
+        tblDatosEmpresa.setForeground(new java.awt.Color(238, 112, 82));
         tblDatosEmpresa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -202,6 +198,9 @@ public class Contratos extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblDatosEmpresa.setGridColor(new java.awt.Color(0, 0, 0));
+        tblDatosEmpresa.setSelectionBackground(new java.awt.Color(102, 102, 102));
+        tblDatosEmpresa.setSelectionForeground(new java.awt.Color(238, 112, 82));
         tblDatosEmpresa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblDatosEmpresaMouseClicked(evt);
