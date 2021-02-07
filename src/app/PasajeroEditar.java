@@ -81,6 +81,7 @@ public class PasajeroEditar extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         cboEmpresas = new javax.swing.JComboBox<>();
         btnGuardar = new javax.swing.JButton();
+        btnVolver1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -204,6 +205,27 @@ public class PasajeroEditar extends javax.swing.JFrame {
         });
         jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 460, 120, 40));
 
+        btnVolver1.setBackground(new java.awt.Color(255, 255, 255));
+        btnVolver1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_gtk-go-back-ltr_79911.png"))); // NOI18N
+        btnVolver1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnVolver1.setContentAreaFilled(false);
+        btnVolver1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnVolver1MouseMoved(evt);
+            }
+        });
+        btnVolver1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnVolver1MouseExited(evt);
+            }
+        });
+        btnVolver1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolver1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnVolver1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 130, 47));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 510));
 
         pack();
@@ -242,6 +264,19 @@ public class PasajeroEditar extends javax.swing.JFrame {
             System.out.println("ERROR: "+ex.getLocalizedMessage());
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnVolver1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolver1MouseMoved
+        btnVolver1.setBorder(BorderFactory.createLineBorder(new Color(238, 112, 82)));
+    }//GEN-LAST:event_btnVolver1MouseMoved
+
+    private void btnVolver1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolver1MouseExited
+        btnVolver1.setBorder(BorderFactory.createLineBorder(new Color(153, 153, 153)));
+    }//GEN-LAST:event_btnVolver1MouseExited
+
+    private void btnVolver1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolver1ActionPerformed
+        new Pasajeros().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnVolver1ActionPerformed
 
     
     /**
@@ -296,6 +331,7 @@ public class PasajeroEditar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnVolver1;
     private javax.swing.JComboBox<Empresa> cboEmpresas;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

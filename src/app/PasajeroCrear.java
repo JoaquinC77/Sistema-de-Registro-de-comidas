@@ -58,6 +58,7 @@ public class PasajeroCrear extends javax.swing.JFrame {
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
+        btnCodigoDeBarra = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -190,6 +191,16 @@ public class PasajeroCrear extends javax.swing.JFrame {
         jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 190, 10));
         jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 270, 190, 10));
 
+        btnCodigoDeBarra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_scanning-barcode_3583307 (1).png"))); // NOI18N
+        btnCodigoDeBarra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        btnCodigoDeBarra.setContentAreaFilled(false);
+        btnCodigoDeBarra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCodigoDeBarraActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCodigoDeBarra, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, 130, 40));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 440));
 
         pack();
@@ -285,6 +296,11 @@ public class PasajeroCrear extends javax.swing.JFrame {
         btnGuardar.setBorder(BorderFactory.createLineBorder(new Color(238, 112, 82)));
     }//GEN-LAST:event_btnGuardarMouseMoved
 
+    private void btnCodigoDeBarraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCodigoDeBarraActionPerformed
+        new BarCodeCreate().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCodigoDeBarraActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -319,6 +335,7 @@ public class PasajeroCrear extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnCodigoDeBarra;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

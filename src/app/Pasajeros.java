@@ -396,8 +396,10 @@ public class Pasajeros extends javax.swing.JFrame {
                 boolean okEmpresa = buscarEmpresa(pasajero.getId());
                 if (okEmpresa == false) {
                     JOptionPane.showMessageDialog(this, "0 EMPRESA ASOCIADA", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    btnAsignacionEmpresa.setEnabled(true);
                 } else {
                     cargarTablaEmpresa();
+                    btnAsignacionEmpresa.setEnabled(false);
 
                     boolean okContrato = buscarContrato(pasajero.getId(), empresa.getId());
                     if (okContrato == false) {
@@ -407,8 +409,6 @@ public class Pasajeros extends javax.swing.JFrame {
                     }
 
                 }
-
-                btnAsignacionEmpresa.setEnabled(true);
                 btnAsignacionContrato.setEnabled(true);
             }
 
