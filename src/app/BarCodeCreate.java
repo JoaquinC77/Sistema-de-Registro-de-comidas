@@ -9,6 +9,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.Barcode128;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -181,37 +182,12 @@ public class BarCodeCreate extends javax.swing.JFrame {
 
     private void btnGenerarBarCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarBarCodeActionPerformed
         try {
-            JFileChooser seleccionarArchivo = new JFileChooser();
-            String direccion = "";
-            int opcion = seleccionarArchivo.showSaveDialog(null);
-            
-            if(opcion == JFileChooser.APPROVE_OPTION){
-                File f = seleccionarArchivo.getSelectedFile();
-                String f1 = f.toString();
-                
-                direccion = f1;
+            try {
+                abrirPdfBarCode();
+            } catch (Exception e) {
+                generarPdfBarCode();
+                abrirPdfBarCode();
             }
-            
-            Document doc = new Document();
-            PdfWriter pdf = PdfWriter.getInstance(doc, new FileOutputStream(direccion+".pdf"));
-            doc.open();
-            
-            Barcode128 code = new Barcode128();
-            code.setCode(pasajero.getRut());
-            
-            Image img = code.createImageWithBarcode(pdf.getDirectContent(), BaseColor.BLACK, BaseColor.BLACK);
-            
-            Font fTitulo = new Font(Font.FontFamily.TIMES_ROMAN, 14.0f, Font.BOLD, BaseColor.BLACK);
-            Font fTituloRut = new Font(Font.FontFamily.TIMES_ROMAN, 12.0f, Font.BOLD, BaseColor.BLACK);
-            
-            Paragraph titulo = new Paragraph("Nombre: "+pasajero.getNombre()+" "+pasajero.getApellidoP(), fTitulo);
-            Paragraph tituloRut = new Paragraph("RUT: "+pasajero.getRut(), fTituloRut);
-            
-            doc.add(titulo);
-            doc.add(tituloRut);
-            doc.add(img);
-            
-            doc.close();
         } catch (Exception ex) {
             System.out.println("ERROR "+ex.getMessage());
             System.out.println("ERROR "+ex.getLocalizedMessage());
@@ -292,6 +268,40 @@ public class BarCodeCreate extends javax.swing.JFrame {
                 new BarCodeCreate().setVisible(true);
             }
         });
+    }
+    
+    private void generarPdfBarCode() throws FileNotFoundException, DocumentException{
+        FileOutputStream archivo = new FileOutputStream("codigos/"+pasajero.getRut()+".pdf");
+            
+            Document doc = new Document();
+            PdfWriter pdf = PdfWriter.getInstance(doc, archivo);
+            doc.open();
+            
+            Barcode128 code = new Barcode128();
+            code.setCode(pasajero.getRut());
+            
+            Image img = code.createImageWithBarcode(pdf.getDirectContent(), BaseColor.BLACK, BaseColor.BLACK);
+            
+            Font fTitulo = new Font(Font.FontFamily.TIMES_ROMAN, 14.0f, Font.BOLD, BaseColor.BLACK);
+            Font fTituloRut = new Font(Font.FontFamily.TIMES_ROMAN, 12.0f, Font.BOLD, BaseColor.BLACK);
+            
+            Paragraph titulo = new Paragraph("Nombre: "+pasajero.getNombre()+" "+pasajero.getApellidoP(), fTitulo);
+            Paragraph tituloRut = new Paragraph("RUT: "+pasajero.getRut(), fTituloRut);
+            
+            doc.add(titulo);
+            doc.add(tituloRut);
+            doc.add(img);
+            
+            doc.close();
+    }
+    
+    private void abrirPdfBarCode(){
+        try {
+            File path = new File("codigos/"+pasajero.getRut()+".pdf");
+            Desktop.getDesktop().open(path);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

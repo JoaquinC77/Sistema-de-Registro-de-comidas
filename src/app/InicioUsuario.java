@@ -179,7 +179,8 @@ public class InicioUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnContratosActionPerformed
 
     private void btnConsultarServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarServiciosActionPerformed
-        JOptionPane.showMessageDialog(null, "TRABAJANDO EN ELLO","LOANDIG",JOptionPane.INFORMATION_MESSAGE);
+        new ConsultarServicios().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnConsultarServiciosActionPerformed
 
     private void btnEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpresasActionPerformed

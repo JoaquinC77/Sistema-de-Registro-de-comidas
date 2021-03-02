@@ -1,6 +1,7 @@
 package model.ws;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.BufferedReader;
@@ -10,6 +11,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 import model.clases.Pasajero;
 
 /**
@@ -40,6 +43,30 @@ public class PasajeroWS {
         p = new Gson().fromJson(jsonObject, Pasajero.class);
 
         return p;
+
+    }
+    
+    public List<Pasajero> getPasajerosPorContrato(String codigoContrato) throws MalformedURLException, IOException {
+        Pasajero p = null;
+        List<Pasajero> listaPasajeros = new ArrayList<Pasajero>();
+        
+        String rutaCompleta = urlWS + "/pasajerosPorContrato?codigoContrato=" + codigoContrato;
+        URL url = new URL(rutaCompleta);
+        System.out.println("------------------------");
+        System.out.println(rutaCompleta);
+        System.out.println("------------------------");
+        
+        JsonArray jsonArray = convert.getJsonArray(url);
+        
+        for (int i = 0; i < jsonArray.size(); i++) {
+            JsonObject jsonObject = (JsonObject) jsonArray.get(i);
+            p =  new Gson().fromJson(jsonObject, Pasajero.class);
+            
+            listaPasajeros.add(p);
+            
+        }
+        
+        return listaPasajeros;
 
     }
     

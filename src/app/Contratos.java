@@ -7,15 +7,11 @@ import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
 import model.clases.Contrato;
 import model.clases.Empresa;
-import model.ws.ConexionWS;
 import model.ws.ContratoWS;
 import model.ws.EmpresaWS;
 
@@ -35,7 +31,7 @@ public class Contratos extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cboEmpresas.setUI(PropiedadesCBO.createUI(rootPane));
-        
+
         conn = new ContratoWS();
 
         try {
@@ -47,8 +43,7 @@ public class Contratos extends javax.swing.JFrame {
         for (Empresa em : lista) {
             cboEmpresas.addItem(em);
         }
-        
-        
+
         formatoTabla();
 
     }
@@ -58,7 +53,6 @@ public class Contratos extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
@@ -82,14 +76,9 @@ public class Contratos extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("HOTEL INFORMATICO");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 369, 65));
-
-        jLabel3.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         jLabel3.setText("Contratos");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 70, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 90, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 730, 10));
 
         jLabel4.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
@@ -186,6 +175,7 @@ public class Contratos extends javax.swing.JFrame {
         lblTituloContratosAEmpresas.setText("Contratos \"Empresa Seleccionada\":");
         jPanel1.add(lblTituloContratosAEmpresas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
 
+        tblDatosEmpresa.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         tblDatosEmpresa.setForeground(new java.awt.Color(238, 112, 82));
         tblDatosEmpresa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -342,7 +332,7 @@ public class Contratos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarMouseMoved
 
     private void lblExitMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseMoved
-        lblExit.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+        lblExit.setBorder(BorderFactory.createLineBorder(new Color(238, 112, 82)));
     }//GEN-LAST:event_lblExitMouseMoved
 
     private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked
@@ -438,7 +428,6 @@ public class Contratos extends javax.swing.JFrame {
     private javax.swing.JButton btnNuevoConrato;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<Empresa> cboEmpresas;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

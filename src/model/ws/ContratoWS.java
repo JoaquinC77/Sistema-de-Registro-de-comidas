@@ -60,6 +60,32 @@ public class ContratoWS {
         }
         return lista;
     }
+    
+    public List<Contrato> getContratosActivosoCaducosForIDEmpresa(String idEmpresa, boolean estado) throws MalformedURLException, IOException {
+        List<Contrato> lista = new ArrayList<>();
+        String urlWS = "";
+        
+        if(estado){
+            urlWS = this.urlWs + "/contratosActivos?idEmpresa=" + idEmpresa;
+        }else{
+            urlWS = this.urlWs + "/contratosCaducos?idEmpresa=" + idEmpresa;
+        }
+        
+        URL url = new URL(urlWS);
+
+        
+        JsonArray jsonLista = new ConexionWS().getJsonArray(url);
+        
+        lista = new ArrayList<>();
+        
+        for (int i = 0; i < jsonLista.size(); i++) {
+            JsonObject jsonObject = (JsonObject) jsonLista.get(i);
+            Contrato contrato = new Gson().fromJson(jsonObject, Contrato.class);
+
+            lista.add(contrato);
+        }
+        return lista;
+    }
 
     public boolean insertContrato(Contrato c) throws IOException, MalformedURLException {
         //insertContrato

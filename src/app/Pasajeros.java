@@ -36,6 +36,7 @@ public class Pasajeros extends javax.swing.JFrame {
 
         btnAsignacionEmpresa.setEnabled(false);
         btnAsignacionContrato.setEnabled(false);
+        btnEditarPasajero.setEnabled(false);
 
         this.setLocationRelativeTo(null);
 
@@ -255,8 +256,7 @@ public class Pasajeros extends javax.swing.JFrame {
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         tblDatosPasajero1.setAutoCreateRowSorter(true);
-        tblDatosPasajero1.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
-        tblDatosPasajero1.setForeground(new java.awt.Color(238, 112, 82));
+        tblDatosPasajero1.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         tblDatosPasajero1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -285,7 +285,7 @@ public class Pasajeros extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 780, 50));
 
-        tblContratoAsociado.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        tblContratoAsociado.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         tblContratoAsociado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null}
@@ -306,7 +306,7 @@ public class Pasajeros extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 780, 50));
 
-        tblEmpresaAsociada.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        tblEmpresaAsociada.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         tblEmpresaAsociada.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null}
@@ -378,6 +378,7 @@ public class Pasajeros extends javax.swing.JFrame {
 
         btnAsignacionEmpresa.setEnabled(true);
         btnAsignacionContrato.setEnabled(true);
+        btnEditarPasajero.setEnabled(true);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnNuevoPasajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPasajeroActionPerformed
@@ -400,6 +401,7 @@ public class Pasajeros extends javax.swing.JFrame {
                 } else {
                     cargarTablaEmpresa();
                     btnAsignacionEmpresa.setEnabled(false);
+                    btnEditarPasajero.setEnabled(true);
 
                     boolean okContrato = buscarContrato(pasajero.getId(), empresa.getId());
                     if (okContrato == false) {
