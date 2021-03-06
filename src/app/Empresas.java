@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package app;
 
 
@@ -48,6 +43,7 @@ public class Empresas extends javax.swing.JFrame {
         }
 
         btnEditar.setEnabled(false);
+        btnEditar.setForeground(new Color(153, 153, 153));
     }
 
     @SuppressWarnings("unchecked")
@@ -56,7 +52,6 @@ public class Empresas extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
@@ -98,11 +93,6 @@ public class Empresas extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("HOTEL INFORMATICO");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 290, 65));
-
         jLabel3.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 16)); // NOI18N
         jLabel3.setText("Empresas");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
@@ -129,9 +119,10 @@ public class Empresas extends javax.swing.JFrame {
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, -1, -1));
 
         btnEditar.setBackground(new java.awt.Color(255, 255, 255));
-        btnEditar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnEditar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnEditar.setForeground(new java.awt.Color(238, 112, 82));
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_wheel_49631.png"))); // NOI18N
+        btnEditar.setText("MODIFICAR");
         btnEditar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnEditar.setContentAreaFilled(false);
         btnEditar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -152,8 +143,10 @@ public class Empresas extends javax.swing.JFrame {
         jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 500, 140, 40));
 
         btnNuevaEmpresa.setBackground(new java.awt.Color(255, 255, 255));
+        btnNuevaEmpresa.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnNuevaEmpresa.setForeground(new java.awt.Color(238, 112, 82));
         btnNuevaEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_social_statistics_piechart_diagram_web_information_info_2701085.png"))); // NOI18N
+        btnNuevaEmpresa.setText("NUEVA EMPRESA");
         btnNuevaEmpresa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnNuevaEmpresa.setContentAreaFilled(false);
         btnNuevaEmpresa.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -171,11 +164,13 @@ public class Empresas extends javax.swing.JFrame {
                 btnNuevaEmpresaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNuevaEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 500, 140, 41));
+        jPanel1.add(btnNuevaEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 500, 170, 41));
 
         btnVolver.setBackground(new java.awt.Color(255, 255, 255));
+        btnVolver.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnVolver.setForeground(new java.awt.Color(238, 112, 82));
         btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_gtk-go-back-ltr_79911.png"))); // NOI18N
+        btnVolver.setText("VOLVER");
         btnVolver.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnVolver.setContentAreaFilled(false);
         btnVolver.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -392,6 +387,7 @@ public class Empresas extends javax.swing.JFrame {
                 lblPuestoRepre.setText(encargado.getPuesto());
 
                 btnEditar.setEnabled(true);
+                btnEditar.setForeground(new Color(238,112,82));
             } catch (IOException ex) {
                 Logger.getLogger(Empresas.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -416,7 +412,7 @@ public class Empresas extends javax.swing.JFrame {
             lblPuestoRepre.setText(encargado.getPuesto());
 
             btnEditar.setEnabled(true);
-
+            btnEditar.setForeground(new Color(238,112,82));
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "ERROR DE SERVIDOR");
         }
@@ -498,7 +494,6 @@ public class Empresas extends javax.swing.JFrame {
     private javax.swing.JButton btnNuevaEmpresa;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<Empresa> cboEmpresas;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

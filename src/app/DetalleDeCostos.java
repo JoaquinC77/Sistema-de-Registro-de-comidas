@@ -1,13 +1,10 @@
 package app;
 
+import app.uieditor.SimpleHeaderRenderer;
 import java.awt.Color;
 import java.io.IOException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import model.clases.Contrato;
 import model.clases.VistaConsultaDeCostos;
@@ -23,15 +20,14 @@ public class DetalleDeCostos extends javax.swing.JFrame {
 
     public DetalleDeCostos() {
         initComponents();
-        try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.setLocationRelativeTo(null);
 
         conn = new VistaConsultaDeCostosWS();
         contrato = ConsultarServicios.contrato;
 
+        tblDetalleContrato.getTableHeader().setDefaultRenderer(new SimpleHeaderRenderer());
+        tblDetalleDeCostos.getTableHeader().setDefaultRenderer(new SimpleHeaderRenderer());
+        
         formatoTabla();
         formatoTablaContrato();
 

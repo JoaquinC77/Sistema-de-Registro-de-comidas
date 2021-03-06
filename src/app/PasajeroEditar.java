@@ -3,8 +3,6 @@ package app;
 import java.awt.Color;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import model.clases.Empresa;
@@ -23,33 +21,29 @@ public class PasajeroEditar extends javax.swing.JFrame {
     private Pasajero pasajero;
     private EmpresaPasajeroWS connEP;
     private Empresa empresaAntigua;
-    
-    
+
     public PasajeroEditar() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+
         pasajero = Pasajeros.pasajero;
-        connEP =  new EmpresaPasajeroWS();
-        
+        connEP = new EmpresaPasajeroWS();
+
         llenarCampos();
-        
-        
+
         try {
             empresaAntigua = new EmpresaWS().getEmpresaForIDPasajero(pasajero.getId());
-            
-            lblNombreEmpresa.setText("Nombre Empresa: "+empresaAntigua.getNombre());
-            
-            
+
+            lblNombreEmpresa.setText("NOMBRE EMPRESA: " + empresaAntigua.getNombre());
+
             connEmpresa = new EmpresaWS();
             List<Empresa> lista = connEmpresa.getAllEmpresas();
             cargarCboEmpresas(lista);
 
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Error al cargar empresas");
+            JOptionPane.showMessageDialog(this, "ERROR AL CARGAR EMPRESAS");
         }
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -182,9 +176,10 @@ public class PasajeroEditar extends javax.swing.JFrame {
 
         jPanel1.add(cboEmpresas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 140, -1));
 
-        btnGuardar.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
+        btnGuardar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(238, 112, 82));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_document_3380387.png"))); // NOI18N
-        btnGuardar.setText("Guardar");
+        btnGuardar.setText("GUARDAR");
         btnGuardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnGuardar.setContentAreaFilled(false);
         btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -203,10 +198,14 @@ public class PasajeroEditar extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 460, 120, 40));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 450, 130, 50));
 
         btnVolver1.setBackground(new java.awt.Color(255, 255, 255));
+        btnVolver1.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
+        btnVolver1.setForeground(new java.awt.Color(238, 112, 82));
         btnVolver1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_gtk-go-back-ltr_79911.png"))); // NOI18N
+        btnVolver1.setText("VOLVER");
+        btnVolver1.setToolTipText("");
         btnVolver1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnVolver1.setContentAreaFilled(false);
         btnVolver1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -253,15 +252,22 @@ public class PasajeroEditar extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         Empresa empresaNueva = (Empresa) cboEmpresas.getSelectedItem();
-        try {
-            boolean ok = new EmpresaPasajeroWS().updateEmpresPasajero(empresaNueva.getId(), pasajero.getId(), empresaAntigua.getId() );
-            if(ok != false){
-                JOptionPane.showMessageDialog(null, "TODO OK");
-            }else{
-                JOptionPane.showMessageDialog(null, "TODO MAL");
+        if (txtApellidoM.getText().isEmpty() || txtApellidoP.getText().isEmpty() || txtDireccion.getText().isEmpty() ||
+                txtNombre.getText().isEmpty() || txtRut.getText().isEmpty()) {
+            
+            JOptionPane.showMessageDialog(null, "DEBE INGRESAR TODOS LOS CAMPOS SOLICITADOS", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                boolean ok = new EmpresaPasajeroWS().updateEmpresPasajero(empresaNueva.getId(), pasajero.getId(), empresaAntigua.getId());
+                if (ok != false) {
+                    JOptionPane.showMessageDialog(null, "MODIFICACION EXITOSA", "EXITO", JOptionPane.PLAIN_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "MODIFICACION FALLIDA","ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (IOException ex) {
+                System.out.println("ERROR: " + ex.getLocalizedMessage());
+                JOptionPane.showMessageDialog(null, "ERROR: "+ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (IOException ex) {
-            System.out.println("ERROR: "+ex.getLocalizedMessage());
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -278,7 +284,6 @@ public class PasajeroEditar extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnVolver1ActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */
@@ -313,16 +318,15 @@ public class PasajeroEditar extends javax.swing.JFrame {
             }
         });
     }
-    
-    
-    private void llenarCampos(){
+
+    private void llenarCampos() {
         txtRut.setText(pasajero.getRut());
         txtNombre.setText(pasajero.getNombre());
         txtApellidoP.setText(pasajero.getApellidoP());
         txtApellidoM.setText(pasajero.getApellidoM());
         txtDireccion.setText(pasajero.getDireccion());
     }
-    
+
     public void cargarCboEmpresas(List<Empresa> empresas) {
         for (Empresa em : empresas) {
             cboEmpresas.addItem(em);

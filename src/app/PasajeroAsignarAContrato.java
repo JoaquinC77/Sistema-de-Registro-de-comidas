@@ -1,17 +1,15 @@
 package app;
 
 import app.uieditor.PropiedadesCBO;
+import app.uieditor.SimpleHeaderRenderer;
 import java.awt.Color;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
-import javax.swing.plaf.ComboBoxUI;
 import javax.swing.table.DefaultTableModel;
 import model.clases.Contrato;
 import model.clases.Empresa;
@@ -79,6 +77,9 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
             dtmModeloPasajero.addColumn("NOMBRE");
             dtmModeloPasajero.addColumn("APELLIDO PATERNO");
             dtmModeloPasajero.addColumn("APELLIDO MATERNO");
+            
+            tblDatosContrato.getTableHeader().setDefaultRenderer(new SimpleHeaderRenderer());
+            tblDatosPasajero.getTableHeader().setDefaultRenderer(new SimpleHeaderRenderer());
 
             cargarTablaPasajero(pasajero);
         } catch (IOException ex) {
@@ -144,7 +145,7 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 250, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 680, 10));
 
-        tblDatosPasajero.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
+        tblDatosPasajero.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         tblDatosPasajero.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -158,7 +159,7 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblDatosPasajero);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 680, 50));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 680, 40));
 
         jLabel9.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         jLabel9.setText("Pasajero: Asignar a contrato");
@@ -205,7 +206,10 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
         dateChooserFechaFin.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.add(dateChooserFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 410, 306, 30));
 
+        btnCancelar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(238, 112, 82));
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_gtk-go-back-ltr_79911.png"))); // NOI18N
+        btnCancelar.setText("VOLVER");
         btnCancelar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnCancelar.setContentAreaFilled(false);
         btnCancelar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -225,9 +229,10 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
         });
         jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 140, 40));
 
-        btnAsignar.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        btnAsignar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
+        btnAsignar.setForeground(new java.awt.Color(238, 112, 82));
         btnAsignar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_save_floppy_disk_3380379.png"))); // NOI18N
-        btnAsignar.setText("Asignar");
+        btnAsignar.setText("ASIGNAR");
         btnAsignar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnAsignar.setContentAreaFilled(false);
         btnAsignar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -265,10 +270,6 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
             
             cargartablaFecha(contrato);
         }
-        
-        
-
-        
     }//GEN-LAST:event_cboContratosActionPerformed
 
     private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
@@ -279,14 +280,14 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
             String fechaFin = String.valueOf(sdf.format(dateChooserFechaFin.getDate()));
             
             if(conn.insertContratoPasajero(pasajero.getId(), contrato.getId(), fechaInicio, fechaFin)){
-                JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO","EXITO",JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "REGISTRO EXITOSO","EXITO",JOptionPane.PLAIN_MESSAGE);
             }else{
-                JOptionPane.showMessageDialog(this, "ERROR DE INGRESO","ERROR",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "ERROR DE INGRESO","ERROR",JOptionPane.ERROR_MESSAGE);
             }
             
             
         } catch (IOException ex) {
-            Logger.getLogger(PasajeroAsignarAContrato.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "POR FAVOR VERIFIQUE DATOS CORRECTAMENTE, Y VUELVA A INTENTARLO","ERROR DE INGRESO",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAsignarActionPerformed
 

@@ -76,6 +76,7 @@ public class Login extends javax.swing.JFrame {
         txtRut.getAccessibleContext().setAccessibleName("INGRESAR RUT");
 
         btnIngresar.setBackground(new java.awt.Color(255, 255, 255));
+        btnIngresar.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
         btnIngresar.setForeground(new java.awt.Color(238, 112, 82));
         btnIngresar.setText("INGRESAR");
         btnIngresar.setToolTipText("");

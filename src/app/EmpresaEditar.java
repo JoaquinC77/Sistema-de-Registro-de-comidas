@@ -2,8 +2,6 @@ package app;
 
 import java.awt.Color;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import model.clases.Empresa;
@@ -17,9 +15,6 @@ import model.ws.EncargadoWS;
  */
 public class EmpresaEditar extends javax.swing.JFrame {
 
-    /**
-     * Creates new form EmpresaEditar
-     */
     private Empresa empresa;
     private Encargado representante;
     private EncargadoWS connEncargado;
@@ -32,7 +27,6 @@ public class EmpresaEditar extends javax.swing.JFrame {
         connEmpresa = new EmpresaWS();
         connEncargado = new EncargadoWS();
 
-        
         txtRut.setEnabled(false);
         txtRutRepre.setEnabled(false);
         txtNombreRepre.setEnabled(false);
@@ -211,7 +205,10 @@ public class EmpresaEditar extends javax.swing.JFrame {
         jPanel1.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 200, 10));
         jPanel1.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 200, 10));
 
+        btnCancelar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(238, 112, 82));
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_gtk-go-back-ltr_79911.png"))); // NOI18N
+        btnCancelar.setText("VOLVER");
         btnCancelar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnCancelar.setContentAreaFilled(false);
         btnCancelar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -231,9 +228,10 @@ public class EmpresaEditar extends javax.swing.JFrame {
         });
         jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 480, 150, 48));
 
-        btnGuardar.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        btnGuardar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(238, 112, 82));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_document_3380387.png"))); // NOI18N
-        btnGuardar.setText("Guardar");
+        btnGuardar.setText("GUARDAR");
         btnGuardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnGuardar.setContentAreaFilled(false);
         btnGuardar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -265,30 +263,39 @@ public class EmpresaEditar extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         try {
-            if (!txtNombre.getText().equals(empresa.getNombre()) || 
-                    !txtDireccion.getText().equals(empresa.getDireccion())) {
-                empresa.setNombre(txtNombre.getText());
-                empresa.setDireccion(txtDireccion.getText());
+            if (txtDireccion.getText().isEmpty() || txtEmailRepre.getText().isEmpty() || txtNombre.getText().isEmpty() || txtNombreRepre.getText().isEmpty()
+                    || txtPuestoRepre.getText().isEmpty() || txtRut.getText().isEmpty() || txtRutRepre.getText().isEmpty() || txtTelefonoRepre.getText().isEmpty()) {
 
-                if (connEmpresa.updateEmpres(empresa) != false) {
-                    JOptionPane.showMessageDialog(this, "MODIFICACION EXITOSA");
-                } else {
-                    JOptionPane.showMessageDialog(this, "ERROR INTENTANDO MODIFICACION");
+                //en caso de que alguno de los campos este vacio
+                JOptionPane.showMessageDialog(null, "DEBE INGRESAR TODOS LOS CAMPOS", "ERROR DE INGRESO", JOptionPane.WARNING_MESSAGE);
+
+            } else {
+                if (!txtNombre.getText().equals(empresa.getNombre())
+                        || !txtDireccion.getText().equals(empresa.getDireccion())) {
+                    
+                    empresa.setNombre(txtNombre.getText().toUpperCase());
+                    empresa.setDireccion(txtDireccion.getText().toUpperCase());
+
+                    if (connEmpresa.updateEmpres(empresa) != false) {
+                        JOptionPane.showMessageDialog(this, "MODIFICACION EXITOSA");
+                    } else {
+                        JOptionPane.showMessageDialog(this, "ERROR INTENTANDO MODIFICACION");
+                    }
                 }
-            }
-            
-            if(!txtTelefonoRepre.getText().equals(representante.getTelefono()) || 
-                    !txtPuestoRepre.getText().equals(representante.getPuesto()) || 
-                    !txtEmailRepre.getText().equals(representante.getEmail())){
-                
-                representante.setTelefono(txtTelefonoRepre.getText());
-                representante.setEmail(txtEmailRepre.getText());
-                representante.setPuesto(txtPuestoRepre.getText());
-                
-                if(connEncargado.updateEncargado(representante) != false){
-                    JOptionPane.showMessageDialog(this, "MODIFICACION EXITOSA");
-                }else{
-                    JOptionPane.showMessageDialog(this, "ERROR INTENTANDO MODIFICACION");
+
+                if (!txtTelefonoRepre.getText().equals(representante.getTelefono())
+                        || !txtPuestoRepre.getText().equals(representante.getPuesto())
+                        || !txtEmailRepre.getText().equals(representante.getEmail())) {
+
+                    representante.setTelefono(txtTelefonoRepre.getText());
+                    representante.setEmail(txtEmailRepre.getText().toUpperCase());
+                    representante.setPuesto(txtPuestoRepre.getText().toUpperCase());
+
+                    if (connEncargado.updateEncargado(representante) != false) {
+                        JOptionPane.showMessageDialog(this, "MODIFICACION EXITOSA");
+                    } else {
+                        JOptionPane.showMessageDialog(this, "ERROR INTENTANDO MODIFICACION");
+                    }
                 }
             }
         } catch (IOException ex) {
@@ -297,7 +304,7 @@ public class EmpresaEditar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void lblExitMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseMoved
-        lblExit.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+        lblExit.setBorder(BorderFactory.createLineBorder(new Color(238, 112, 82)));
     }//GEN-LAST:event_lblExitMouseMoved
 
     private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked

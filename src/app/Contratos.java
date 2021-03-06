@@ -1,9 +1,8 @@
 package app;
 
 import app.uieditor.PropiedadesCBO;
+import app.uieditor.SimpleHeaderRenderer;
 import java.awt.Color;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.List;
@@ -45,6 +44,7 @@ public class Contratos extends javax.swing.JFrame {
         }
 
         formatoTabla();
+        tblDatosEmpresa.getTableHeader().setDefaultRenderer(new SimpleHeaderRenderer());
 
     }
 
@@ -102,8 +102,10 @@ public class Contratos extends javax.swing.JFrame {
         jPanel1.add(txtRutABuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 190, 30));
 
         btnBuscar.setBackground(new java.awt.Color(153, 153, 153));
+        btnBuscar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnBuscar.setForeground(new java.awt.Color(238, 112, 82));
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_5_330396.png"))); // NOI18N
+        btnBuscar.setText("BUSCAR");
         btnBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnBuscar.setContentAreaFilled(false);
         btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -125,8 +127,10 @@ public class Contratos extends javax.swing.JFrame {
         jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 140, 50));
 
         btnVolver.setBackground(new java.awt.Color(153, 153, 153));
+        btnVolver.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnVolver.setForeground(new java.awt.Color(238, 112, 82));
         btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_gtk-go-back-ltr_79911.png"))); // NOI18N
+        btnVolver.setText("VOLVER");
         btnVolver.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnVolver.setContentAreaFilled(false);
         btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -148,8 +152,10 @@ public class Contratos extends javax.swing.JFrame {
         jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 140, 46));
 
         btnNuevoConrato.setBackground(new java.awt.Color(153, 153, 153));
+        btnNuevoConrato.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnNuevoConrato.setForeground(new java.awt.Color(238, 112, 82));
         btnNuevoConrato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_social_statistics_piechart_diagram_web_information_info_2701085.png"))); // NOI18N
+        btnNuevoConrato.setText("NUEVO CONTRATO");
         btnNuevoConrato.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnNuevoConrato.setContentAreaFilled(false);
         btnNuevoConrato.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -168,15 +174,18 @@ public class Contratos extends javax.swing.JFrame {
                 btnNuevoConratoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNuevoConrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 440, 140, 46));
+        jPanel1.add(btnNuevoConrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 440, 180, 46));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 730, 10));
 
         lblTituloContratosAEmpresas.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         lblTituloContratosAEmpresas.setText("Contratos \"Empresa Seleccionada\":");
         jPanel1.add(lblTituloContratosAEmpresas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
 
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
         tblDatosEmpresa.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
-        tblDatosEmpresa.setForeground(new java.awt.Color(238, 112, 82));
         tblDatosEmpresa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -188,8 +197,8 @@ public class Contratos extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblDatosEmpresa.setGridColor(new java.awt.Color(0, 0, 0));
-        tblDatosEmpresa.setSelectionBackground(new java.awt.Color(102, 102, 102));
+        tblDatosEmpresa.setGridColor(new java.awt.Color(255, 255, 255));
+        tblDatosEmpresa.setSelectionBackground(new java.awt.Color(220, 220, 220));
         tblDatosEmpresa.setSelectionForeground(new java.awt.Color(238, 112, 82));
         tblDatosEmpresa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -198,7 +207,7 @@ public class Contratos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblDatosEmpresa);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 730, 140));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 730, 110));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 190, 10));
 
         lblExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -244,7 +253,7 @@ public class Contratos extends javax.swing.JFrame {
         lblTituloContratosAEmpresas.setText("Contratos: " + empresa.getNombre());
 
         try {
-            List<Contrato> listaContratos = conn.getContratosForIDEmpresa(empresa.getId());
+            List<Contrato> listaContratos = conn.getContratosActivosoCaducosForIDEmpresa(empresa.getId(),true);
 
             cargartabla(listaContratos);
         } catch (IOException ex) {
@@ -262,7 +271,7 @@ public class Contratos extends javax.swing.JFrame {
 
                 if (new EmpresaWS().getEmpresaPorRut(rut) != null) {
                     empresa = new EmpresaWS().getEmpresaPorRut(rut);
-                    List<Contrato> listaContratos = conn.getContratosForIDEmpresa(empresa.getId());
+                    List<Contrato> listaContratos = conn.getContratosActivosoCaducosForIDEmpresa(empresa.getId(),true);
 
                     limpiarTabla();
                     cargartabla(listaContratos);
@@ -298,7 +307,11 @@ public class Contratos extends javax.swing.JFrame {
             limpiarTabla();
 
             try {
-                List<Contrato> listaContratos = conn.getContratosForIDEmpresa(empresa.getId());
+                List<Contrato> listaContratos = conn.getContratosActivosoCaducosForIDEmpresa(empresa.getId(),true);
+                
+                if(listaContratos.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "NO HAY CONTRATOS VIGENTES CON LA EMPRESA SELECCIONADA", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE);
+                }
 
                 cargartabla(listaContratos);
             } catch (IOException ex) {

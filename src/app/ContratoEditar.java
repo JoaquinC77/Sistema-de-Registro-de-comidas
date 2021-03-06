@@ -1,12 +1,9 @@
 package app;
 
+import app.uieditor.SimpleHeaderRenderer;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -37,7 +34,7 @@ public class ContratoEditar extends javax.swing.JFrame {
 
             contrato = conn.getContratoForCodigo(Contratos.codigoEstatico);
 
-            lblTituloContrato.setText("Contrato: " + contrato.getCodigo());
+            lblTituloContrato.setText("CONTRATO N°: " + contrato.getCodigo());
 
             //Se rescatan los datos del administrador
             encargado = new EncargadoWS().getEncargadoForId(contrato.getIdAdmin());
@@ -56,6 +53,8 @@ public class ContratoEditar extends javax.swing.JFrame {
             txtNombreAdmin.setEnabled(false);
             txtRutAdmin1.setEnabled(false);
 
+            tblDatosContrato1.getTableHeader().setDefaultRenderer(new SimpleHeaderRenderer());
+
         } catch (Exception ex) {
 
         }
@@ -66,7 +65,6 @@ public class ContratoEditar extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         txtFechaFin = new com.toedter.calendar.JDateChooser();
         lblFechaFin = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -104,11 +102,6 @@ public class ContratoEditar extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("HOTEL INFORMATICO");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 369, 65));
-
         txtFechaFin.setBackground(new java.awt.Color(255, 255, 255));
         txtFechaFin.setDateFormatString("yyyy-MM-dd");
         jPanel1.add(txtFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 270, 160, 30));
@@ -143,6 +136,11 @@ public class ContratoEditar extends javax.swing.JFrame {
         lblTituloContrato.setText("Contrato (numero contrato)");
         jPanel1.add(lblTituloContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
+        jScrollPane2.setBorder(null);
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        tblDatosContrato1.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         tblDatosContrato1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -154,15 +152,19 @@ public class ContratoEditar extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblDatosContrato1.setGridColor(new java.awt.Color(255, 255, 255));
+        tblDatosContrato1.setSelectionBackground(new java.awt.Color(220, 220, 220));
+        tblDatosContrato1.setSelectionForeground(new java.awt.Color(238, 112, 82));
         jScrollPane2.setViewportView(tblDatosContrato1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 840, 50));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 840, 40));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 820, 10));
 
         btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
-        btnCancelar.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
+        btnCancelar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(238, 112, 82));
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_gtk-go-back-ltr_79911.png"))); // NOI18N
+        btnCancelar.setText("VOLVER");
         btnCancelar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnCancelar.setContentAreaFilled(false);
         btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -184,9 +186,10 @@ public class ContratoEditar extends javax.swing.JFrame {
         jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 150, 40));
 
         btnGuardar.setBackground(new java.awt.Color(153, 153, 153));
-        btnGuardar.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
+        btnGuardar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(238, 112, 82));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_save_floppy_disk_3380379.png"))); // NOI18N
+        btnGuardar.setText("GUARDAR");
         btnGuardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnGuardar.setContentAreaFilled(false);
         btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -226,7 +229,6 @@ public class ContratoEditar extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 420, -1, -1));
 
         txtTelefonoAdmin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtTelefonoAdmin.setForeground(new java.awt.Color(153, 153, 153));
         txtTelefonoAdmin.setToolTipText("INGRESAR RUT");
         txtTelefonoAdmin.setBorder(null);
         txtTelefonoAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -256,7 +258,6 @@ public class ContratoEditar extends javax.swing.JFrame {
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 340, -1, -1));
 
         txtPuestoAdmin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtPuestoAdmin.setForeground(new java.awt.Color(153, 153, 153));
         txtPuestoAdmin.setToolTipText("INGRESAR RUT");
         txtPuestoAdmin.setBorder(null);
         txtPuestoAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -269,7 +270,6 @@ public class ContratoEditar extends javax.swing.JFrame {
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, -1, -1));
 
         txtEmailAdmin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtEmailAdmin.setForeground(new java.awt.Color(153, 153, 153));
         txtEmailAdmin.setToolTipText("INGRESAR RUT");
         txtEmailAdmin.setBorder(null);
         txtEmailAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -325,45 +325,54 @@ public class ContratoEditar extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         try {
-            if (!txtPuestoAdmin.getText().equals(encargado.getPuesto()) ||
-                    !txtEmailAdmin.getText().equals(encargado.getEmail()) ||
-                    !txtTelefonoAdmin.getText().equals(encargado.getTelefono()))
-            {
-                encargado.setPuesto(txtPuestoAdmin.getText());
-                encargado.setEmail(txtEmailAdmin.getText());
-                encargado.setTelefono(txtTelefonoAdmin.getText());
-                
-                if(new EncargadoWS().updateEncargado(encargado)){
-                    JOptionPane.showMessageDialog(this, "Registro Exitoso");
-                }else{
-                    JOptionPane.showMessageDialog(this, "Error de registro en el servidor");
+            if (txtEmailAdmin.getText().isEmpty() || txtFechaFin.getDateFormatString().isEmpty()
+                    || txtFechaInicio.getDateFormatString().isEmpty() || txtNombreAdmin.getText().isEmpty()
+                    || txtPuestoAdmin.getText().isEmpty() || txtRutAdmin1.getText().isEmpty()
+                    || txtTelefonoAdmin.getText().isEmpty()) {
+
+                JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS CAMPOS");
+
+            } else {
+                if (!txtPuestoAdmin.getText().equals(encargado.getPuesto())
+                        || !txtEmailAdmin.getText().equals(encargado.getEmail())
+                        || !txtTelefonoAdmin.getText().equals(encargado.getTelefono())) {
+
+                    encargado.setPuesto(txtPuestoAdmin.getText().toUpperCase());
+                    encargado.setEmail(txtEmailAdmin.getText().toUpperCase());
+                    encargado.setTelefono(txtTelefonoAdmin.getText().toUpperCase());
+
+                    if (new EncargadoWS().updateEncargado(encargado)) {
+                        JOptionPane.showMessageDialog(this, "Registro Exitoso");
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Error de registro en el servidor");
+                    }
                 }
-            }
 
-            SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
-            if (txtFechaInicio.getDate() != null || txtFechaFin.getDate() != null) {
-                
-                String datefechaInicio = dFormat.format(txtFechaInicio.getDate());
-                String datefechaFin = dFormat.format(txtFechaFin.getDate());
+                SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
+                if (txtFechaInicio.getDate() != null || txtFechaFin.getDate() != null) {
 
-                if (!datefechaInicio.equals(contrato.getFechaInicio())
-                    || !datefechaFin.equals(contrato.getFechaFin())) {
-                
-                contrato.setFechaInicio(datefechaInicio);
-                contrato.setFechaFin(datefechaFin);
-                
-                if (conn.updateContrato(contrato)) {
-                    JOptionPane.showMessageDialog(this, "Registro Exitoso");
+                    String datefechaInicio = dFormat.format(txtFechaInicio.getDate());
+                    String datefechaFin = dFormat.format(txtFechaFin.getDate());
+
+                    if (!datefechaInicio.equals(contrato.getFechaInicio())
+                            || !datefechaFin.equals(contrato.getFechaFin())) {
+
+                        contrato.setFechaInicio(datefechaInicio);
+                        contrato.setFechaFin(datefechaFin);
+
+                        if (conn.updateContrato(contrato)) {
+                            JOptionPane.showMessageDialog(this, "Registro Exitoso");
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Error de registro en el servidor");
+                        }
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Error de registro en el servidor");
+                    System.out.println("NULL");
                 }
-            }
-            }else{
-                System.out.println("NULL");
             }
 
         } catch (Exception ex) {
-            Logger.getLogger(ContratoEditar.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "ERROR DE INGRESO DE DATOS");
         }
 
 
@@ -395,9 +404,9 @@ public class ContratoEditar extends javax.swing.JFrame {
             }
         };
 
-        modelDatos.addColumn("Numero");
-        modelDatos.addColumn("Empresa");
-        modelDatos.addColumn("Nombre");
+        modelDatos.addColumn("NUMERO");
+        modelDatos.addColumn("EMPRESA");
+        modelDatos.addColumn("NOMBRE");
 
         Object[] filaDatos = new Object[3];
 
@@ -448,7 +457,6 @@ public class ContratoEditar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

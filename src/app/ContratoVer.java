@@ -1,13 +1,9 @@
 package app;
 
+import app.uieditor.SimpleHeaderRenderer;
 import java.awt.Color;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import model.clases.Contrato;
 import model.clases.Encargado;
 import model.ws.ContratoWS;
@@ -34,11 +30,14 @@ public class ContratoVer extends javax.swing.JFrame {
             
             contrato = conn.getContratoForCodigo(Contratos.codigoEstatico);
 
-            lblTituloContrato.setText("Contrato: " + contrato.getCodigo());
+            lblTituloContrato.setText("CONTRATO N°: " + contrato.getCodigo());
 
             //Se rescatan los datos del administrador
             Encargado en = new EncargadoWS().getEncargadoForId(contrato.getIdAdmin());
             
+            tblContactoAdmin.getTableHeader().setDefaultRenderer(new SimpleHeaderRenderer());
+            tblDatosContrato1.getTableHeader().setDefaultRenderer(new SimpleHeaderRenderer());
+            tblVigenciaContrato1.getTableHeader().setDefaultRenderer(new SimpleHeaderRenderer());
             
             //se cargan las tablas
             cargarTablaDatosContrato();
@@ -84,7 +83,12 @@ public class ContratoVer extends javax.swing.JFrame {
         lblTituloContrato.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         lblTituloContrato.setText("Contrato (numero contrato)");
         jPanel1.add(lblTituloContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 740, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 900, 10));
+
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setBorder(null);
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         tblDatosContrato1.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         tblDatosContrato1.setModel(new javax.swing.table.DefaultTableModel(
@@ -98,13 +102,26 @@ public class ContratoVer extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblDatosContrato1.setGridColor(new java.awt.Color(255, 255, 255));
+        tblDatosContrato1.setSelectionBackground(new java.awt.Color(220, 220, 220));
+        tblDatosContrato1.setSelectionForeground(new java.awt.Color(238, 112, 82));
+        tblDatosContrato1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblDatosContrato1.setShowHorizontalLines(false);
+        tblDatosContrato1.getTableHeader().setResizingAllowed(false);
+        tblDatosContrato1.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblDatosContrato1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 740, 95));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 900, 40));
 
         jLabel4.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         jLabel4.setText("Vigencia");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
+
+        jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setBorder(null);
+        jScrollPane3.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         tblVigenciaContrato1.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         tblVigenciaContrato1.setModel(new javax.swing.table.DefaultTableModel(
@@ -118,9 +135,18 @@ public class ContratoVer extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblVigenciaContrato1.setGridColor(new java.awt.Color(255, 255, 255));
+        tblVigenciaContrato1.setSelectionBackground(new java.awt.Color(220, 220, 220));
+        tblVigenciaContrato1.setSelectionForeground(new java.awt.Color(238, 112, 82));
         jScrollPane3.setViewportView(tblVigenciaContrato1);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 740, 95));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 900, 40));
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         tblContactoAdmin.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         tblContactoAdmin.setModel(new javax.swing.table.DefaultTableModel(
@@ -134,9 +160,12 @@ public class ContratoVer extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblContactoAdmin.setGridColor(new java.awt.Color(255, 255, 255));
+        tblContactoAdmin.setSelectionBackground(new java.awt.Color(220, 220, 220));
+        tblContactoAdmin.setSelectionForeground(new java.awt.Color(238, 112, 82));
         jScrollPane1.setViewportView(tblContactoAdmin);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 740, 95));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 900, 40));
 
         jLabel5.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         jLabel5.setText("Contacto Administrador");
@@ -157,15 +186,16 @@ public class ContratoVer extends javax.swing.JFrame {
                 lblExitMouseExited(evt);
             }
         });
-        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 0, 30, 30));
+        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 0, 30, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGOSISTEMA.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 50));
 
         btnEditar.setBackground(new java.awt.Color(153, 153, 153));
-        btnEditar.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
+        btnEditar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnEditar.setForeground(new java.awt.Color(238, 112, 82));
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_wheel_49631.png"))); // NOI18N
+        btnEditar.setText("MODIFICAR");
         btnEditar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnEditar.setContentAreaFilled(false);
         btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -184,12 +214,14 @@ public class ContratoVer extends javax.swing.JFrame {
                 btnEditarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 500, 150, 40));
+        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 490, 150, 50));
 
         btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
-        btnCancelar.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
+        btnCancelar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(238, 112, 82));
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_gtk-go-back-ltr_79911.png"))); // NOI18N
+        btnCancelar.setText("VOLVER");
+        btnCancelar.setToolTipText("");
         btnCancelar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnCancelar.setContentAreaFilled(false);
         btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -208,9 +240,9 @@ public class ContratoVer extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 150, 40));
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 150, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 550));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -296,9 +328,9 @@ public class ContratoVer extends javax.swing.JFrame {
                 return false; //To change body of generated methods, choose Tools | Templates.
             }
         };
-        modelDatos.addColumn("Numero");
-        modelDatos.addColumn("Empresa");
-        modelDatos.addColumn("Nombre");
+        modelDatos.addColumn("NUMERO");
+        modelDatos.addColumn("EMPRESA");
+        modelDatos.addColumn("NOMBRE");
 
         Object[] filaDatos = new Object[3];
 
@@ -319,8 +351,8 @@ public class ContratoVer extends javax.swing.JFrame {
                 return false; //To change body of generated methods, choose Tools | Templates.
             }
         };
-        modelVigencia.addColumn("Fecha Inicio");
-        modelVigencia.addColumn("Fecha Fin");
+        modelVigencia.addColumn("FECHA INICIO");
+        modelVigencia.addColumn("FECHA FIN");
 
         Object[] filaDatoVigencia = new Object[3];
 
@@ -340,10 +372,10 @@ public class ContratoVer extends javax.swing.JFrame {
                     return false; //To change body of generated methods, choose Tools | Templates.
                 }
             };
-            modelAdmin.addColumn("Nombre");
+            modelAdmin.addColumn("NOMBRE");
             modelAdmin.addColumn("RUT");
-            modelAdmin.addColumn("E-Mail");
-            modelAdmin.addColumn("Telefono");
+            modelAdmin.addColumn("E-MAIL");
+            modelAdmin.addColumn("TELEFONO");
 
             Object[] filaDatosAdmin = new Object[4];
 

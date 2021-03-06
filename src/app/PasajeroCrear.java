@@ -1,15 +1,11 @@
 package app;
 
 import java.awt.Color;
-import java.awt.Event;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import model.clases.Pasajero;
-import model.ws.EmpresaPasajeroWS;
 import model.ws.PasajeroWS;
 
 /**
@@ -27,7 +23,6 @@ public class PasajeroCrear extends javax.swing.JFrame {
     public PasajeroCrear() {
         initComponents();
         this.setLocationRelativeTo(null);
-
 
         conn = new PasajeroWS();
     }
@@ -104,7 +99,11 @@ public class PasajeroCrear extends javax.swing.JFrame {
         jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 320, 190, 30));
 
         btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
+        btnCancelar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(238, 112, 82));
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_gtk-go-back-ltr_79911.png"))); // NOI18N
+        btnCancelar.setText("VOLVER");
+        btnCancelar.setToolTipText("");
         btnCancelar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnCancelar.setContentAreaFilled(false);
         btnCancelar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -125,7 +124,10 @@ public class PasajeroCrear extends javax.swing.JFrame {
         jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 130, 40));
 
         btnGuardar.setBackground(new java.awt.Color(153, 153, 153));
+        btnGuardar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(238, 112, 82));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_save_floppy_disk_3380379.png"))); // NOI18N
+        btnGuardar.setText("GUARDAR");
         btnGuardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnGuardar.setContentAreaFilled(false);
         btnGuardar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -191,7 +193,10 @@ public class PasajeroCrear extends javax.swing.JFrame {
         jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 190, 10));
         jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 270, 190, 10));
 
+        btnCodigoDeBarra.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
+        btnCodigoDeBarra.setForeground(new java.awt.Color(238, 112, 82));
         btnCodigoDeBarra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_scanning-barcode_3583307 (1).png"))); // NOI18N
+        btnCodigoDeBarra.setText("GENERAR CODIGO");
         btnCodigoDeBarra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnCodigoDeBarra.setContentAreaFilled(false);
         btnCodigoDeBarra.addActionListener(new java.awt.event.ActionListener() {
@@ -199,7 +204,7 @@ public class PasajeroCrear extends javax.swing.JFrame {
                 btnCodigoDeBarraActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCodigoDeBarra, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, 130, 40));
+        jPanel1.add(btnCodigoDeBarra, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, 180, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 440));
 
@@ -207,32 +212,40 @@ public class PasajeroCrear extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        int confirmacion = JOptionPane.showConfirmDialog(this, "Desea Registrar a " + txtNombre.getText() + " " + txtApellidoP.getText(), "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (txtApellidoM.getText().isEmpty() || txtApellidoP.getText().isEmpty() || txtDireccion.getText().isEmpty() ||
+                txtNombre.getText().isEmpty() || txtRut.getText().isEmpty()) {
+            
+            JOptionPane.showMessageDialog(null, "DEBE INGRESAR TODOS LOS CAMPOS","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
 
-        pasajero = new Pasajero("", "", txtNombre.getText(), txtApellidoP.getText(), txtApellidoM.getText(), txtRut.getText(), txtDireccion.getText());
+        } else {
+            int confirmacion = JOptionPane.showConfirmDialog(null, "DESEA REGISTRAR A " + txtNombre.getText() + " " + txtApellidoP.getText(), "CONFIRMACION", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        //0=yes, 1=no, 2=cancel
-        if (confirmacion == 0) {
-            try {
-                boolean ok = conn.insertPasajero(pasajero);
+            pasajero = new Pasajero("", "", txtNombre.getText().toUpperCase(),
+                    txtApellidoP.getText().toUpperCase(),
+                    txtApellidoM.getText().toUpperCase(),
+                    txtRut.getText(),
+                    txtDireccion.getText().toUpperCase());
 
-                if (ok == true) {
-                    pasajero = conn.getPasajero(txtRut.getText());
+            //0=yes, 1=no, 2=cancel
+            if (confirmacion == 0) {
+                try {
+                    boolean ok = conn.insertPasajero(pasajero);
 
+                    if (ok == true) {
+                        pasajero = conn.getPasajero(txtRut.getText());
 
+                        JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO", "OK", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "ERROR DE REGISTRO", "ERROR", JOptionPane.ERROR_MESSAGE);
 
-                    JOptionPane.showMessageDialog(this, "Registro Exitoso", "OK", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Error 500", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
 
-
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(this, "Error al asignar huesped: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
-
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Error al asignar huesped: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else if (confirmacion == 1) {
+                System.out.println("Has pulsado No");
             }
-        } else if (confirmacion == 1) {
-            System.out.println("Has pulsado No");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -263,7 +276,7 @@ public class PasajeroCrear extends javax.swing.JFrame {
     }//GEN-LAST:event_txtRutFocusLost
 
     private void txtRutKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutKeyReleased
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             txtRut.transferFocus();
         }
     }//GEN-LAST:event_txtRutKeyReleased
@@ -285,11 +298,11 @@ public class PasajeroCrear extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarMouseMoved
 
     private void btnCancelarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseExited
-        btnCancelar.setBorder(BorderFactory.createLineBorder(new Color(153,153,153)));
+        btnCancelar.setBorder(BorderFactory.createLineBorder(new Color(153, 153, 153)));
     }//GEN-LAST:event_btnCancelarMouseExited
 
     private void btnGuardarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseExited
-        btnGuardar.setBorder(BorderFactory.createLineBorder(new Color(153,153,153)));
+        btnGuardar.setBorder(BorderFactory.createLineBorder(new Color(153, 153, 153)));
     }//GEN-LAST:event_btnGuardarMouseExited
 
     private void btnGuardarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseMoved

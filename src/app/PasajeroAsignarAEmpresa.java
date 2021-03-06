@@ -1,19 +1,14 @@
 package app;
 
 import java.awt.Color;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import model.clases.Empresa;
-import model.clases.EmpresaPasajero;
 import model.clases.Pasajero;
 import model.ws.EmpresaPasajeroWS;
 import model.ws.EmpresaWS;
-import model.ws.PasajeroWS;
 
 /**
  *
@@ -44,7 +39,7 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
             cargarCboEmpresas(lista);
 
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Error al cargar empresas");
+            JOptionPane.showMessageDialog(this, "ERROR AL CARGAR EMPRESAS");
         }
 
     }
@@ -101,7 +96,11 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
         lblNombreHuesped.setText("Pasajero: Asignar a empresas");
         jPanel1.add(lblNombreHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, 230, 20));
 
+        btnAsignar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
+        btnAsignar.setForeground(new java.awt.Color(238, 112, 82));
         btnAsignar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_save_floppy_disk_3380379.png"))); // NOI18N
+        btnAsignar.setText("ASIGNAR");
+        btnAsignar.setToolTipText("");
         btnAsignar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnAsignar.setContentAreaFilled(false);
         btnAsignar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -122,7 +121,11 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
         jPanel1.add(btnAsignar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 400, 130, 47));
 
         btnVolver1.setBackground(new java.awt.Color(255, 255, 255));
+        btnVolver1.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
+        btnVolver1.setForeground(new java.awt.Color(238, 112, 82));
         btnVolver1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_gtk-go-back-ltr_79911.png"))); // NOI18N
+        btnVolver1.setText("VOLVER");
+        btnVolver1.setToolTipText("");
         btnVolver1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnVolver1.setContentAreaFilled(false);
         btnVolver1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -178,8 +181,8 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
         empresa = (Empresa) cboEmpresas.getSelectedItem();
 
         int confirmacion = JOptionPane.showConfirmDialog(this,
-                "Desea Asignar Pasajero: " + pasajero.getNombre() + " " + pasajero.getApellidoP() + " A empresa: " + empresa.getNombre(),
-                "Confirmacion",
+                "DESEA ASIGNAR HUESPED: " + pasajero.getNombre() + " " + pasajero.getApellidoP() + " A LA EMPRESA: " + empresa.getNombre(),
+                "CONFIRMACION",
                 JOptionPane.YES_NO_CANCEL_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
 
@@ -190,8 +193,10 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
                 System.out.println("id p" + pasajero.getId());
                 System.out.println("---------------");
                 new EmpresaPasajeroWS().insertEmpresaPasajero(pasajero.getId(), empresa.getId());
+                
+                JOptionPane.showMessageDialog(null, "ASIGNACION CORRECTAMENTE REALIZADA","EXITO",JOptionPane.PLAIN_MESSAGE);
             } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Error al asignar huesped: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "ERROR AL ASIGNAR HUESPED: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         } else if (confirmacion == 1) {
             System.out.println("Has pulsado No");

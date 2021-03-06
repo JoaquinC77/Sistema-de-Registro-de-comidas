@@ -1,6 +1,7 @@
 package app;
 
 import app.uieditor.PropiedadesCBO;
+import app.uieditor.SimpleHeaderRenderer;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -35,6 +36,7 @@ public class ConsultarServicios extends javax.swing.JFrame {
         cboEmpresas.setUI(PropiedadesCBO.createUI(rootPane));
         txtCodigo.setEnabled(false);
         btnVerDetalles.setEnabled(false);
+        btnVerDetalles.setForeground(new Color(153, 153, 153));
 
         conn = new ContratoWS();
 
@@ -51,7 +53,8 @@ public class ConsultarServicios extends javax.swing.JFrame {
         formatoTabla();
         formatoTablaPasajeros();
 
-        tblDatosEmpresa.setEnabled(false);
+        tblDatosEmpresa.getTableHeader().setDefaultRenderer(new SimpleHeaderRenderer());
+        tblPasajerosAsignados.getTableHeader().setDefaultRenderer(new SimpleHeaderRenderer());
         txtCodigo.setEnabled(false);
     }
 
@@ -195,8 +198,8 @@ public class ConsultarServicios extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblDatosEmpresa.setGridColor(new java.awt.Color(0, 0, 0));
-        tblDatosEmpresa.setSelectionBackground(new java.awt.Color(102, 102, 102));
+        tblDatosEmpresa.setGridColor(new java.awt.Color(255, 255, 255));
+        tblDatosEmpresa.setSelectionBackground(new java.awt.Color(220, 220, 220));
         tblDatosEmpresa.setSelectionForeground(new java.awt.Color(238, 112, 82));
         tblDatosEmpresa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -226,9 +229,12 @@ public class ConsultarServicios extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblPasajerosAsignados.setGridColor(new java.awt.Color(255, 255, 255));
+        tblPasajerosAsignados.setSelectionBackground(new java.awt.Color(220, 220, 220));
+        tblPasajerosAsignados.setSelectionForeground(new java.awt.Color(238, 112, 82));
         jScrollPane1.setViewportView(tblPasajerosAsignados);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, 680, 150));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, 680, 100));
 
         btnVolver.setBackground(new java.awt.Color(153, 153, 153));
         btnVolver.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
@@ -422,6 +428,7 @@ public class ConsultarServicios extends javax.swing.JFrame {
                         listaPasajeros = new PasajeroWS().getPasajerosPorContrato(codigoContrato);
                         contrato = conn.getContratoForCodigo(codigoContrato);
                         btnVerDetalles.setEnabled(true);
+                        btnVerDetalles.setForeground(new Color(238,112,82));
                         cargartablaPasajeros(listaPasajeros);
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(null, "NO HAY TRABAJADORES EN ESTE CONTRATO");
@@ -571,6 +578,7 @@ public class ConsultarServicios extends javax.swing.JFrame {
             }
         }
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVerDetalles;

@@ -1,29 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package app;
 
 import app.uieditor.PropiedadesCBO;
-import app.uieditor.PropiedadesJDATECHOOSER;
 import java.awt.Color;
+import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.stream.IntStream;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import model.clases.Contrato;
 import model.clases.Empresa;
 import model.clases.Encargado;
-import model.ws.ConexionWS;
 import model.ws.ContratoWS;
 import model.ws.EmpresaWS;
 import model.ws.EncargadoWS;
@@ -39,7 +28,7 @@ public class ContratoCrear extends javax.swing.JFrame {
     private ContratoWS conn;
     private Encargado adminContrato;
     private Contrato contrato;
-    
+
     /**
      * Creates new form ContratoCrear
      */
@@ -49,7 +38,7 @@ public class ContratoCrear extends javax.swing.JFrame {
 
         conn = new ContratoWS();
         adminContrato = null;
-        
+
         cboEmpresas.setUI(PropiedadesCBO.createUI(rootPane));
 
         try {
@@ -69,7 +58,6 @@ public class ContratoCrear extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         lblTituloContrato = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
@@ -110,11 +98,6 @@ public class ContratoCrear extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("HOTEL INFORMATICO");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 15, 369, 60));
 
         lblTituloContrato.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         lblTituloContrato.setText("Contrato: Crear");
@@ -200,9 +183,10 @@ public class ContratoCrear extends javax.swing.JFrame {
         jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, -1, -1));
 
         btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
-        btnCancelar.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
+        btnCancelar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(238, 112, 82));
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_gtk-go-back-ltr_79911.png"))); // NOI18N
+        btnCancelar.setText("VOLVER");
         btnCancelar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnCancelar.setContentAreaFilled(false);
         btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -224,9 +208,10 @@ public class ContratoCrear extends javax.swing.JFrame {
         jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 150, 40));
 
         btnGuardar.setBackground(new java.awt.Color(153, 153, 153));
-        btnGuardar.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
+        btnGuardar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(238, 112, 82));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_save_floppy_disk_3380379.png"))); // NOI18N
+        btnGuardar.setText("GUARDAR");
         btnGuardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnGuardar.setContentAreaFilled(false);
         btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -320,7 +305,7 @@ public class ContratoCrear extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblExitMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseMoved
-        lblExit.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+        lblExit.setBorder(BorderFactory.createLineBorder(new Color(238, 112, 82)));
     }//GEN-LAST:event_lblExitMouseMoved
 
     private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked
@@ -332,11 +317,11 @@ public class ContratoCrear extends javax.swing.JFrame {
     }//GEN-LAST:event_lblExitMouseExited
 
     private void btnCancelarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseMoved
-        btnCancelar.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+        btnCancelar.setBorder(BorderFactory.createLineBorder(new Color(238, 112, 82)));
     }//GEN-LAST:event_btnCancelarMouseMoved
 
     private void btnCancelarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseExited
-        btnCancelar.setBorder(BorderFactory.createLineBorder(new Color(153,153,153)));
+        btnCancelar.setBorder(BorderFactory.createLineBorder(new Color(153, 153, 153)));
     }//GEN-LAST:event_btnCancelarMouseExited
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -345,59 +330,69 @@ public class ContratoCrear extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGuardarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseMoved
-        btnGuardar.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+        btnGuardar.setBorder(BorderFactory.createLineBorder(new Color(238, 112, 82)));
     }//GEN-LAST:event_btnGuardarMouseMoved
 
     private void btnGuardarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseExited
-        btnGuardar.setBorder(BorderFactory.createLineBorder(new Color(153,153,153)));
+        btnGuardar.setBorder(BorderFactory.createLineBorder(new Color(153, 153, 153)));
     }//GEN-LAST:event_btnGuardarMouseExited
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        Empresa empresa = (Empresa) cboEmpresas.getSelectedItem();
+        if (txtEmailAdmin.getText().isEmpty() || txtNombreAdmin.getText().isEmpty() || txtNombreContrato.getText().isEmpty()
+                || txtPuestoAdmin.getText().isEmpty() || txtRutAdmin.getText().isEmpty() || txtTelefonoAdmin.getText().isEmpty()
+                || txtFechaInicio.getDateFormatString().isEmpty() || txtFechaFin.getDateFormatString().isEmpty()) {
 
-        String nombre = txtNombreContrato.getText();
-        String fechaInicio = new SimpleDateFormat("YYYY-MM-dd").format(txtFechaInicio.getDate());
-        String fechaFin = new SimpleDateFormat("YYYY-MM-dd").format(txtFechaFin.getDate());
+            JOptionPane.showMessageDialog(null, "DEBE INGRESAR TODOS LOS CAMPOS");
 
-        try {
-            if (adminContrato == null) {
-                String nombreAdmin = txtNombreAdmin.getText();
-                String rutAdmin = txtRutAdmin.getText();
-                String puesto = txtPuestoAdmin.getText();
-                String telefono = txtTelefonoAdmin.getText();
-                String email = txtEmailAdmin.getText();
+        } else {
 
-                adminContrato = new Encargado("", nombreAdmin, rutAdmin, puesto, telefono, email);
+            Empresa empresa = (Empresa) cboEmpresas.getSelectedItem();
 
-                new EncargadoWS().insertEncargado(adminContrato);
-                int idAdmin = new EncargadoWS().getUltimoIdRepresentante();
+            String nombre = txtNombreContrato.getText().toUpperCase();
 
-                // se debe de generar codigo numerico aleatorio para la columna codigo
-                contrato = new Contrato("", "", empresa.getId(), nombre, String.valueOf(idAdmin), fechaInicio, fechaFin, "1");
+            try {
+                String fechaInicio = new SimpleDateFormat("YYYY-MM-dd").format(txtFechaInicio.getDate());
+                String fechaFin = new SimpleDateFormat("YYYY-MM-dd").format(txtFechaFin.getDate());
 
-            } else {
-                // se debe de generar codigo numerico aleatorio para la columna codigo
-                contrato = new Contrato("", "", empresa.getId(), nombre, adminContrato.getId(), fechaInicio, fechaFin, "1");
+                if (adminContrato == null) {
+                    String nombreAdmin = txtNombreAdmin.getText().toUpperCase();
+                    String rutAdmin = txtRutAdmin.getText().toUpperCase();
+                    String puesto = txtPuestoAdmin.getText().toUpperCase();
+                    String telefono = txtTelefonoAdmin.getText().toUpperCase();
+                    String email = txtEmailAdmin.getText().toUpperCase();
 
-            }
+                    adminContrato = new Encargado("", nombreAdmin, rutAdmin, puesto, telefono, email);
 
-            System.out.println(contrato);
+                    new EncargadoWS().insertEncargado(adminContrato);
+                    int idAdmin = new EncargadoWS().getUltimoIdRepresentante();
 
-            if(conn.insertContrato(contrato) == false){
+                    // se debe de generar codigo numerico aleatorio para la columna codigo
+                    contrato = new Contrato("", "", empresa.getId(), nombre, String.valueOf(idAdmin), fechaInicio, fechaFin, "1");
+
+                } else {
+                    // se debe de generar codigo numerico aleatorio para la columna codigo
+                    contrato = new Contrato("", "", empresa.getId(), nombre, adminContrato.getId(), fechaInicio, fechaFin, "1");
+
+                }
+
+                System.out.println(contrato);
+
+                if (conn.insertContrato(contrato) == false) {
+                    JOptionPane.showMessageDialog(this, "Error al registrar contrato y/o datos de administrador");
+                }
+
+                JOptionPane.showMessageDialog(this, "Registro Exitoso");
+                limpiarPantalla();
+
+            } catch (HeadlessException | IOException | NullPointerException ex) {
                 JOptionPane.showMessageDialog(this, "Error al registrar contrato y/o datos de administrador");
             }
-
-            JOptionPane.showMessageDialog(this, "Registro Exitoso");
-            limpiarPantalla();
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error al registrar contrato y/o datos de administrador");
         }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtRutAdminKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutAdminKeyReleased
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             txtRutAdmin.transferFocus();
         }
     }//GEN-LAST:event_txtRutAdminKeyReleased
@@ -469,7 +464,6 @@ public class ContratoCrear extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox<Empresa> cboEmpresas;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

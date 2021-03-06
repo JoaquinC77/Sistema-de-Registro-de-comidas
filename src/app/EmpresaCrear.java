@@ -1,19 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package app;
 
 import java.awt.Color;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import model.clases.Empresa;
 import model.clases.Encargado;
-import model.ws.ConexionWS;
 import model.ws.EmpresaWS;
 import model.ws.EncargadoWS;
 
@@ -196,7 +188,10 @@ public class EmpresaCrear extends javax.swing.JFrame {
         jLabel16.setText("N° Telefono: ");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, 20));
 
+        btnCancelar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(238, 112, 82));
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_gtk-go-back-ltr_79911.png"))); // NOI18N
+        btnCancelar.setText("VOLVER");
         btnCancelar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnCancelar.setContentAreaFilled(false);
         btnCancelar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -216,9 +211,10 @@ public class EmpresaCrear extends javax.swing.JFrame {
         });
         jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 480, 140, 48));
 
-        btnCrear.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnCrear.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
+        btnCrear.setForeground(new java.awt.Color(238, 112, 82));
         btnCrear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_document_3380387.png"))); // NOI18N
-        btnCrear.setText("Crear");
+        btnCrear.setText("NUEVA EMPRESA");
         btnCrear.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 15)));
         btnCrear.setContentAreaFilled(false);
         btnCrear.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -236,7 +232,7 @@ public class EmpresaCrear extends javax.swing.JFrame {
                 btnCrearActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 480, 140, 48));
+        jPanel1.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 480, 170, 48));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGOSISTEMA.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 50));
@@ -253,30 +249,45 @@ public class EmpresaCrear extends javax.swing.JFrame {
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         try {
-            if (representante == null) {
-                representante = new Encargado("", txtNombreRepre.getText(), txtRutRepre.getText(), txtPuestoRepre.getText(), txtTelefonoRepre.getText(), txtEmailRepre.getText());
-                new EncargadoWS().insertEncargado(representante);
-
-                int idRepresentante = new EncargadoWS().getUltimoIdRepresentante();
-
-                System.out.println(idRepresentante);
-                conn.insertEmpresa(new Empresa("", txtNombre.getText(), txtRut.getText(), txtDireccion.getText(), String.valueOf(idRepresentante)));
+            if (txtDireccion.getText().isEmpty() || txtEmailRepre.getText().isEmpty() || txtNombre.getText().isEmpty()||
+                    txtNombreRepre.getText().isEmpty() || txtPuestoRepre.getText().isEmpty() || txtRut.getText().isEmpty() ||
+                    txtRutRepre.getText().isEmpty() || txtTelefonoRepre.getText().isEmpty()) {
+                
+                // si alguno de los campos esta vacio
+                JOptionPane.showMessageDialog(null, "DEBE INGRESAR TODOS LOS CAMPOS","ERROR DE INGRESO",JOptionPane.WARNING_MESSAGE);
+                
+                
 
             } else {
-                conn.insertEmpresa(new Empresa("", txtNombre.getText(), txtRut.getText(), txtDireccion.getText(), representante.getId()));
+                if (representante == null) {
+                    representante = new Encargado("", txtNombreRepre.getText().toUpperCase(),
+                            txtRutRepre.getText(), txtPuestoRepre.getText().toUpperCase(),
+                            txtTelefonoRepre.getText().toUpperCase(), txtEmailRepre.getText().toUpperCase());
+                    
+                    
+                    new EncargadoWS().insertEncargado(representante);
 
+                    int idRepresentante = new EncargadoWS().getUltimoIdRepresentante();
+
+                    System.out.println(idRepresentante);
+                    conn.insertEmpresa(new Empresa("", txtNombre.getText().toUpperCase(), txtRut.getText(), txtDireccion.getText().toUpperCase(), String.valueOf(idRepresentante)));
+
+                } else {
+                    conn.insertEmpresa(new Empresa("", txtNombre.getText().toUpperCase(), txtRut.getText(), txtDireccion.getText().toUpperCase(), representante.getId()));
+
+                }
+
+                JOptionPane.showMessageDialog(this, "Registro Exitoso");
+
+                txtDireccion.setText("");
+                txtEmailRepre.setText("");
+                txtNombre.setText("");
+                txtNombreRepre.setText("");
+                txtPuestoRepre.setText("");
+                txtRut.setText("");
+                txtRutRepre.setText("");
+                txtTelefonoRepre.setText("");
             }
-
-            JOptionPane.showMessageDialog(this, "Registro Exitoso");
-
-            txtDireccion.setText("");
-            txtEmailRepre.setText("");
-            txtNombre.setText("");
-            txtNombreRepre.setText("");
-            txtPuestoRepre.setText("");
-            txtRut.setText("");
-            txtRutRepre.setText("");
-            txtTelefonoRepre.setText("");
 
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "ERROR AL REGISTRAR");
@@ -300,7 +311,7 @@ public class EmpresaCrear extends javax.swing.JFrame {
     }//GEN-LAST:event_txtRutRepreFocusLost
 
     private void lblExitMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseMoved
-        lblExit.setBorder(BorderFactory.createLineBorder(new Color(238,112,82)));
+        lblExit.setBorder(BorderFactory.createLineBorder(new Color(238, 112, 82)));
     }//GEN-LAST:event_lblExitMouseMoved
 
     private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked

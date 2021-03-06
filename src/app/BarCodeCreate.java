@@ -15,10 +15,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import model.clases.Pasajero;
 import model.ws.PasajeroWS;
@@ -33,10 +30,11 @@ public class BarCodeCreate extends javax.swing.JFrame {
     public BarCodeCreate() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+
         txtNombre.setEnabled(false);
         txtApellidoP.setEnabled(false);
         btnGenerarBarCode.setEnabled(false);
+        btnGenerarBarCode.setForeground(new Color(153, 153, 153));
 
     }
 
@@ -120,9 +118,10 @@ public class BarCodeCreate extends javax.swing.JFrame {
         jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 190, 10));
         jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 190, 10));
 
-        btnGenerarBarCode.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
+        btnGenerarBarCode.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
+        btnGenerarBarCode.setForeground(new java.awt.Color(238, 112, 82));
         btnGenerarBarCode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_scanning-barcode_3583307 (1).png"))); // NOI18N
-        btnGenerarBarCode.setText("Generar Codigo");
+        btnGenerarBarCode.setText("GENERAR CODIGO");
         btnGenerarBarCode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnGenerarBarCode.setContentAreaFilled(false);
         btnGenerarBarCode.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -143,7 +142,10 @@ public class BarCodeCreate extends javax.swing.JFrame {
         jPanel1.add(btnGenerarBarCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, 190, 50));
 
         btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
+        btnCancelar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(238, 112, 82));
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_gtk-go-back-ltr_79911.png"))); // NOI18N
+        btnCancelar.setText("VOLVER");
         btnCancelar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         btnCancelar.setContentAreaFilled(false);
         btnCancelar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -189,8 +191,8 @@ public class BarCodeCreate extends javax.swing.JFrame {
                 abrirPdfBarCode();
             }
         } catch (Exception ex) {
-            System.out.println("ERROR "+ex.getMessage());
-            System.out.println("ERROR "+ex.getLocalizedMessage());
+            System.out.println("ERROR " + ex.getMessage());
+            System.out.println("ERROR " + ex.getLocalizedMessage());
         }
     }//GEN-LAST:event_btnGenerarBarCodeActionPerformed
 
@@ -203,7 +205,8 @@ public class BarCodeCreate extends javax.swing.JFrame {
                     txtApellidoP.setText(pasajero.getApellidoP());
 
                     btnGenerarBarCode.setEnabled(true);
-                }else{
+                    btnGenerarBarCode.setForeground(new Color(238,112,82));
+                } else {
                     JOptionPane.showMessageDialog(null, "ERROR DE BUSQUEDA");
                 }
 
@@ -269,35 +272,35 @@ public class BarCodeCreate extends javax.swing.JFrame {
             }
         });
     }
-    
-    private void generarPdfBarCode() throws FileNotFoundException, DocumentException{
-        FileOutputStream archivo = new FileOutputStream("codigos/"+pasajero.getRut()+".pdf");
-            
-            Document doc = new Document();
-            PdfWriter pdf = PdfWriter.getInstance(doc, archivo);
-            doc.open();
-            
-            Barcode128 code = new Barcode128();
-            code.setCode(pasajero.getRut());
-            
-            Image img = code.createImageWithBarcode(pdf.getDirectContent(), BaseColor.BLACK, BaseColor.BLACK);
-            
-            Font fTitulo = new Font(Font.FontFamily.TIMES_ROMAN, 14.0f, Font.BOLD, BaseColor.BLACK);
-            Font fTituloRut = new Font(Font.FontFamily.TIMES_ROMAN, 12.0f, Font.BOLD, BaseColor.BLACK);
-            
-            Paragraph titulo = new Paragraph("Nombre: "+pasajero.getNombre()+" "+pasajero.getApellidoP(), fTitulo);
-            Paragraph tituloRut = new Paragraph("RUT: "+pasajero.getRut(), fTituloRut);
-            
-            doc.add(titulo);
-            doc.add(tituloRut);
-            doc.add(img);
-            
-            doc.close();
+
+    private void generarPdfBarCode() throws FileNotFoundException, DocumentException {
+        FileOutputStream archivo = new FileOutputStream("codigos/" + pasajero.getRut() + ".pdf");
+
+        Document doc = new Document();
+        PdfWriter pdf = PdfWriter.getInstance(doc, archivo);
+        doc.open();
+
+        Barcode128 code = new Barcode128();
+        code.setCode(pasajero.getRut());
+
+        Image img = code.createImageWithBarcode(pdf.getDirectContent(), BaseColor.BLACK, BaseColor.BLACK);
+
+        Font fTitulo = new Font(Font.FontFamily.TIMES_ROMAN, 14.0f, Font.BOLD, BaseColor.BLACK);
+        Font fTituloRut = new Font(Font.FontFamily.TIMES_ROMAN, 12.0f, Font.BOLD, BaseColor.BLACK);
+
+        Paragraph titulo = new Paragraph("Nombre: " + pasajero.getNombre() + " " + pasajero.getApellidoP(), fTitulo);
+        Paragraph tituloRut = new Paragraph("RUT: " + pasajero.getRut(), fTituloRut);
+
+        doc.add(titulo);
+        doc.add(tituloRut);
+        doc.add(img);
+
+        doc.close();
     }
-    
-    private void abrirPdfBarCode(){
+
+    private void abrirPdfBarCode() {
         try {
-            File path = new File("codigos/"+pasajero.getRut()+".pdf");
+            File path = new File("codigos/" + pasajero.getRut() + ".pdf");
             Desktop.getDesktop().open(path);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
