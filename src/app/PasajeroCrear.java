@@ -241,7 +241,7 @@ public class PasajeroCrear extends javax.swing.JFrame {
                     }
 
                 } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(this, "Error al asignar huesped: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "ERROR DE REGISTRO", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             } else if (confirmacion == 1) {
                 System.out.println("Has pulsado No");

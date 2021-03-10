@@ -428,33 +428,37 @@ public class Pasajeros extends javax.swing.JFrame {
         limpiarTablaEmpresa();
         limpiarTablaContrato();
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            boolean ok = buscarPasajero(txtRut.getText());
-            if (ok == false) {
-                JOptionPane.showMessageDialog(this, "NO SE ENCUENTRA PASAJERO ", "ERROR", JOptionPane.ERROR_MESSAGE);
-            } else {
-                cargarTablaPasajero();
-                boolean okEmpresa = buscarEmpresa(pasajero.getId());
-                if (okEmpresa == false) {
-                    JOptionPane.showMessageDialog(this, "0 EMPRESA ASOCIADA", "ERROR", JOptionPane.ERROR_MESSAGE);
-                    btnAsignacionEmpresa.setEnabled(true);
-                    btnAsignacionEmpresa.setForeground(new Color(238, 112, 82));
+            try {
+                boolean ok = buscarPasajero(txtRut.getText());
+                if (ok == false) {
+                    JOptionPane.showMessageDialog(this, "NO SE ENCUENTRA PASAJERO ", "ERROR", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    cargarTablaEmpresa();
-                    btnAsignacionEmpresa.setEnabled(false);
-                    btnAsignacionEmpresa.setForeground(new Color(153, 153, 153));
-                    btnEditarPasajero.setEnabled(true);
-                    btnEditarPasajero.setForeground(new Color(238, 112, 82));
-
-                    boolean okContrato = buscarContrato(pasajero.getId(), empresa.getId());
-                    if (okContrato == false) {
-                        JOptionPane.showMessageDialog(this, "0 CONTRATO ASOCIADO", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    cargarTablaPasajero();
+                    boolean okEmpresa = buscarEmpresa(pasajero.getId());
+                    if (okEmpresa == false) {
+                        JOptionPane.showMessageDialog(this, "0 EMPRESA ASOCIADA", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        btnAsignacionEmpresa.setEnabled(true);
+                        btnAsignacionEmpresa.setForeground(new Color(238, 112, 82));
                     } else {
-                        cargarTablaContrato();
-                    }
+                        cargarTablaEmpresa();
+                        btnAsignacionEmpresa.setEnabled(false);
+                        btnAsignacionEmpresa.setForeground(new Color(153, 153, 153));
+                        btnEditarPasajero.setEnabled(true);
+                        btnEditarPasajero.setForeground(new Color(238, 112, 82));
 
+                        boolean okContrato = buscarContrato(pasajero.getId(), empresa.getId());
+                        if (okContrato == false) {
+                            JOptionPane.showMessageDialog(this, "0 CONTRATO ASOCIADO", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        } else {
+                            cargarTablaContrato();
+                        }
+
+                    }
+                    btnAsignacionContrato.setEnabled(true);
+                    btnAsignacionContrato.setForeground(new Color(238, 112, 82));
                 }
-                btnAsignacionContrato.setEnabled(true);
-                btnAsignacionContrato.setForeground(new Color(238, 112, 82));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "ERROR DE SERVIDOR", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
 
         }
@@ -704,7 +708,7 @@ public class Pasajeros extends javax.swing.JFrame {
             }
         }
     }
-    
+
     private void limpiarTablaContrato() {
         if (modelContrato.getRowCount() > 0) {
             for (int i = modelContrato.getRowCount() - 1; i > -1; i--) {

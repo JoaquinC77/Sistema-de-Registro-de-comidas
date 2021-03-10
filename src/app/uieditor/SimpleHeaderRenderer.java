@@ -12,7 +12,7 @@ import javax.swing.table.TableCellRenderer;
 public class SimpleHeaderRenderer extends JLabel implements TableCellRenderer{
 
     public SimpleHeaderRenderer() {
-        setFont(new Font("Consolas", Font.BOLD, 14));
+        setFont(new Font("Consolas", Font.BOLD, 12));
         setOpaque(true);
         setForeground(Color.BLACK);
         setBackground(Color.WHITE);

@@ -66,7 +66,9 @@ public class DetalleDeCostos extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tblDetalleDeCostos.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        tblDetalleDeCostos.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
         tblDetalleDeCostos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -86,8 +88,8 @@ public class DetalleDeCostos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblDetalleDeCostos.setGridColor(new java.awt.Color(0, 0, 0));
-        tblDetalleDeCostos.setSelectionBackground(new java.awt.Color(102, 102, 102));
+        tblDetalleDeCostos.setGridColor(new java.awt.Color(255, 255, 255));
+        tblDetalleDeCostos.setSelectionBackground(new java.awt.Color(220, 220, 220));
         tblDetalleDeCostos.setSelectionForeground(new java.awt.Color(238, 112, 82));
         tblDetalleDeCostos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -96,7 +98,7 @@ public class DetalleDeCostos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblDetalleDeCostos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 1240, 100));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 1270, 40));
 
         jLabel4.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         jLabel4.setText("DETALLES DE CONTRATO");
@@ -145,12 +147,15 @@ public class DetalleDeCostos extends javax.swing.JFrame {
                 lblExitMouseExited(evt);
             }
         });
-        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 0, 40, 30));
+        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 0, 40, 30));
 
         jLabel5.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         jLabel5.setText("Detalle de Costo:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, 30));
 
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        tblDetalleContrato.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         tblDetalleContrato.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -162,11 +167,14 @@ public class DetalleDeCostos extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblDetalleContrato.setGridColor(new java.awt.Color(255, 255, 255));
+        tblDetalleContrato.setSelectionBackground(new java.awt.Color(220, 220, 220));
+        tblDetalleContrato.setSelectionForeground(new java.awt.Color(238, 112, 82));
         jScrollPane2.setViewportView(tblDetalleContrato);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 1240, 100));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 1270, 40));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1260, 530));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -335,9 +343,6 @@ public class DetalleDeCostos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnVolver;
-    private javax.swing.JButton btnVolver1;
-    private javax.swing.JButton btnVolver2;
     private javax.swing.JButton btnVolver3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

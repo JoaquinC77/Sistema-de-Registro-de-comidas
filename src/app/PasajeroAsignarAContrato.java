@@ -146,6 +146,7 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 680, 10));
 
         tblDatosPasajero.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        tblDatosPasajero.setForeground(new java.awt.Color(238, 112, 82));
         tblDatosPasajero.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -157,6 +158,8 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
 
             }
         ));
+        tblDatosPasajero.setSelectionBackground(new java.awt.Color(238, 112, 82));
+        tblDatosPasajero.setSelectionForeground(new java.awt.Color(220, 220, 220));
         jScrollPane1.setViewportView(tblDatosPasajero);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 680, 40));
@@ -188,6 +191,7 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
         jLabel7.setText("Vigencia de Contrato");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
 
+        tblDatosContrato.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         tblDatosContrato.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null}
@@ -198,7 +202,7 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblDatosContrato);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 680, 46));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 680, 40));
 
         dateChooserFechaInicio.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.add(dateChooserFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 310, 30));

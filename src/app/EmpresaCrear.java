@@ -277,7 +277,7 @@ public class EmpresaCrear extends javax.swing.JFrame {
 
                 }
 
-                JOptionPane.showMessageDialog(this, "Registro Exitoso");
+                JOptionPane.showMessageDialog(null, "REGISTRO EXITOSO", "EXITO", JOptionPane.PLAIN_MESSAGE);
 
                 txtDireccion.setText("");
                 txtEmailRepre.setText("");
@@ -290,7 +290,7 @@ public class EmpresaCrear extends javax.swing.JFrame {
             }
 
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "ERROR AL REGISTRAR");
+            JOptionPane.showMessageDialog(null, "ERROR AL REGISTRAR", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnCrearActionPerformed
 

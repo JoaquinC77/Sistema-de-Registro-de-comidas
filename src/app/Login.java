@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package app;
 
 import java.awt.Color;
@@ -62,7 +57,6 @@ public class Login extends javax.swing.JFrame {
 
         txtRut.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtRut.setForeground(new java.awt.Color(153, 153, 153));
-        txtRut.setText("19850996-5");
         txtRut.setToolTipText("INGRESAR RUT");
         txtRut.setBorder(null);
         txtRut.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -101,7 +95,6 @@ public class Login extends javax.swing.JFrame {
         jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 310, 38));
 
         txtPass.setForeground(new java.awt.Color(153, 153, 153));
-        txtPass.setText("0000");
         txtPass.setBorder(null);
         txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
