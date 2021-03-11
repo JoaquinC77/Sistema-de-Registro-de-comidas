@@ -7,6 +7,8 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -29,7 +31,8 @@ public class ConsultarServicios extends javax.swing.JFrame {
     private List<Contrato> listaContratosAC_DES;
     private List<Pasajero> listaPasajeros;
     public static Contrato contrato;
-    
+    public static Pasajero pasajeroBuscar;
+
     public ConsultarServicios() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -232,6 +235,11 @@ public class ConsultarServicios extends javax.swing.JFrame {
         tblPasajerosAsignados.setGridColor(new java.awt.Color(255, 255, 255));
         tblPasajerosAsignados.setSelectionBackground(new java.awt.Color(220, 220, 220));
         tblPasajerosAsignados.setSelectionForeground(new java.awt.Color(238, 112, 82));
+        tblPasajerosAsignados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPasajerosAsignadosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblPasajerosAsignados);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, 680, 100));
@@ -406,7 +414,6 @@ public class ConsultarServicios extends javax.swing.JFrame {
             int fila = tblDatosEmpresa.rowAtPoint(evt.getPoint());
             int columna = tblDatosEmpresa.columnAtPoint(evt.getPoint());
             if ((fila > -1) && (columna > -1)) {
-                JOptionPane.showMessageDialog(null, dtmModeloContratos.getValueAt(fila, 0));
 
                 int confirmacion = JOptionPane.showConfirmDialog(this,
                         "DESEA VER DETALLE DE CONTRATO: " + String.valueOf(dtmModeloContratos.getValueAt(fila, 1)),
@@ -421,19 +428,18 @@ public class ConsultarServicios extends javax.swing.JFrame {
                         System.out.println("---------------");
                         System.out.println("buscar por codigo: " + dtmModeloContratos.getValueAt(fila, 0));
                         System.out.println("---------------");
-                        
+
                         String codigoContrato = String.valueOf(dtmModeloContratos.getValueAt(fila, 0));
-                        
-                        
+
                         listaPasajeros = new PasajeroWS().getPasajerosPorContrato(codigoContrato);
                         contrato = conn.getContratoForCodigo(codigoContrato);
                         btnVerDetalles.setEnabled(true);
-                        btnVerDetalles.setForeground(new Color(238,112,82));
+                        btnVerDetalles.setForeground(new Color(238, 112, 82));
                         cargartablaPasajeros(listaPasajeros);
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(null, "NO HAY TRABAJADORES EN ESTE CONTRATO");
                     }
-                    
+
                 } else if (confirmacion == 1) {
                     System.out.println("Has pulsado No");
                 } else if (confirmacion == 2) {
@@ -468,6 +474,34 @@ public class ConsultarServicios extends javax.swing.JFrame {
     private void btnVerDetallesMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerDetallesMouseMoved
         btnVerDetalles.setBorder(BorderFactory.createLineBorder(new Color(238, 112, 82)));
     }//GEN-LAST:event_btnVerDetallesMouseMoved
+
+    private void tblPasajerosAsignadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPasajerosAsignadosMouseClicked
+        if (evt.getClickCount() == 2) {
+            int fila = tblPasajerosAsignados.rowAtPoint(evt.getPoint());
+            int confirmacion = JOptionPane.showConfirmDialog(this,
+                    "DESEA VER DETALLE DE CONSUMO DE: " + String.valueOf(dtmModeloPasajeros.getValueAt(fila, 1)),
+                    "CONFIRMACION",
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+
+            if (confirmacion == 0) {
+
+                try {
+                    pasajeroBuscar = new PasajeroWS().getPasajero(String.valueOf(dtmModeloPasajeros.getValueAt(fila, 0)));
+
+                    new DetallesDeRegistros().setVisible(true);
+                    this.setVisible(false);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "ERROR AL CARGAR DATOS DE PASAJERO", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } else if (confirmacion == 1) {
+                System.out.println("HAS PULSADO NO");
+            } else if (confirmacion == 2) {
+                System.out.println("HAS PULSADO CANCELAR");
+            }
+        }
+    }//GEN-LAST:event_tblPasajerosAsignadosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -521,21 +555,21 @@ public class ConsultarServicios extends javax.swing.JFrame {
         dtmModeloContratos.addColumn("Fecha Fin");
         dtmModeloContratos.addColumn("Estado");
     }
-    
-    public void formatoTablaPasajeros(){
-        dtmModeloPasajeros = new DefaultTableModel(){
+
+    public void formatoTablaPasajeros() {
+        dtmModeloPasajeros = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
-            }};
-        
-        
+            }
+        };
+
         tblPasajerosAsignados.setModel(dtmModeloPasajeros);
         dtmModeloPasajeros.addColumn("RUT");
         dtmModeloPasajeros.addColumn("NOMBRES");
         dtmModeloPasajeros.addColumn("APELLIDO PATERNO");
     }
-    
+
     private void cargartablaPasajeros(List<Pasajero> lista) {
         for (Pasajero p : lista) {
             Object[] fila = new Object[5];
@@ -547,7 +581,6 @@ public class ConsultarServicios extends javax.swing.JFrame {
             dtmModeloPasajeros.addRow(fila);
         }
     }
-
 
     private void cargartabla(List<Contrato> lista) {
         for (Contrato c : lista) {
@@ -570,7 +603,7 @@ public class ConsultarServicios extends javax.swing.JFrame {
             }
         }
     }
-    
+
     private void limpiarTablaPasajeros() {
         if (dtmModeloPasajeros.getRowCount() > 0) {
             for (int i = dtmModeloPasajeros.getRowCount() - 1; i > -1; i--) {
