@@ -78,6 +78,7 @@ public class Pasajeros extends javax.swing.JFrame {
         btnEditarPasajero = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblContratoAsociado1 = new javax.swing.JTable();
+        btnRegistroManual = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -107,7 +108,7 @@ public class Pasajeros extends javax.swing.JFrame {
                 lblExitMouseExited(evt);
             }
         });
-        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 0, -1, -1));
+        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 0, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         jLabel4.setText("Buscar Pasajero: ");
@@ -135,12 +136,12 @@ public class Pasajeros extends javax.swing.JFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, 120, 50));
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 120, 50));
 
         jLabel3.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         jLabel3.setText("Pasajero");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 780, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 880, 10));
 
         txtRut.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
         txtRut.setForeground(new java.awt.Color(153, 153, 153));
@@ -150,12 +151,12 @@ public class Pasajeros extends javax.swing.JFrame {
                 txtRutKeyReleased(evt);
             }
         });
-        jPanel1.add(txtRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 210, 40));
+        jPanel1.add(txtRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 250, 40));
 
         jLabel5.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         jLabel5.setText("Datos:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 780, 10));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 880, 10));
 
         btnNuevoPasajero.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnNuevoPasajero.setForeground(new java.awt.Color(238, 112, 82));
@@ -179,7 +180,7 @@ public class Pasajeros extends javax.swing.JFrame {
                 btnNuevoPasajeroActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNuevoPasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 500, 120, 40));
+        jPanel1.add(btnNuevoPasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 500, 120, 40));
 
         btnVolver.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnVolver.setForeground(new java.awt.Color(238, 112, 82));
@@ -226,7 +227,7 @@ public class Pasajeros extends javax.swing.JFrame {
                 btnAsignacionEmpresaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAsignacionEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 500, 160, 40));
+        jPanel1.add(btnAsignacionEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 500, 160, 40));
 
         btnAsignacionContrato.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnAsignacionContrato.setForeground(new java.awt.Color(238, 112, 82));
@@ -249,8 +250,8 @@ public class Pasajeros extends javax.swing.JFrame {
                 btnAsignacionContratoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAsignacionContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 500, 160, 40));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 210, 10));
+        jPanel1.add(btnAsignacionContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 500, 160, 40));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 250, 10));
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setBorder(null);
@@ -280,7 +281,7 @@ public class Pasajeros extends javax.swing.JFrame {
         tblEmpresaAsociada1.setSelectionForeground(new java.awt.Color(238, 112, 82));
         jScrollPane1.setViewportView(tblEmpresaAsociada1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 780, 50));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 880, 50));
 
         jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane3.setBorder(null);
@@ -311,7 +312,7 @@ public class Pasajeros extends javax.swing.JFrame {
         jScrollPane3.setViewportView(tblDatosPasajero1);
         tblDatosPasajero1.getAccessibleContext().setAccessibleParent(jScrollPane1);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 780, 50));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 880, 50));
 
         btnEditarPasajero.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnEditarPasajero.setForeground(new java.awt.Color(238, 112, 82));
@@ -335,7 +336,7 @@ public class Pasajeros extends javax.swing.JFrame {
                 btnEditarPasajeroActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEditarPasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 500, 120, 40));
+        jPanel1.add(btnEditarPasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 500, 120, 40));
 
         jScrollPane4.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane4.setBorder(null);
@@ -358,9 +359,31 @@ public class Pasajeros extends javax.swing.JFrame {
         jScrollPane4.setViewportView(tblContratoAsociado1);
         tblContratoAsociado1.getAccessibleContext().setAccessibleParent(jScrollPane1);
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 780, 80));
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 880, 80));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 550));
+        btnRegistroManual.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
+        btnRegistroManual.setForeground(new java.awt.Color(238, 112, 82));
+        btnRegistroManual.setText("REGISTRO MANUAL");
+        btnRegistroManual.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(128, 128, 128)));
+        btnRegistroManual.setContentAreaFilled(false);
+        btnRegistroManual.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnRegistroManualMouseMoved(evt);
+            }
+        });
+        btnRegistroManual.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnRegistroManualMouseExited(evt);
+            }
+        });
+        btnRegistroManual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistroManualActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnRegistroManual, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 500, 150, 40));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -533,6 +556,19 @@ public class Pasajeros extends javax.swing.JFrame {
         new PasajeroEditar().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnEditarPasajeroActionPerformed
+
+    private void btnRegistroManualMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroManualMouseExited
+        btnRegistroManual.setBorder(BorderFactory.createLineBorder(new Color(153, 153, 153)));
+    }//GEN-LAST:event_btnRegistroManualMouseExited
+
+    private void btnRegistroManualMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroManualMouseMoved
+        btnRegistroManual.setBorder(BorderFactory.createLineBorder(new Color(238, 112, 82)));
+    }//GEN-LAST:event_btnRegistroManualMouseMoved
+
+    private void btnRegistroManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroManualActionPerformed
+        new RegistroManualServicios().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnRegistroManualActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -723,6 +759,7 @@ public class Pasajeros extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditarPasajero;
     private javax.swing.JButton btnNuevoPasajero;
+    private javax.swing.JButton btnRegistroManual;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

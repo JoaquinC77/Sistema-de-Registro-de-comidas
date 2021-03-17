@@ -1,22 +1,36 @@
 package app;
 
 import app.uieditor.SimpleHeaderRenderer;
+import exportar.ExportarExcel;
 import java.awt.Color;
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import model.clases.Contrato;
 import model.clases.VistaConsultaDeCostos;
+import model.clases.VistaRegistrosServiciosDetalle;
+import model.ws.PasajeroWS;
 import model.ws.VistaConsultaDeCostosWS;
+import model.ws.VistaRegistrosServiciosDetalleWS;
 
 public class DetalleDeCostos extends javax.swing.JFrame {
 
     private DefaultTableModel dtmModelo;
     private DefaultTableModel dtmModeloContrato;
+    private DefaultTableModel dtmModeloDetalleRegistros;
     private VistaConsultaDeCostos costos;
     private VistaConsultaDeCostosWS conn;
     private Contrato contrato;
+    private List<VistaRegistrosServiciosDetalle> vistaRegistrosDetalle;
 
     public DetalleDeCostos() {
         initComponents();
@@ -27,20 +41,19 @@ public class DetalleDeCostos extends javax.swing.JFrame {
 
         tblDetalleContrato.getTableHeader().setDefaultRenderer(new SimpleHeaderRenderer());
         tblDetalleDeCostos.getTableHeader().setDefaultRenderer(new SimpleHeaderRenderer());
-        
+        tblDetallesDeCosteo.getTableHeader().setDefaultRenderer(new SimpleHeaderRenderer());
+
         formatoTabla();
         formatoTablaContrato();
+        formatoTablaVistaRegistroDetallado();
 
+        limpiarTablaContrato();
         try {
-            costos = conn.getCostosPorContrato(contrato.getCodigo());
-
-            limpiarTabla();
-            limpiarTablaContrato();
-            cargartabla(costos);
-            cargartablaContrato(costos);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR DE BUSQUEDA DE DATOS");
+            cargartablaContrato();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "ERROR AL CARGAR DATOS DE CONTRATO", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+
     }
 
     @SuppressWarnings("unchecked")
@@ -50,13 +63,23 @@ public class DetalleDeCostos extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDetalleDeCostos = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnVolver3 = new javax.swing.JButton();
         lblExit = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDetalleContrato = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        txtDesde = new com.toedter.calendar.JDateChooser();
+        txtHasta = new com.toedter.calendar.JDateChooser();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblDetallesDeCosteo = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        btnGenerar = new javax.swing.JButton();
+        btnExcel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -66,6 +89,7 @@ public class DetalleDeCostos extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         tblDetalleDeCostos.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
@@ -88,6 +112,8 @@ public class DetalleDeCostos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblDetalleDeCostos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblDetalleDeCostos.setFillsViewportHeight(true);
         tblDetalleDeCostos.setGridColor(new java.awt.Color(255, 255, 255));
         tblDetalleDeCostos.setSelectionBackground(new java.awt.Color(220, 220, 220));
         tblDetalleDeCostos.setSelectionForeground(new java.awt.Color(238, 112, 82));
@@ -98,11 +124,11 @@ public class DetalleDeCostos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblDetalleDeCostos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 1270, 40));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 1270, 40));
 
-        jLabel4.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
-        jLabel4.setText("DETALLES DE CONTRATO");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, 30));
+        lblTotal.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
+        lblTotal.setText("TOTAL DE COSTEO: ");
+        jPanel1.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 530, 190, 50));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGOSISTEMA.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 50));
@@ -130,7 +156,7 @@ public class DetalleDeCostos extends javax.swing.JFrame {
                 btnVolver3ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVolver3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 140, 50));
+        jPanel1.add(btnVolver3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 600, 140, 50));
 
         lblExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_delete_51514.png"))); // NOI18N
@@ -149,9 +175,9 @@ public class DetalleDeCostos extends javax.swing.JFrame {
         });
         jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 0, 40, 30));
 
-        jLabel5.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
-        jLabel5.setText("Detalle de Costo:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, 30));
+        jLabel5.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 16)); // NOI18N
+        jLabel5.setText("Hasta: ");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 170, 60, 30));
 
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
@@ -174,7 +200,57 @@ public class DetalleDeCostos extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 1270, 40));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 400));
+        jLabel6.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
+        jLabel6.setText("DETALLES DE CONTRATO");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, 30));
+        jPanel1.add(txtDesde, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 170, 160, 30));
+        jPanel1.add(txtHasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 170, 160, 30));
+
+        jLabel7.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
+        jLabel7.setText("Detalle de Costos: ");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, 30));
+
+        jLabel8.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 16)); // NOI18N
+        jLabel8.setText("Desde:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 170, 60, 30));
+
+        tblDetallesDeCosteo.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        tblDetallesDeCosteo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblDetallesDeCosteo.setGridColor(new java.awt.Color(255, 255, 255));
+        tblDetallesDeCosteo.setSelectionBackground(new java.awt.Color(238, 112, 82));
+        tblDetallesDeCosteo.setSelectionForeground(new java.awt.Color(220, 220, 220));
+        jScrollPane3.setViewportView(tblDetallesDeCosteo);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 630, 270));
+
+        jLabel9.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
+        jLabel9.setText("Resumen de Costos:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, 30));
+
+        btnGenerar.setText("GENERAR");
+        btnGenerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 170, 110, 30));
+
+        btnExcel.setText("EXCEL");
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 610, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 660));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -213,6 +289,48 @@ public class DetalleDeCostos extends javax.swing.JFrame {
         new ConsultarServicios().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVolver3ActionPerformed
+
+    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
+        SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            String fechaDesde = dFormat.format(txtDesde.getDate());
+            String fechaHasta = dFormat.format(txtHasta.getDate());
+
+            System.out.println(fechaDesde);
+            System.out.println(fechaHasta);
+
+            try {
+                costos = conn.getCostosPorContrato(contrato.getCodigo(), fechaDesde, fechaHasta);
+
+                limpiarTabla();
+                cargartabla(costos);
+
+                limpiarTablaDetallesRegistros();
+                try {
+                    cargarTablaRegistrosDetallada(new VistaRegistrosServiciosDetalleWS().getRegistroDetallado(contrato.getId(), fechaDesde, fechaHasta));
+                    System.out.println("tabla cargada se supone");
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "ERROR AL CARGAR DETALLES DE REGISTROS", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+
+                lblTotal.setText("TOTAL DE COSTEO: $" + costos.getTotal());
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "ERROR DE BUSQUEDA DE DATOS");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERROR DE INGRESO DE DATOS DE FECHA", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+    }//GEN-LAST:event_btnGenerarActionPerformed
+
+    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+        try {
+            new ExportarExcel().exportarExcel(tblDetalleContrato, tblDetalleDeCostos, tblDetallesDeCosteo);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR AL EXPORTAR EXCEL", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnExcelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,17 +373,17 @@ public class DetalleDeCostos extends javax.swing.JFrame {
 
         tblDetalleDeCostos.setModel(dtmModelo);
 
-        dtmModelo.addColumn("N° DESAYUNOS SERVIDOS");
-        dtmModelo.addColumn("VALOR DESAYUNO");
-        dtmModelo.addColumn("SUBTOTAL DESAYUNO");
-        dtmModelo.addColumn("N° ALMUERZOS SERVIDOS");
-        dtmModelo.addColumn("VALOR ALMUERZO");
-        dtmModelo.addColumn("SUBTOTAL ALMUERZO");
-        dtmModelo.addColumn("N° CENAS SERVIDAS");
-        dtmModelo.addColumn("VALOR CENA");
-        dtmModelo.addColumn("SUBTOTAL CENA");
-        dtmModelo.addColumn("N° SERVICIOS TOTAL");
-        dtmModelo.addColumn("TOTAL VENTAS");
+        dtmModelo.addColumn("N° DES.");
+        dtmModelo.addColumn("VALOR DES.");
+        dtmModelo.addColumn("SUBTOTAL DES.");
+        dtmModelo.addColumn("N° ALM.");
+        dtmModelo.addColumn("VALOR ALM.");
+        dtmModelo.addColumn("SUBTOTAL ALM.");
+        dtmModelo.addColumn("N° CENAS.");
+        dtmModelo.addColumn("VALOR CENA.");
+        dtmModelo.addColumn("SUBTOTAL CENA.");
+        dtmModelo.addColumn("N° TOTAL SERVICIOS.");
+        dtmModelo.addColumn("TOTAL VENTAS.");
     }
 
     private void formatoTablaContrato() {
@@ -287,7 +405,23 @@ public class DetalleDeCostos extends javax.swing.JFrame {
         dtmModeloContrato.addColumn("ESTADO");
     }
 
-    private void cargartablaContrato(VistaConsultaDeCostos costosContrato) {
+    private void formatoTablaVistaRegistroDetallado() {
+        dtmModeloDetalleRegistros = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        dtmModeloDetalleRegistros.addColumn("NOMBRE");
+        dtmModeloDetalleRegistros.addColumn("APELLIDO");
+        dtmModeloDetalleRegistros.addColumn("SERVICIO");
+        dtmModeloDetalleRegistros.addColumn("FECHA");
+
+        tblDetallesDeCosteo.setModel(dtmModeloDetalleRegistros);
+    }
+
+    private void cargartablaContrato() throws IOException {
         String estado = "";
         if (contrato.getEstado().equals("0")) {
             estado = "CADUCO";
@@ -301,10 +435,23 @@ public class DetalleDeCostos extends javax.swing.JFrame {
         fila[1] = contrato.getNombre();
         fila[2] = contrato.getFechaInicio();
         fila[3] = contrato.getFechaFin();
-        fila[4] = costosContrato.getCantidadTrabajadores();
+        fila[4] = new PasajeroWS().getCantidadDePasajerosPorContrato(contrato.getCodigo());
         fila[5] = estado;
 
         dtmModeloContrato.addRow(fila);
+    }
+
+    private void cargarTablaRegistrosDetallada(List<VistaRegistrosServiciosDetalle> lista) {
+        Object[] fila = new Object[4];
+
+        for (VistaRegistrosServiciosDetalle vista : lista) {
+            fila[0] = vista.getNombrePasajero();
+            fila[1] = vista.getApellidoPasajero();
+            fila[2] = vista.getServicio();
+            fila[3] = vista.getFecha();
+
+            dtmModeloDetalleRegistros.addRow(fila);
+        }
     }
 
     private void cargartabla(VistaConsultaDeCostos costosContrato) {
@@ -313,15 +460,42 @@ public class DetalleDeCostos extends javax.swing.JFrame {
 
         fila[0] = costosContrato.getCantidadDesayunosServidos();
         fila[1] = costosContrato.getValorDesayuno();
-        fila[2] = costosContrato.getTotalDesayuno();
+
+        if (costosContrato.getTotalDesayuno() == null) {
+            fila[2] = 0;
+        } else {
+            fila[2] = costosContrato.getTotalDesayuno();
+        }
+
         fila[3] = costosContrato.getCantidadAlmuerzoServidos();
         fila[4] = costosContrato.getValorAlmuerzo();
-        fila[5] = costosContrato.getTotalAlmuerzo();
+
+        if (costosContrato.getTotalAlmuerzo() == null) {
+            fila[5] = 0;
+        } else {
+            fila[5] = costosContrato.getTotalAlmuerzo();
+        }
+
         fila[6] = costosContrato.getCantidadCenasServidas();
         fila[7] = costosContrato.getValorCena();
-        fila[8] = costosContrato.getTotalCenas();
-        fila[9] = costosContrato.getTotalDeServiciosServidos();
-        fila[10] = costosContrato.getTotal();
+
+        if (costosContrato.getTotalCenas() == null) {
+            fila[8] = 0;
+        } else {
+            fila[8] = costosContrato.getTotalCenas();
+        }
+
+        if (costosContrato.getTotalDeServiciosServidos() == null) {
+            fila[9] = 0;
+        } else {
+            fila[9] = costosContrato.getTotalDeServiciosServidos();
+        }
+
+        if (costosContrato.getTotal() == null) {
+            fila[10] = 0;
+        } else {
+            fila[10] = costosContrato.getTotal();
+        }
 
         dtmModelo.addRow(fila);
     }
@@ -330,6 +504,14 @@ public class DetalleDeCostos extends javax.swing.JFrame {
         if (dtmModelo.getRowCount() > 0) {
             for (int i = dtmModelo.getRowCount() - 1; i > -1; i--) {
                 dtmModelo.removeRow(i);
+            }
+        }
+    }
+
+    private void limpiarTablaDetallesRegistros() {
+        if (dtmModeloDetalleRegistros.getRowCount() > 0) {
+            for (int i = dtmModeloDetalleRegistros.getRowCount() - 1; i > -1; i--) {
+                dtmModeloDetalleRegistros.removeRow(i);
             }
         }
     }
@@ -343,15 +525,25 @@ public class DetalleDeCostos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExcel;
+    private javax.swing.JButton btnGenerar;
     private javax.swing.JButton btnVolver3;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblExit;
+    private javax.swing.JLabel lblTotal;
     private javax.swing.JTable tblDetalleContrato;
     private javax.swing.JTable tblDetalleDeCostos;
+    private javax.swing.JTable tblDetallesDeCosteo;
+    private com.toedter.calendar.JDateChooser txtDesde;
+    private com.toedter.calendar.JDateChooser txtHasta;
     // End of variables declaration//GEN-END:variables
 }

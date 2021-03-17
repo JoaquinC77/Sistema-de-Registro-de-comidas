@@ -16,10 +16,10 @@ public class VistaConsultaDeCostosWS {
         this.urlWs = "http://localhost:8080";
     }
     
-    public VistaConsultaDeCostos getCostosPorContrato(String codigo) throws MalformedURLException, IOException {
+    public VistaConsultaDeCostos getCostosPorContrato(String codigo, String fechaDesde, String fechaHasta) throws MalformedURLException, IOException {
         VistaConsultaDeCostos costosPorContrato = null;
 
-        String urlWS = this.urlWs + "/getCostos?codigo=" + codigo;
+        String urlWS = this.urlWs + "/getCostos?codigo=" + codigo +"&fechaDesde="+fechaDesde+"&fechaHasta="+fechaHasta;
         URL url = new URL(urlWS);
 
         JsonObject jsonObject = new ConexionWS().getJsonObject(url);
