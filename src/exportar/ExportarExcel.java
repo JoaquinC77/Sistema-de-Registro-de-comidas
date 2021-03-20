@@ -10,9 +10,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -21,6 +19,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 public class ExportarExcel {
 
     private Workbook libro;
+    public static String rutaExcel;
 
     public void exportarExcel(JTable t1, JTable t2, JTable t3) throws IOException {
         JFileChooser chooser = new JFileChooser();
@@ -29,9 +28,9 @@ public class ExportarExcel {
         chooser.setDialogTitle("Guardar archivo");
         chooser.setAcceptAllFileFilterUsed(false);
         if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
-            String ruta = chooser.getSelectedFile().toString().concat(".xls");
+            rutaExcel = chooser.getSelectedFile().toString().concat(".xls");
             try {
-                File archivoXLS = new File(ruta);
+                File archivoXLS = new File(rutaExcel);
                 if (archivoXLS.exists()) {
                     archivoXLS.delete();
                 }
