@@ -461,7 +461,7 @@ public class DetalleDeCostos extends javax.swing.JFrame {
         fila[0] = costosContrato.getCantidadDesayunosServidos();
         fila[1] = costosContrato.getValorDesayuno();
 
-        if (costosContrato.getTotalDesayuno() == null) {
+        if (costosContrato.getTotalDesayuno() == 0) {
             fila[2] = 0;
         } else {
             fila[2] = costosContrato.getTotalDesayuno();
@@ -470,7 +470,7 @@ public class DetalleDeCostos extends javax.swing.JFrame {
         fila[3] = costosContrato.getCantidadAlmuerzoServidos();
         fila[4] = costosContrato.getValorAlmuerzo();
 
-        if (costosContrato.getTotalAlmuerzo() == null) {
+        if (costosContrato.getTotalAlmuerzo() == 0) {
             fila[5] = 0;
         } else {
             fila[5] = costosContrato.getTotalAlmuerzo();
@@ -479,19 +479,19 @@ public class DetalleDeCostos extends javax.swing.JFrame {
         fila[6] = costosContrato.getCantidadCenasServidas();
         fila[7] = costosContrato.getValorCena();
 
-        if (costosContrato.getTotalCenas() == null) {
+        if (costosContrato.getTotalCenas() == 0) {
             fila[8] = 0;
         } else {
             fila[8] = costosContrato.getTotalCenas();
         }
 
-        if (costosContrato.getTotalDeServiciosServidos() == null) {
+        if (costosContrato.getTotalDeServiciosServidos() == 0) {
             fila[9] = 0;
         } else {
             fila[9] = costosContrato.getTotalDeServiciosServidos();
         }
 
-        if (costosContrato.getTotal() == null) {
+        if (costosContrato.getTotal() == 0) {
             fila[10] = 0;
         } else {
             fila[10] = costosContrato.getTotal();

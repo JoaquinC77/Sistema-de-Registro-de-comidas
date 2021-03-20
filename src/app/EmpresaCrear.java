@@ -102,6 +102,11 @@ public class EmpresaCrear extends javax.swing.JFrame {
 
         txtNombre.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         txtNombre.setBorder(null);
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 200, 30));
 
         txtRut.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
@@ -249,22 +254,19 @@ public class EmpresaCrear extends javax.swing.JFrame {
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         try {
-            if (txtDireccion.getText().isEmpty() || txtEmailRepre.getText().isEmpty() || txtNombre.getText().isEmpty()||
-                    txtNombreRepre.getText().isEmpty() || txtPuestoRepre.getText().isEmpty() || txtRut.getText().isEmpty() ||
-                    txtRutRepre.getText().isEmpty() || txtTelefonoRepre.getText().isEmpty()) {
-                
+            if (txtDireccion.getText().isEmpty() || txtEmailRepre.getText().isEmpty() || txtNombre.getText().isEmpty()
+                    || txtNombreRepre.getText().isEmpty() || txtPuestoRepre.getText().isEmpty() || txtRut.getText().isEmpty()
+                    || txtRutRepre.getText().isEmpty() || txtTelefonoRepre.getText().isEmpty()) {
+
                 // si alguno de los campos esta vacio
-                JOptionPane.showMessageDialog(null, "DEBE INGRESAR TODOS LOS CAMPOS","ERROR DE INGRESO",JOptionPane.WARNING_MESSAGE);
-                
-                
+                JOptionPane.showMessageDialog(null, "DEBE INGRESAR TODOS LOS CAMPOS", "ERROR DE INGRESO", JOptionPane.WARNING_MESSAGE);
 
             } else {
                 if (representante == null) {
                     representante = new Encargado("", txtNombreRepre.getText().toUpperCase(),
                             txtRutRepre.getText(), txtPuestoRepre.getText().toUpperCase(),
                             txtTelefonoRepre.getText().toUpperCase(), txtEmailRepre.getText().toUpperCase());
-                    
-                    
+
                     new EncargadoWS().insertEncargado(representante);
 
                     int idRepresentante = new EncargadoWS().getUltimoIdRepresentante();
@@ -337,6 +339,28 @@ public class EmpresaCrear extends javax.swing.JFrame {
     private void btnCrearMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearMouseExited
         btnCrear.setBorder(BorderFactory.createLineBorder(new Color(153, 153, 153)));
     }//GEN-LAST:event_btnCrearMouseExited
+
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+        if (txtNombre.getText().isEmpty()) {
+            System.out.println("vacia");
+        } else {
+            String campoTexto = txtNombre.getText();
+
+            String ultimaWa = String.valueOf(campoTexto.charAt(campoTexto.length() - 1));
+
+            System.out.println(ultimaWa);
+
+            if (ultimaWa.equals("ñ")) {
+                campoTexto = campoTexto.replace("ñ", "n");
+                txtNombre.setText(campoTexto);
+            }else if(ultimaWa.equals("Ñ")){
+                campoTexto = campoTexto.replace("Ñ", "N");
+                txtNombre.setText(campoTexto);
+            }
+        }
+
+
+    }//GEN-LAST:event_txtNombreKeyReleased
 
     /**
      * @param args the command line arguments

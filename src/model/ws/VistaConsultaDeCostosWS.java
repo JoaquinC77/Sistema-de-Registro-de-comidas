@@ -26,17 +26,17 @@ public class VistaConsultaDeCostosWS {
 
         costosPorContrato = new Gson().fromJson(jsonObject, VistaConsultaDeCostos.class);
         
-        if(costosPorContrato.getCantidadDesayunosServidos() == null){
-            costosPorContrato.setCantidadDesayunosServidos("0");
+        if(costosPorContrato.getCantidadDesayunosServidos() == 0){
+            costosPorContrato.setCantidadDesayunosServidos(0);
         }
-        if(costosPorContrato.getCantidadAlmuerzoServidos()== null){
-            costosPorContrato.setCantidadAlmuerzoServidos("0");
+        if(costosPorContrato.getCantidadAlmuerzoServidos()== 0){
+            costosPorContrato.setCantidadAlmuerzoServidos(0);
         }
-        if(costosPorContrato.getCantidadCenasServidas() == null){
-            costosPorContrato.setCantidadCenasServidas("0");
+        if(costosPorContrato.getCantidadCenasServidas() == 0){
+            costosPorContrato.setCantidadCenasServidas(0);
         }
-        if(costosPorContrato.getCantidadTrabajadores()== null){
-            costosPorContrato.setCantidadTrabajadores("0");
+        if(costosPorContrato.getCantidadTrabajadores()== 0){
+            costosPorContrato.setCantidadTrabajadores(0);
         }
 
         return costosPorContrato;

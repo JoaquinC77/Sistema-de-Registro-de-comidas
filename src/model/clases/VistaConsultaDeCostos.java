@@ -9,21 +9,20 @@ public class VistaConsultaDeCostos {
     private String idContrato;
     private String fechaInicio;
     private String fechaFin;
-    private String cantidadTrabajadores;
-    private String cantidadDesayunosServidos;
-    private String valorDesayuno;
-    private String totalDesayuno;
-    private String cantidadAlmuerzoServidos;
-    private String valorAlmuerzo;
-    private String totalAlmuerzo;
-    private String cantidadCenasServidas;
-    private String valorCena;
-    private String totalCenas;
-    private String totalDeServiciosServidos;
-    private String total;
+    private int cantidadTrabajadores;
+    private int cantidadDesayunosServidos;
+    private int valorDesayuno;
+    private int totalDesayuno;
+    private int cantidadAlmuerzoServidos;
+    private int valorAlmuerzo;
+    private int totalAlmuerzo;
+    private int cantidadCenasServidas;
+    private int valorCena;
+    private int totalCenas;
+    private int totalDeServiciosServidos;
+    private int total;
 
-
-    public VistaConsultaDeCostos(String idEmpresa, String idContrato, String fechaInicio, String fechaFin, String cantidadTrabajadores, String cantidadDesayunosServidos, String valorDesayuno, String totalDesayuno, String cantidadAlmuerzoServidos, String valorAlmuerzo, String totalAlmuerzo, String cantidadCenasServidas, String valorCena, String totalCenas, String totalDeServiciosServidos, String total) {
+    public VistaConsultaDeCostos(String idEmpresa, String idContrato, String fechaInicio, String fechaFin, int cantidadTrabajadores, int cantidadDesayunosServidos, int valorDesayuno, int totalDesayuno, int cantidadAlmuerzoServidos, int valorAlmuerzo, int totalAlmuerzo, int cantidadCenasServidas, int valorCena, int totalCenas, int totalDeServiciosServidos, int total) {
         this.idEmpresa = idEmpresa;
         this.idContrato = idContrato;
         this.fechaInicio = fechaInicio;
@@ -40,9 +39,6 @@ public class VistaConsultaDeCostos {
         this.totalCenas = totalCenas;
         this.totalDeServiciosServidos = totalDeServiciosServidos;
         this.total = total;
-    }
-
-    public VistaConsultaDeCostos() {
     }
 
     public String getIdEmpresa() {
@@ -77,99 +73,101 @@ public class VistaConsultaDeCostos {
         this.fechaFin = fechaFin;
     }
 
-    public String getCantidadTrabajadores() {
+    public int getCantidadTrabajadores() {
         return cantidadTrabajadores;
     }
 
-    public void setCantidadTrabajadores(String cantidadTrabajadores) {
+    public void setCantidadTrabajadores(int cantidadTrabajadores) {
         this.cantidadTrabajadores = cantidadTrabajadores;
     }
 
-    public String getCantidadDesayunosServidos() {
+    public int getCantidadDesayunosServidos() {
         return cantidadDesayunosServidos;
     }
 
-    public void setCantidadDesayunosServidos(String cantidadDesayunosServidos) {
+    public void setCantidadDesayunosServidos(int cantidadDesayunosServidos) {
         this.cantidadDesayunosServidos = cantidadDesayunosServidos;
     }
 
-    public String getValorDesayuno() {
+    public int getValorDesayuno() {
         return valorDesayuno;
     }
 
-    public void setValorDesayuno(String valorDesayuno) {
+    public void setValorDesayuno(int valorDesayuno) {
         this.valorDesayuno = valorDesayuno;
     }
 
-    public String getTotalDesayuno() {
+    public int getTotalDesayuno() {
         return totalDesayuno;
     }
 
-    public void setTotalDesayuno(String totalDesayuno) {
+    public void setTotalDesayuno(int totalDesayuno) {
         this.totalDesayuno = totalDesayuno;
     }
 
-    public String getCantidadAlmuerzoServidos() {
+    public int getCantidadAlmuerzoServidos() {
         return cantidadAlmuerzoServidos;
     }
 
-    public void setCantidadAlmuerzoServidos(String cantidadAlmuerzoServidos) {
+    public void setCantidadAlmuerzoServidos(int cantidadAlmuerzoServidos) {
         this.cantidadAlmuerzoServidos = cantidadAlmuerzoServidos;
     }
 
-    public String getValorAlmuerzo() {
+    public int getValorAlmuerzo() {
         return valorAlmuerzo;
     }
 
-    public void setValorAlmuerzo(String valorAlmuerzo) {
+    public void setValorAlmuerzo(int valorAlmuerzo) {
         this.valorAlmuerzo = valorAlmuerzo;
     }
 
-    public String getTotalAlmuerzo() {
+    public int getTotalAlmuerzo() {
         return totalAlmuerzo;
     }
 
-    public void setTotalAlmuerzo(String totalAlmuerzo) {
+    public void setTotalAlmuerzo(int totalAlmuerzo) {
         this.totalAlmuerzo = totalAlmuerzo;
     }
 
-    public String getCantidadCenasServidas() {
+    public int getCantidadCenasServidas() {
         return cantidadCenasServidas;
     }
 
-    public void setCantidadCenasServidas(String cantidadCenasServidas) {
+    public void setCantidadCenasServidas(int cantidadCenasServidas) {
         this.cantidadCenasServidas = cantidadCenasServidas;
     }
 
-    public String getValorCena() {
+    public int getValorCena() {
         return valorCena;
     }
 
-    public void setValorCena(String valorCena) {
+    public void setValorCena(int valorCena) {
         this.valorCena = valorCena;
     }
 
-    public String getTotalCenas() {
+    public int getTotalCenas() {
         return totalCenas;
     }
 
-    public void setTotalCenas(String totalCenas) {
+    public void setTotalCenas(int totalCenas) {
         this.totalCenas = totalCenas;
     }
 
-    public String getTotalDeServiciosServidos() {
+    public int getTotalDeServiciosServidos() {
         return totalDeServiciosServidos;
     }
 
-    public void setTotalDeServiciosServidos(String totalDeServiciosServidos) {
+    public void setTotalDeServiciosServidos(int totalDeServiciosServidos) {
         this.totalDeServiciosServidos = totalDeServiciosServidos;
     }
 
-    public String getTotal() {
+    public int getTotal() {
         return total;
     }
 
-    public void setTotal(String total) {
+    public void setTotal(int total) {
         this.total = total;
     }
+
+
 }
