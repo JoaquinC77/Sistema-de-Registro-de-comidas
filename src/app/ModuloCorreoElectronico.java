@@ -2,13 +2,16 @@ package app;
 
 import static app.DetalleDeCostos.contrato;
 import correo.EnvioDeCorreo;
+import iconook.IconOK;
 import java.awt.Color;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import model.clases.Contrato;
 import model.clases.Encargado;
 import model.ws.EncargadoWS;
@@ -50,12 +53,10 @@ public class ModuloCorreoElectronico extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        txtCorreo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtCuerpoMensaje = new javax.swing.JTextArea();
-        jLabel3 = new javax.swing.JLabel();
         lbldireccion = new javax.swing.JLabel();
         txtAsunto = new javax.swing.JTextField();
         btnVolver3 = new javax.swing.JButton();
@@ -64,11 +65,7 @@ public class ModuloCorreoElectronico extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        txtPass = new javax.swing.JPasswordField();
-        jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -78,14 +75,10 @@ public class ModuloCorreoElectronico extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtCorreo.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
-        txtCorreo.setBorder(null);
-        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 250, 30));
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Asunto:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 80, 30));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 80, 30));
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblTitulo.setText("Envio de Informe de Ventas a: ");
@@ -103,16 +96,11 @@ public class ModuloCorreoElectronico extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(txtCuerpoMensaje);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 380, 120));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("Contraseña:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 80, 30));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 380, 120));
 
         lbldireccion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lbldireccion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jPanel1.add(lbldireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, 380, 30));
+        jPanel1.add(lbldireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 380, 30));
 
         txtAsunto.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         txtAsunto.setBorder(null);
@@ -121,7 +109,7 @@ public class ModuloCorreoElectronico extends javax.swing.JFrame {
                 txtAsuntoFocusGained(evt);
             }
         });
-        jPanel1.add(txtAsunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 380, 30));
+        jPanel1.add(txtAsunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 380, 30));
 
         btnVolver3.setBackground(new java.awt.Color(153, 153, 153));
         btnVolver3.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
@@ -192,30 +180,18 @@ public class ModuloCorreoElectronico extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Cuerpo:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 80, 30));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 80, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Archivo adj:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 80, 30));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 80, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGOSISTEMA.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 60));
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setText("Correo:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 80, 30));
-
-        txtPass.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
-        txtPass.setForeground(new java.awt.Color(153, 153, 153));
-        txtPass.setBorder(null);
-        jPanel1.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 250, 30));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 252, 10));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 252, 10));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 252, 10));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 252, 10));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 540));
 
@@ -235,23 +211,34 @@ public class ModuloCorreoElectronico extends javax.swing.JFrame {
     }//GEN-LAST:event_lblExitMouseExited
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
-        String correo = txtCorreo.getText();
-        String pass = txtPass.getText();
-        String asunto = txtAsunto.getText();
-        String cuerpo = txtCuerpoMensaje.getText();
-        String destinatario = "belenpa.2698@gmail.com";
-        System.out.println(rutaExcel);
+        String correo = "cuentapruebasjava@gmail.com";
+        String pass = "";
 
-        try {
-            new EnvioDeCorreo().enviarConGmail(destinatario, asunto, cuerpo, pass, correo, rutaExcel);
+        JPasswordField pf = new JPasswordField();
+        int okCxl = JOptionPane.showConfirmDialog(null, pf, "INGRESAR CONTRASEÑA", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
-            JOptionPane.showMessageDialog(null, "ARCHIVO ENVIADO CORRECTAMENTE", "EXITO", JOptionPane.PLAIN_MESSAGE);
+        if (okCxl == JOptionPane.OK_OPTION) {
+            pass = new String(pf.getPassword());
 
-            new DetalleDeCostos().setVisible(true);
-            dispose();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "ERROR AL INTENTAR ENVIAR ARCHIVO POR CORREO", "ERROR", JOptionPane.ERROR_MESSAGE);
+            String asunto = txtAsunto.getText();
+            String cuerpo = txtCuerpoMensaje.getText();
+            String destinatario = administradorContrato.getEmail().toLowerCase();
+            System.out.println(rutaExcel);
+
+            try {
+                new EnvioDeCorreo().enviarConGmail(destinatario, asunto, cuerpo, pass, correo, rutaExcel);
+
+                JOptionPane.showMessageDialog(null, "ARCHIVO ENVIADO CORRECTAMENTE", "EXITO", JOptionPane.PLAIN_MESSAGE, new IconOK().getIcon());
+
+                new DetalleDeCostos().setVisible(true);
+                dispose();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "ERROR AL INTENTAR ENVIAR ARCHIVO POR CORREO", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+
         }
+
+
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void txtAsuntoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAsuntoFocusGained
@@ -322,22 +309,16 @@ public class ModuloCorreoElectronico extends javax.swing.JFrame {
     private javax.swing.JButton btnEnviar;
     private javax.swing.JButton btnVolver3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JLabel lblExit;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lbldireccion;
     private javax.swing.JTextField txtAsunto;
-    private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextArea txtCuerpoMensaje;
-    private javax.swing.JPasswordField txtPass;
     // End of variables declaration//GEN-END:variables
 }

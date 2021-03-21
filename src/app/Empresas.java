@@ -35,7 +35,7 @@ public class Empresas extends javax.swing.JFrame {
         try {
             lista = conn.getAllEmpresas();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error de servidor");
+            JOptionPane.showMessageDialog(null, "ERROR AL CARGAR EMPRESAS", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
         for (Empresa em : lista) {
@@ -414,7 +414,7 @@ public class Empresas extends javax.swing.JFrame {
             btnEditar.setEnabled(true);
             btnEditar.setForeground(new Color(238,112,82));
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "ERROR DE SERVIDOR");
+            JOptionPane.showMessageDialog(null, "ERROR DE SERVIDOR", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_cboEmpresasActionPerformed
 

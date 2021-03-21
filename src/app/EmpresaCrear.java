@@ -1,5 +1,6 @@
 package app;
 
+import iconook.IconOK;
 import java.awt.Color;
 import java.io.IOException;
 import javax.swing.BorderFactory;
@@ -279,7 +280,7 @@ public class EmpresaCrear extends javax.swing.JFrame {
 
                 }
 
-                JOptionPane.showMessageDialog(null, "REGISTRO EXITOSO", "EXITO", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "REGISTRO EXITOSO", "EXITO", JOptionPane.PLAIN_MESSAGE, new IconOK().getIcon());
 
                 txtDireccion.setText("");
                 txtEmailRepre.setText("");

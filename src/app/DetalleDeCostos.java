@@ -389,7 +389,7 @@ public class DetalleDeCostos extends javax.swing.JFrame {
 
                     lblTotal.setText("TOTAL DE COSTEO: $" + costos.getTotal());
                 } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(null, "ERROR DE BUSQUEDA DE DATOS");
+                    JOptionPane.showMessageDialog(null, "ERROR DE BUSQUEDA DE DATOS", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             }
 

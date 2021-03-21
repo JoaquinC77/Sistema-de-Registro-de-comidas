@@ -1,5 +1,6 @@
 package app;
 
+import iconook.IconOK;
 import java.awt.Color;
 import java.io.IOException;
 import javax.swing.BorderFactory;
@@ -277,7 +278,7 @@ public class EmpresaEditar extends javax.swing.JFrame {
                     empresa.setDireccion(txtDireccion.getText().toUpperCase());
 
                     if (connEmpresa.updateEmpres(empresa) != false) {
-                        JOptionPane.showMessageDialog(null, "MODIFICACION EXITOSA", "EXITO", JOptionPane.PLAIN_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "MODIFICACION EXITOSA", "EXITO", JOptionPane.PLAIN_MESSAGE, new IconOK().getIcon());
                     } else {
                         JOptionPane.showMessageDialog(null, "ERROR INTENTANDO MODIFICACION", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
@@ -292,7 +293,7 @@ public class EmpresaEditar extends javax.swing.JFrame {
                     representante.setPuesto(txtPuestoRepre.getText().toUpperCase());
 
                     if (connEncargado.updateEncargado(representante) != false) {
-                        JOptionPane.showMessageDialog(null, "MODIFICACION EXITOSA", "EXITO", JOptionPane.PLAIN_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "MODIFICACION EXITOSA", "EXITO", JOptionPane.PLAIN_MESSAGE, new IconOK().getIcon());
                     } else {
                         JOptionPane.showMessageDialog(null, "ERROR INTENTANDO MODIFICACION", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }

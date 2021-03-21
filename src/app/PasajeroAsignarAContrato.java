@@ -2,6 +2,7 @@ package app;
 
 import app.uieditor.PropiedadesCBO;
 import app.uieditor.SimpleHeaderRenderer;
+import iconook.IconOK;
 import java.awt.Color;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -284,7 +285,7 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
             String fechaFin = String.valueOf(sdf.format(dateChooserFechaFin.getDate()));
             
             if(conn.insertContratoPasajero(pasajero.getId(), contrato.getId(), fechaInicio, fechaFin)){
-                JOptionPane.showMessageDialog(null, "REGISTRO EXITOSO","EXITO",JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "REGISTRO EXITOSO","EXITO",JOptionPane.PLAIN_MESSAGE, new IconOK().getIcon());
             }else{
                 JOptionPane.showMessageDialog(null, "ERROR DE INGRESO","ERROR",JOptionPane.ERROR_MESSAGE);
             }

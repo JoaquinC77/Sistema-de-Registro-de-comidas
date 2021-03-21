@@ -1,6 +1,7 @@
 package app;
 
 import app.uieditor.PropiedadesCBO;
+import iconook.IconOK;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -212,7 +213,7 @@ public class RegistroManualServicios extends javax.swing.JFrame {
                     
                     conn.insertRegistroServicio(pasajero.getId(), contrato.getId(), servicio);
 
-                    JOptionPane.showMessageDialog(null, "REGISTRO DE SERVICIO MANUAL EXITOSO", "EXITO", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "REGISTRO DE SERVICIO MANUAL EXITOSO", "EXITO", JOptionPane.PLAIN_MESSAGE, new IconOK().getIcon());
                     
                     txtRutABuscar.setText("");
                     lblEmpresa.setText("");

@@ -1,5 +1,6 @@
 package app;
 
+import iconook.IconOK;
 import java.awt.Color;
 import java.io.IOException;
 import java.util.List;
@@ -41,7 +42,7 @@ public class PasajeroEditar extends javax.swing.JFrame {
             cargarCboEmpresas(lista);
 
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "ERROR AL CARGAR EMPRESAS");
+            JOptionPane.showMessageDialog(null, "ERROR AL CARGAR EMPRESAS", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -260,7 +261,7 @@ public class PasajeroEditar extends javax.swing.JFrame {
             try {
                 boolean ok = new EmpresaPasajeroWS().updateEmpresPasajero(empresaNueva.getId(), pasajero.getId(), empresaAntigua.getId());
                 if (ok != false) {
-                    JOptionPane.showMessageDialog(null, "MODIFICACION EXITOSA", "EXITO", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "MODIFICACION EXITOSA", "EXITO", JOptionPane.PLAIN_MESSAGE, new IconOK().getIcon());
                 } else {
                     JOptionPane.showMessageDialog(null, "MODIFICACION FALLIDA","ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
                 }

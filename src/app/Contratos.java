@@ -36,7 +36,7 @@ public class Contratos extends javax.swing.JFrame {
         try {
             lista = new EmpresaWS().getAllEmpresas();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error de servidor");
+            JOptionPane.showMessageDialog(null, "ERROR AL CARGAR EMPRESAS", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
         for (Empresa em : lista) {
@@ -257,7 +257,7 @@ public class Contratos extends javax.swing.JFrame {
 
             cargartabla(listaContratos);
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "No hay contratos con esta empresa");
+            JOptionPane.showMessageDialog(null, "NO EXISTEN CONTRATOS REGISTRADOS A ESTA EMPRESA", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
         }
 
 

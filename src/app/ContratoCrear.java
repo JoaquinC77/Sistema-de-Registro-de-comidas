@@ -1,6 +1,7 @@
 package app;
 
 import app.uieditor.PropiedadesCBO;
+import iconook.IconOK;
 import java.awt.Color;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
@@ -44,7 +45,7 @@ public class ContratoCrear extends javax.swing.JFrame {
         try {
             lista = new EmpresaWS().getAllEmpresas();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error de servidor");
+            JOptionPane.showMessageDialog(null, "ERROR DE SERVIDOR", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
         for (Empresa em : lista) {
@@ -342,7 +343,7 @@ public class ContratoCrear extends javax.swing.JFrame {
                 || txtPuestoAdmin.getText().isEmpty() || txtRutAdmin.getText().isEmpty() || txtTelefonoAdmin.getText().isEmpty()
                 || txtFechaInicio.getDateFormatString().isEmpty() || txtFechaFin.getDateFormatString().isEmpty()) {
 
-            JOptionPane.showMessageDialog(null, "DEBE INGRESAR TODOS LOS CAMPOS");
+            JOptionPane.showMessageDialog(null, "DEBE INGRESAR TODOS LOS CAMPOS", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
 
         } else {
 
@@ -378,14 +379,14 @@ public class ContratoCrear extends javax.swing.JFrame {
                 System.out.println(contrato);
 
                 if (conn.insertContrato(contrato) == false) {
-                    JOptionPane.showMessageDialog(this, "Error al registrar contrato y/o datos de administrador");
+                    JOptionPane.showMessageDialog(null, "ERROR AL REGISTRAR CONTRATO Y/O DATOS DE ADMINISTRADOR", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
 
-                JOptionPane.showMessageDialog(this, "Registro Exitoso");
+                JOptionPane.showMessageDialog(null, "REGISTRO EXITOSO","EXITO",JOptionPane.PLAIN_MESSAGE, new IconOK().getIcon());
                 limpiarPantalla();
 
             } catch (HeadlessException | IOException | NullPointerException ex) {
-                JOptionPane.showMessageDialog(this, "Error al registrar contrato y/o datos de administrador");
+                JOptionPane.showMessageDialog(null, "ERROR AL REGISTRAR CONTRATO Y/O DATOS DE ADMINISTRADOR", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
 

@@ -1,5 +1,6 @@
 package app;
 
+import iconook.IconOK;
 import java.awt.Color;
 import java.io.IOException;
 import java.util.List;
@@ -39,7 +40,7 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
             cargarCboEmpresas(lista);
 
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "ERROR AL CARGAR EMPRESAS");
+            JOptionPane.showMessageDialog(null, "ERROR AL CARGAR EMPRESAS", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -194,7 +195,7 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
                 System.out.println("---------------");
                 new EmpresaPasajeroWS().insertEmpresaPasajero(pasajero.getId(), empresa.getId());
                 
-                JOptionPane.showMessageDialog(null, "ASIGNACION CORRECTAMENTE REALIZADA","EXITO",JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "ASIGNACION CORRECTAMENTE REALIZADA","EXITO",JOptionPane.PLAIN_MESSAGE, new IconOK().getIcon());
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "ERROR AL ASIGNAR HUESPED: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }

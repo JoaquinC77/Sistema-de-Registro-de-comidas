@@ -1,6 +1,7 @@
 package app;
 
 import app.uieditor.SimpleHeaderRenderer;
+import iconook.IconOK;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
@@ -330,7 +331,7 @@ public class ContratoEditar extends javax.swing.JFrame {
                     || txtPuestoAdmin.getText().isEmpty() || txtRutAdmin1.getText().isEmpty()
                     || txtTelefonoAdmin.getText().isEmpty()) {
 
-                JOptionPane.showMessageDialog(null, "INGRESE TODOS LOS CAMPOS");
+                JOptionPane.showMessageDialog(null, "DEBE INGRESAR TODOS LOS CAMPOS", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
 
             } else {
                 if (!txtPuestoAdmin.getText().equals(encargado.getPuesto())
@@ -342,9 +343,9 @@ public class ContratoEditar extends javax.swing.JFrame {
                     encargado.setTelefono(txtTelefonoAdmin.getText().toUpperCase());
 
                     if (new EncargadoWS().updateEncargado(encargado)) {
-                        JOptionPane.showMessageDialog(this, "Registro Exitoso");
+                        JOptionPane.showMessageDialog(null, "REGISTRO EXITOSO", "EXITO", JOptionPane.PLAIN_MESSAGE, new IconOK().getIcon());
                     } else {
-                        JOptionPane.showMessageDialog(this, "Error de registro en el servidor");
+                        JOptionPane.showMessageDialog(null, "ERROR DE REGISTRO","ERROR", JOptionPane.ERROR_MESSAGE);
                     }
                 }
 
@@ -361,9 +362,9 @@ public class ContratoEditar extends javax.swing.JFrame {
                         contrato.setFechaFin(datefechaFin);
 
                         if (conn.updateContrato(contrato)) {
-                            JOptionPane.showMessageDialog(this, "Registro Exitoso");
+                            JOptionPane.showMessageDialog(null, "REGISTRO EXITOSO", "EXITO", JOptionPane.PLAIN_MESSAGE, new IconOK().getIcon());
                         } else {
-                            JOptionPane.showMessageDialog(this, "Error de registro en el servidor");
+                            JOptionPane.showMessageDialog(null, "ERROR DE REGISTRO","ERROR", JOptionPane.ERROR_MESSAGE);
                         }
                     }
                 } else {
@@ -372,7 +373,7 @@ public class ContratoEditar extends javax.swing.JFrame {
             }
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "ERROR DE INGRESO DE DATOS");
+            JOptionPane.showMessageDialog(null, "ERROR DE IGRESO DE DATOS","ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
 

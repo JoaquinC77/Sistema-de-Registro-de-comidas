@@ -1,5 +1,6 @@
 package app;
 
+import iconook.IconOK;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -234,7 +235,7 @@ public class PasajeroCrear extends javax.swing.JFrame {
                     if (ok == true) {
                         pasajero = conn.getPasajero(txtRut.getText());
 
-                        JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO", "OK", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO", "OK", JOptionPane.INFORMATION_MESSAGE, new IconOK().getIcon());
                     } else {
                         JOptionPane.showMessageDialog(this, "ERROR DE REGISTRO", "ERROR", JOptionPane.ERROR_MESSAGE);
 
