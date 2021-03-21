@@ -8,6 +8,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import model.clases.Pasajero;
 import model.ws.PasajeroWS;
+import validacionN.ValidacionN;
 
 /**
  *
@@ -71,14 +72,29 @@ public class PasajeroCrear extends javax.swing.JFrame {
 
         txtNombre.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         txtNombre.setBorder(null);
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 190, 30));
 
         txtApellidoP.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         txtApellidoP.setBorder(null);
+        txtApellidoP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtApellidoPKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtApellidoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 190, 30));
 
         txtApellidoM.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         txtApellidoM.setBorder(null);
+        txtApellidoM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtApellidoMKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtApellidoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 190, 30));
 
         txtRut.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
@@ -97,6 +113,11 @@ public class PasajeroCrear extends javax.swing.JFrame {
 
         txtDireccion.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         txtDireccion.setBorder(null);
+        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 320, 190, 30));
 
         btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
@@ -314,6 +335,46 @@ public class PasajeroCrear extends javax.swing.JFrame {
         new BarCodeCreate().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnCodigoDeBarraActionPerformed
+
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+        if (txtNombre.getText().isEmpty()) {
+            System.out.println("vacia");
+        } else {
+            String campoTexto = txtNombre.getText();
+
+            txtNombre.setText(new ValidacionN().validar(campoTexto));
+        }
+    }//GEN-LAST:event_txtNombreKeyReleased
+
+    private void txtApellidoPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoPKeyReleased
+        if (txtApellidoP.getText().isEmpty()) {
+            System.out.println("vacia");
+        } else {
+            String campoTexto = txtApellidoP.getText();
+
+            txtApellidoP.setText(new ValidacionN().validar(campoTexto));
+        }
+    }//GEN-LAST:event_txtApellidoPKeyReleased
+
+    private void txtApellidoMKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoMKeyReleased
+        if (txtApellidoM.getText().isEmpty()) {
+            System.out.println("vacia");
+        } else {
+            String campoTexto = txtApellidoM.getText();
+
+            txtApellidoM.setText(new ValidacionN().validar(campoTexto));
+        }
+    }//GEN-LAST:event_txtApellidoMKeyReleased
+
+    private void txtDireccionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyReleased
+        if (txtDireccion.getText().isEmpty()) {
+            System.out.println("vacia");
+        } else {
+            String campoTexto = txtDireccion.getText();
+
+            txtDireccion.setText(new ValidacionN().validar(campoTexto));
+        }
+    }//GEN-LAST:event_txtDireccionKeyReleased
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

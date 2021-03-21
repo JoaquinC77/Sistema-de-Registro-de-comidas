@@ -317,6 +317,11 @@ public class Empresas extends javax.swing.JFrame {
         txtRutBuscar.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
         txtRutBuscar.setText("Ingrese Rut");
         txtRutBuscar.setBorder(null);
+        txtRutBuscar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtRutBuscarFocusGained(evt);
+            }
+        });
         txtRutBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtRutBuscarKeyReleased(evt);
@@ -453,6 +458,10 @@ public class Empresas extends javax.swing.JFrame {
     private void lblExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseExited
         lblExit.setBorder(BorderFactory.createEmptyBorder());
     }//GEN-LAST:event_lblExitMouseExited
+
+    private void txtRutBuscarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRutBuscarFocusGained
+        txtRutBuscar.selectAll();
+    }//GEN-LAST:event_txtRutBuscarFocusGained
 
     /**
      * @param args the command line arguments

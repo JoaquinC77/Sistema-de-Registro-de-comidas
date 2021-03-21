@@ -1,5 +1,6 @@
 package app;
 
+import app.uieditor.PropiedadesCBO;
 import iconook.IconOK;
 import java.awt.Color;
 import java.io.IOException;
@@ -29,6 +30,7 @@ public class PasajeroEditar extends javax.swing.JFrame {
 
         pasajero = Pasajeros.pasajero;
         connEP = new EmpresaPasajeroWS();
+        cboEmpresas.setUI(PropiedadesCBO.createUI(rootPane));
 
         llenarCampos();
 

@@ -17,6 +17,7 @@ import model.clases.Encargado;
 import model.ws.ContratoWS;
 import model.ws.EmpresaWS;
 import model.ws.EncargadoWS;
+import validacionN.ValidacionN;
 
 /**
  *
@@ -258,24 +259,41 @@ public class ContratoCrear extends javax.swing.JFrame {
         txtNombreAdmin.setBorder(null);
         txtNombreAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtNombreAdmin.setName(""); // NOI18N
+        txtNombreAdmin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreAdminKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtNombreAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 180, 30));
 
         txtPuestoAdmin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtPuestoAdmin.setForeground(new java.awt.Color(153, 153, 153));
+        txtPuestoAdmin.setText("ADMINISTRADOR");
         txtPuestoAdmin.setToolTipText("INGRESAR RUT");
         txtPuestoAdmin.setBorder(null);
         txtPuestoAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtPuestoAdmin.setName(""); // NOI18N
+        txtPuestoAdmin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPuestoAdminFocusGained(evt);
+            }
+        });
         jPanel1.add(txtPuestoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 350, 180, 30));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 180, 10));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 180, 10));
 
         txtTelefonoAdmin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtTelefonoAdmin.setForeground(new java.awt.Color(153, 153, 153));
+        txtTelefonoAdmin.setText("998765432");
         txtTelefonoAdmin.setToolTipText("INGRESAR RUT");
         txtTelefonoAdmin.setBorder(null);
         txtTelefonoAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtTelefonoAdmin.setName(""); // NOI18N
+        txtTelefonoAdmin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTelefonoAdminFocusGained(evt);
+            }
+        });
         jPanel1.add(txtTelefonoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 350, 180, 30));
 
         txtEmailAdmin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -284,6 +302,11 @@ public class ContratoCrear extends javax.swing.JFrame {
         txtEmailAdmin.setBorder(null);
         txtEmailAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtEmailAdmin.setName(""); // NOI18N
+        txtEmailAdmin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEmailAdminKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtEmailAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 180, 30));
         jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 380, 180, 10));
         jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 380, 180, 10));
@@ -294,6 +317,11 @@ public class ContratoCrear extends javax.swing.JFrame {
         txtNombreContrato.setBorder(null);
         txtNombreContrato.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtNombreContrato.setName(""); // NOI18N
+        txtNombreContrato.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreContratoKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtNombreContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, 220, 30));
         jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 180, 10));
 
@@ -413,6 +441,44 @@ public class ContratoCrear extends javax.swing.JFrame {
             System.out.println("Entro en el cach");
         }
     }//GEN-LAST:event_txtRutAdminFocusLost
+
+    private void txtNombreContratoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreContratoKeyReleased
+        if (txtNombreContrato.getText().isEmpty()) {
+            System.out.println("vacia");
+        } else {
+            String campoTexto = txtNombreContrato.getText();
+
+            txtNombreContrato.setText(new ValidacionN().validar(campoTexto));
+        }
+    }//GEN-LAST:event_txtNombreContratoKeyReleased
+
+    private void txtNombreAdminKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreAdminKeyReleased
+        if (txtNombreAdmin.getText().isEmpty()) {
+            System.out.println("vacia");
+        } else {
+            String campoTexto = txtNombreAdmin.getText();
+
+            txtNombreAdmin.setText(new ValidacionN().validar(campoTexto));
+        }
+    }//GEN-LAST:event_txtNombreAdminKeyReleased
+
+    private void txtPuestoAdminFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPuestoAdminFocusGained
+        txtPuestoAdmin.selectAll();
+    }//GEN-LAST:event_txtPuestoAdminFocusGained
+
+    private void txtTelefonoAdminFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoAdminFocusGained
+        txtTelefonoAdmin.selectAll();
+    }//GEN-LAST:event_txtTelefonoAdminFocusGained
+
+    private void txtEmailAdminKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailAdminKeyReleased
+        if (txtEmailAdmin.getText().isEmpty()) {
+            System.out.println("vacia");
+        } else {
+            String campoTexto = txtEmailAdmin.getText();
+
+            txtEmailAdmin.setText(new ValidacionN().validar(campoTexto));
+        }
+    }//GEN-LAST:event_txtEmailAdminKeyReleased
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

@@ -12,6 +12,7 @@ import model.clases.Contrato;
 import model.clases.Encargado;
 import model.ws.ContratoWS;
 import model.ws.EncargadoWS;
+import validacionN.ValidacionN;
 
 /**
  *
@@ -234,6 +235,11 @@ public class ContratoEditar extends javax.swing.JFrame {
         txtTelefonoAdmin.setBorder(null);
         txtTelefonoAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtTelefonoAdmin.setName(""); // NOI18N
+        txtTelefonoAdmin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTelefonoAdminFocusGained(evt);
+            }
+        });
         jPanel1.add(txtTelefonoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 450, 180, 30));
         jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 480, 180, 20));
 
@@ -275,6 +281,16 @@ public class ContratoEditar extends javax.swing.JFrame {
         txtEmailAdmin.setBorder(null);
         txtEmailAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtEmailAdmin.setName(""); // NOI18N
+        txtEmailAdmin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtEmailAdminFocusGained(evt);
+            }
+        });
+        txtEmailAdmin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEmailAdminKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtEmailAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 180, 30));
         jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 180, 10));
 
@@ -396,6 +412,24 @@ public class ContratoEditar extends javax.swing.JFrame {
     private void lblExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseExited
         lblExit.setBorder(BorderFactory.createEmptyBorder());
     }//GEN-LAST:event_lblExitMouseExited
+
+    private void txtEmailAdminKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailAdminKeyReleased
+        if (txtEmailAdmin.getText().isEmpty()) {
+            System.out.println("vacia");
+        } else {
+            String campoTexto = txtEmailAdmin.getText();
+
+            txtEmailAdmin.setText(new ValidacionN().validar(campoTexto));
+        }
+    }//GEN-LAST:event_txtEmailAdminKeyReleased
+
+    private void txtEmailAdminFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailAdminFocusGained
+        txtEmailAdmin.selectAll();
+    }//GEN-LAST:event_txtEmailAdminFocusGained
+
+    private void txtTelefonoAdminFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoAdminFocusGained
+        txtTelefonoAdmin.selectAll();
+    }//GEN-LAST:event_txtTelefonoAdminFocusGained
 
     private void cargarTablaDatos() {
         modelDatos = new DefaultTableModel() {

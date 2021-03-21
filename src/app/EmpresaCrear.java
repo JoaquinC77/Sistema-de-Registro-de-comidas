@@ -9,6 +9,7 @@ import model.clases.Empresa;
 import model.clases.Encargado;
 import model.ws.EmpresaWS;
 import model.ws.EncargadoWS;
+import validacionN.ValidacionN;
 
 /**
  *
@@ -116,6 +117,11 @@ public class EmpresaCrear extends javax.swing.JFrame {
 
         txtDireccion.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         txtDireccion.setBorder(null);
+        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 200, 30));
 
         jLabel8.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
@@ -144,15 +150,35 @@ public class EmpresaCrear extends javax.swing.JFrame {
         txtTelefonoRepre.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         txtTelefonoRepre.setText("8080");
         txtTelefonoRepre.setBorder(null);
+        txtTelefonoRepre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTelefonoRepreFocusGained(evt);
+            }
+        });
         jPanel1.add(txtTelefonoRepre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 200, 40));
 
         txtEmailRepre.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         txtEmailRepre.setText("@gmail.com");
         txtEmailRepre.setBorder(null);
+        txtEmailRepre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtEmailRepreFocusGained(evt);
+            }
+        });
+        txtEmailRepre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEmailRepreKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtEmailRepre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, 200, 40));
 
         txtNombreRepre.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         txtNombreRepre.setBorder(null);
+        txtNombreRepre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreRepreKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtNombreRepre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 200, 40));
 
         txtRutRepre.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
@@ -167,6 +193,11 @@ public class EmpresaCrear extends javax.swing.JFrame {
         txtPuestoRepre.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         txtPuestoRepre.setText("REPRESENTANTE");
         txtPuestoRepre.setBorder(null);
+        txtPuestoRepre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPuestoRepreFocusGained(evt);
+            }
+        });
         jPanel1.add(txtPuestoRepre, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, 200, 40));
         jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 200, 10));
         jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 200, 10));
@@ -347,21 +378,53 @@ public class EmpresaCrear extends javax.swing.JFrame {
         } else {
             String campoTexto = txtNombre.getText();
 
-            String ultimaWa = String.valueOf(campoTexto.charAt(campoTexto.length() - 1));
-
-            System.out.println(ultimaWa);
-
-            if (ultimaWa.equals("ñ")) {
-                campoTexto = campoTexto.replace("ñ", "n");
-                txtNombre.setText(campoTexto);
-            }else if(ultimaWa.equals("Ñ")){
-                campoTexto = campoTexto.replace("Ñ", "N");
-                txtNombre.setText(campoTexto);
-            }
+            txtNombre.setText(new ValidacionN().validar(campoTexto));
         }
 
 
     }//GEN-LAST:event_txtNombreKeyReleased
+
+    private void txtDireccionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyReleased
+        if (txtDireccion.getText().isEmpty()) {
+            System.out.println("vacia");
+        } else {
+            String campoTexto = txtDireccion.getText();
+
+            txtDireccion.setText(new ValidacionN().validar(campoTexto));
+        }
+    }//GEN-LAST:event_txtDireccionKeyReleased
+
+    private void txtNombreRepreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreRepreKeyReleased
+        if (txtNombreRepre.getText().isEmpty()) {
+            System.out.println("vacia");
+        } else {
+            String campoTexto = txtNombreRepre.getText();
+
+            txtNombreRepre.setText(new ValidacionN().validar(campoTexto));
+        }
+    }//GEN-LAST:event_txtNombreRepreKeyReleased
+
+    private void txtEmailRepreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailRepreKeyReleased
+        if (txtEmailRepre.getText().isEmpty()) {
+            System.out.println("vacia");
+        } else {
+            String campoTexto = txtEmailRepre.getText();
+
+            txtEmailRepre.setText(new ValidacionN().validar(campoTexto));
+        }
+    }//GEN-LAST:event_txtEmailRepreKeyReleased
+
+    private void txtPuestoRepreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPuestoRepreFocusGained
+        txtPuestoRepre.selectAll();
+    }//GEN-LAST:event_txtPuestoRepreFocusGained
+
+    private void txtTelefonoRepreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoRepreFocusGained
+        txtTelefonoRepre.selectAll();
+    }//GEN-LAST:event_txtTelefonoRepreFocusGained
+
+    private void txtEmailRepreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailRepreFocusGained
+        txtEmailRepre.selectAll();
+    }//GEN-LAST:event_txtEmailRepreFocusGained
 
     /**
      * @param args the command line arguments

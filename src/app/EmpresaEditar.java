@@ -9,6 +9,7 @@ import model.clases.Empresa;
 import model.clases.Encargado;
 import model.ws.EmpresaWS;
 import model.ws.EncargadoWS;
+import validacionN.ValidacionN;
 
 /**
  *
@@ -140,6 +141,16 @@ public class EmpresaEditar extends javax.swing.JFrame {
 
         txtDireccion.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         txtDireccion.setBorder(null);
+        txtDireccion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDireccionFocusGained(evt);
+            }
+        });
+        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 200, 30));
         jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, 200, 10));
         jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, 200, 10));
@@ -187,10 +198,25 @@ public class EmpresaEditar extends javax.swing.JFrame {
 
         txtTelefonoRepre.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         txtTelefonoRepre.setBorder(null);
+        txtTelefonoRepre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTelefonoRepreFocusGained(evt);
+            }
+        });
         jPanel1.add(txtTelefonoRepre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 200, 40));
 
         txtEmailRepre.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         txtEmailRepre.setBorder(null);
+        txtEmailRepre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtEmailRepreFocusGained(evt);
+            }
+        });
+        txtEmailRepre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEmailRepreKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtEmailRepre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, 200, 40));
         jPanel1.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 200, 10));
         jPanel1.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, 200, 10));
@@ -331,6 +357,38 @@ public class EmpresaEditar extends javax.swing.JFrame {
     private void btnGuardarMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseMoved
         btnGuardar.setBorder(BorderFactory.createLineBorder(new Color(238, 112, 82)));
     }//GEN-LAST:event_btnGuardarMouseMoved
+
+    private void txtEmailRepreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailRepreKeyReleased
+        if (txtEmailRepre.getText().isEmpty()) {
+            System.out.println("vacia");
+        } else {
+            String campoTexto = txtEmailRepre.getText();
+
+            txtEmailRepre.setText(new ValidacionN().validar(campoTexto));
+        }
+    }//GEN-LAST:event_txtEmailRepreKeyReleased
+
+    private void txtEmailRepreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailRepreFocusGained
+        txtEmailRepre.selectAll();
+    }//GEN-LAST:event_txtEmailRepreFocusGained
+
+    private void txtTelefonoRepreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoRepreFocusGained
+        txtTelefonoRepre.selectAll();
+    }//GEN-LAST:event_txtTelefonoRepreFocusGained
+
+    private void txtDireccionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusGained
+        txtDireccion.selectAll();
+    }//GEN-LAST:event_txtDireccionFocusGained
+
+    private void txtDireccionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyReleased
+        if (txtDireccion.getText().isEmpty()) {
+            System.out.println("vacia");
+        } else {
+            String campoTexto = txtDireccion.getText();
+
+            txtDireccion.setText(new ValidacionN().validar(campoTexto));
+        }
+    }//GEN-LAST:event_txtDireccionKeyReleased
 
     /**
      * @param args the command line arguments
