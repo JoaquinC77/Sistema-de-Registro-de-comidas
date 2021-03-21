@@ -133,6 +133,11 @@ public class EmpresaEditar extends javax.swing.JFrame {
 
         txtNombre.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         txtNombre.setBorder(null);
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 200, 30));
 
         txtRut.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
@@ -389,6 +394,16 @@ public class EmpresaEditar extends javax.swing.JFrame {
             txtDireccion.setText(new ValidacionN().validar(campoTexto));
         }
     }//GEN-LAST:event_txtDireccionKeyReleased
+
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+       if (txtNombre.getText().isEmpty()) {
+            System.out.println("vacia");
+        } else {
+            String campoTexto = txtNombre.getText();
+
+            txtNombre.setText(new ValidacionN().validar(campoTexto));
+        }
+    }//GEN-LAST:event_txtNombreKeyReleased
 
     /**
      * @param args the command line arguments
