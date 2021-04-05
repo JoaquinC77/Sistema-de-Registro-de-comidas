@@ -108,7 +108,7 @@ public class Pasajeros extends javax.swing.JFrame {
                 lblExitMouseExited(evt);
             }
         });
-        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 0, -1, -1));
+        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 0, 30, 30));
 
         jLabel4.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         jLabel4.setText("Buscar Pasajero: ");
@@ -136,12 +136,12 @@ public class Pasajeros extends javax.swing.JFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 120, 50));
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 140, 50));
 
         jLabel3.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         jLabel3.setText("Pasajero");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 880, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 900, 10));
 
         txtRut.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
         txtRut.setForeground(new java.awt.Color(153, 153, 153));
@@ -156,7 +156,7 @@ public class Pasajeros extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         jLabel5.setText("Datos:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 880, 10));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 900, 10));
 
         btnNuevoPasajero.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnNuevoPasajero.setForeground(new java.awt.Color(238, 112, 82));
@@ -180,7 +180,7 @@ public class Pasajeros extends javax.swing.JFrame {
                 btnNuevoPasajeroActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNuevoPasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 500, 120, 40));
+        jPanel1.add(btnNuevoPasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 490, 160, 40));
 
         btnVolver.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnVolver.setForeground(new java.awt.Color(238, 112, 82));
@@ -204,7 +204,7 @@ public class Pasajeros extends javax.swing.JFrame {
                 btnVolverActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 120, 40));
+        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 550, 150, 40));
 
         btnAsignacionEmpresa.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnAsignacionEmpresa.setForeground(new java.awt.Color(238, 112, 82));
@@ -227,7 +227,7 @@ public class Pasajeros extends javax.swing.JFrame {
                 btnAsignacionEmpresaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAsignacionEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 500, 160, 40));
+        jPanel1.add(btnAsignacionEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 550, 160, 40));
 
         btnAsignacionContrato.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnAsignacionContrato.setForeground(new java.awt.Color(238, 112, 82));
@@ -250,7 +250,7 @@ public class Pasajeros extends javax.swing.JFrame {
                 btnAsignacionContratoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAsignacionContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 500, 160, 40));
+        jPanel1.add(btnAsignacionContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 550, 160, 40));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 250, 10));
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
@@ -281,7 +281,7 @@ public class Pasajeros extends javax.swing.JFrame {
         tblEmpresaAsociada1.setSelectionForeground(new java.awt.Color(238, 112, 82));
         jScrollPane1.setViewportView(tblEmpresaAsociada1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 880, 50));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 900, 50));
 
         jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane3.setBorder(null);
@@ -312,7 +312,7 @@ public class Pasajeros extends javax.swing.JFrame {
         jScrollPane3.setViewportView(tblDatosPasajero1);
         tblDatosPasajero1.getAccessibleContext().setAccessibleParent(jScrollPane1);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 880, 50));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 900, 50));
 
         btnEditarPasajero.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnEditarPasajero.setForeground(new java.awt.Color(238, 112, 82));
@@ -336,7 +336,7 @@ public class Pasajeros extends javax.swing.JFrame {
                 btnEditarPasajeroActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEditarPasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 500, 120, 40));
+        jPanel1.add(btnEditarPasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 490, 160, 40));
 
         jScrollPane4.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane4.setBorder(null);
@@ -359,7 +359,7 @@ public class Pasajeros extends javax.swing.JFrame {
         jScrollPane4.setViewportView(tblContratoAsociado1);
         tblContratoAsociado1.getAccessibleContext().setAccessibleParent(jScrollPane1);
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 880, 80));
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 900, 80));
 
         btnRegistroManual.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnRegistroManual.setForeground(new java.awt.Color(238, 112, 82));
@@ -381,9 +381,9 @@ public class Pasajeros extends javax.swing.JFrame {
                 btnRegistroManualActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegistroManual, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 500, 150, 40));
+        jPanel1.add(btnRegistroManual, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 490, 150, 40));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 550));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 920, 610));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -415,26 +415,38 @@ public class Pasajeros extends javax.swing.JFrame {
                 cargarTablaPasajero();
                 boolean okEmpresa = buscarEmpresa(pasajero.getId());
                 if (okEmpresa == false) {
+                    System.out.println("no existe empresa");
                     JOptionPane.showMessageDialog(this, "0 EMPRESA ASOCIADA", "ERROR", JOptionPane.ERROR_MESSAGE);
                     btnAsignacionEmpresa.setEnabled(true);
                     btnAsignacionEmpresa.setForeground(new Color(238, 112, 82));
+                    System.out.println("lo desactivo");
+                    btnAsignacionContrato.setEnabled(false);
+                    btnAsignacionContrato.setForeground(new Color(153, 153, 153));
                 } else {
+                    System.out.println("si existe empresa");
                     cargarTablaEmpresa();
                     btnAsignacionEmpresa.setEnabled(false);
                     btnAsignacionEmpresa.setForeground(new Color(153, 153, 153));
                     btnEditarPasajero.setEnabled(true);
                     btnEditarPasajero.setForeground(new Color(238, 112, 82));
 
+                    btnAsignacionContrato.setEnabled(true);
+                    btnAsignacionContrato.setForeground(new Color(238, 112, 82));
+
                     boolean okContrato = buscarContrato(pasajero.getId(), empresa.getId());
                     if (okContrato == false) {
                         JOptionPane.showMessageDialog(this, "0 CONTRATO ASOCIADO", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+                        btnAsignacionContrato.setEnabled(true);
+                        btnAsignacionContrato.setForeground(new Color(238, 112, 82));
                     } else {
                         cargarTablaContrato();
+                        btnAsignacionContrato.setEnabled(true);
+                        btnAsignacionContrato.setForeground(new Color(238, 112, 82));
                     }
 
                 }
-                btnAsignacionContrato.setEnabled(true);
-                btnAsignacionContrato.setForeground(new Color(238, 112, 82));
+
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ERROR DE BUSQUEDA", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -459,26 +471,37 @@ public class Pasajeros extends javax.swing.JFrame {
                     cargarTablaPasajero();
                     boolean okEmpresa = buscarEmpresa(pasajero.getId());
                     if (okEmpresa == false) {
+                        System.out.println("no existe empresa");
                         JOptionPane.showMessageDialog(this, "0 EMPRESA ASOCIADA", "ERROR", JOptionPane.ERROR_MESSAGE);
                         btnAsignacionEmpresa.setEnabled(true);
                         btnAsignacionEmpresa.setForeground(new Color(238, 112, 82));
+                        System.out.println("lo desactivo");
+                        btnAsignacionContrato.setEnabled(false);
+                        btnAsignacionContrato.setForeground(new Color(153, 153, 153));
                     } else {
+                        System.out.println("si existe empresa");
                         cargarTablaEmpresa();
                         btnAsignacionEmpresa.setEnabled(false);
                         btnAsignacionEmpresa.setForeground(new Color(153, 153, 153));
                         btnEditarPasajero.setEnabled(true);
                         btnEditarPasajero.setForeground(new Color(238, 112, 82));
 
+                        btnAsignacionContrato.setEnabled(true);
+                        btnAsignacionContrato.setForeground(new Color(238, 112, 82));
+
                         boolean okContrato = buscarContrato(pasajero.getId(), empresa.getId());
                         if (okContrato == false) {
                             JOptionPane.showMessageDialog(this, "0 CONTRATO ASOCIADO", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+                            btnAsignacionContrato.setEnabled(true);
+                            btnAsignacionContrato.setForeground(new Color(238, 112, 82));
                         } else {
                             cargarTablaContrato();
+                            btnAsignacionContrato.setEnabled(true);
+                            btnAsignacionContrato.setForeground(new Color(238, 112, 82));
                         }
 
                     }
-                    btnAsignacionContrato.setEnabled(true);
-                    btnAsignacionContrato.setForeground(new Color(238, 112, 82));
                 }
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "ERROR DE SERVIDOR", "ERROR", JOptionPane.ERROR_MESSAGE);

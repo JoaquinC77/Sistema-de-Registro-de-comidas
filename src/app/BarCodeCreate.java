@@ -18,6 +18,7 @@ import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import model.clases.Pasajero;
+import model.ws.EmpresaWS;
 import model.ws.PasajeroWS;
 
 public class BarCodeCreate extends javax.swing.JFrame {
@@ -285,10 +286,10 @@ public class BarCodeCreate extends javax.swing.JFrame {
 
         Image img = code.createImageWithBarcode(pdf.getDirectContent(), BaseColor.BLACK, BaseColor.BLACK);
 
-        Font fTitulo = new Font(Font.FontFamily.TIMES_ROMAN, 14.0f, Font.BOLD, BaseColor.BLACK);
+        Font fTitulo = new Font(Font.FontFamily.TIMES_ROMAN, 12.0f, Font.BOLD, BaseColor.BLACK);
         Font fTituloRut = new Font(Font.FontFamily.TIMES_ROMAN, 12.0f, Font.BOLD, BaseColor.BLACK);
 
-        Paragraph titulo = new Paragraph("Nombre: " + pasajero.getNombre() + " " + pasajero.getApellidoP(), fTitulo);
+        Paragraph titulo = new Paragraph(pasajero.getNombre() + " " + pasajero.getApellidoP(), fTitulo);
         Paragraph tituloRut = new Paragraph("RUT: " + pasajero.getRut(), fTituloRut);
 
         doc.add(titulo);

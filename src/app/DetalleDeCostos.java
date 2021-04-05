@@ -11,9 +11,11 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.clases.Contrato;
+import model.clases.Empresa;
 import model.clases.Encargado;
 import model.clases.VistaConsultaDeCostos;
 import model.clases.VistaRegistrosServiciosDetalle;
+import model.ws.EmpresaWS;
 import model.ws.EncargadoWS;
 import model.ws.PasajeroWS;
 import model.ws.VistaConsultaDeCostosWS;
@@ -126,7 +128,7 @@ public class DetalleDeCostos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblDetalleDeCostos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 1270, 40));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 1300, 40));
 
         lblTotal.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         lblTotal.setText("TOTAL DE COSTEO: ");
@@ -175,7 +177,7 @@ public class DetalleDeCostos extends javax.swing.JFrame {
                 lblExitMouseExited(evt);
             }
         });
-        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 0, 40, 30));
+        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 0, 40, 30));
 
         jLabel5.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 16)); // NOI18N
         jLabel5.setText("Hasta: ");
@@ -200,7 +202,7 @@ public class DetalleDeCostos extends javax.swing.JFrame {
         tblDetalleContrato.setSelectionForeground(new java.awt.Color(238, 112, 82));
         jScrollPane2.setViewportView(tblDetalleContrato);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 1270, 40));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 1300, 40));
 
         jLabel6.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         jLabel6.setText("DETALLES DE CONTRATO");
@@ -265,7 +267,7 @@ public class DetalleDeCostos extends javax.swing.JFrame {
                 btnGenerarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 160, 150, 40));
+        jPanel1.add(btnGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 160, 150, 40));
 
         btnExcel.setBackground(new java.awt.Color(255, 255, 255));
         btnExcel.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
@@ -288,7 +290,7 @@ public class DetalleDeCostos extends javax.swing.JFrame {
                 btnExcelActionPerformed(evt);
             }
         });
-        jPanel1.add(btnExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 600, 140, 50));
+        jPanel1.add(btnExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 600, 140, 50));
 
         btnEnviarCorreo.setBackground(new java.awt.Color(255, 255, 255));
         btnEnviarCorreo.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
@@ -312,9 +314,9 @@ public class DetalleDeCostos extends javax.swing.JFrame {
                 btnEnviarCorreoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEnviarCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 600, 140, 50));
+        jPanel1.add(btnEnviarCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 600, 140, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 660));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1320, 660));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -404,7 +406,17 @@ public class DetalleDeCostos extends javax.swing.JFrame {
 
     private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
         try {
-            new ExportarExcel().exportarExcel(tblDetalleContrato, tblDetalleDeCostos, tblDetallesDeCosteo);
+            SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
+            
+            System.out.println(contrato.getIdEmpresa());
+            
+            String fechaDesde = dFormat.format(txtDesde.getDate());
+            String fechaHasta = dFormat.format(txtHasta.getDate());
+            
+            new ExportarExcel().exportarExcel(
+                    tblDetalleContrato, tblDetalleDeCostos, tblDetallesDeCosteo
+                    ,contrato.getIdEmpresa(), new EncargadoWS().getEncargadoForId(contrato.getIdAdmin())
+                    ,fechaDesde, fechaHasta);
 
             rutaExcel = ExportarExcel.rutaExcel;
 
@@ -499,16 +511,16 @@ public class DetalleDeCostos extends javax.swing.JFrame {
 
         tblDetalleDeCostos.setModel(dtmModelo);
 
-        dtmModelo.addColumn("N° DES.");
-        dtmModelo.addColumn("VALOR DES.");
-        dtmModelo.addColumn("SUBTOTAL DES.");
-        dtmModelo.addColumn("N° ALM.");
+        dtmModelo.addColumn("CANT DESAY.");
+        dtmModelo.addColumn("VALOR DESAY.");
+        dtmModelo.addColumn("SUBTOTAL DESAY.");
+        dtmModelo.addColumn("CANT ALM.");
         dtmModelo.addColumn("VALOR ALM.");
         dtmModelo.addColumn("SUBTOTAL ALM.");
-        dtmModelo.addColumn("N° CENAS.");
+        dtmModelo.addColumn("CANT CENAS.");
         dtmModelo.addColumn("VALOR CENA.");
         dtmModelo.addColumn("SUBTOTAL CENA.");
-        dtmModelo.addColumn("N° TOTAL SERVICIOS.");
+        dtmModelo.addColumn("CANT TOTAL SERVICIOS.");
         dtmModelo.addColumn("TOTAL VENTAS.");
     }
 
@@ -585,42 +597,42 @@ public class DetalleDeCostos extends javax.swing.JFrame {
         Object[] fila = new Object[11];
 
         fila[0] = costosContrato.getCantidadDesayunosServidos();
-        fila[1] = costosContrato.getValorDesayuno();
+        fila[1] = "$ "+costosContrato.getValorDesayuno();
 
         if (costosContrato.getTotalDesayuno() == 0) {
-            fila[2] = 0;
+            fila[2] = "$ 0";
         } else {
-            fila[2] = costosContrato.getTotalDesayuno();
+            fila[2] = "$ "+costosContrato.getTotalDesayuno();
         }
 
         fila[3] = costosContrato.getCantidadAlmuerzoServidos();
-        fila[4] = costosContrato.getValorAlmuerzo();
+        fila[4] = "$ "+costosContrato.getValorAlmuerzo();
 
         if (costosContrato.getTotalAlmuerzo() == 0) {
-            fila[5] = 0;
+            fila[5] = "$ 0";
         } else {
-            fila[5] = costosContrato.getTotalAlmuerzo();
+            fila[5] = "$ "+costosContrato.getTotalAlmuerzo();
         }
 
         fila[6] = costosContrato.getCantidadCenasServidas();
-        fila[7] = costosContrato.getValorCena();
+        fila[7] = "$ "+costosContrato.getValorCena();
 
         if (costosContrato.getTotalCenas() == 0) {
-            fila[8] = 0;
+            fila[8] = "$ 0";
         } else {
-            fila[8] = costosContrato.getTotalCenas();
+            fila[8] = "$ "+costosContrato.getTotalCenas();
         }
 
         if (costosContrato.getTotalDeServiciosServidos() == 0) {
-            fila[9] = 0;
+            fila[9] = "0";
         } else {
             fila[9] = costosContrato.getTotalDeServiciosServidos();
         }
 
         if (costosContrato.getTotal() == 0) {
-            fila[10] = 0;
+            fila[10] = "$ 0";
         } else {
-            fila[10] = costosContrato.getTotal();
+            fila[10] = "$ "+costosContrato.getTotal();
         }
 
         dtmModelo.addRow(fila);

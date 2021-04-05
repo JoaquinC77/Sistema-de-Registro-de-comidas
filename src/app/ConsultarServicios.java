@@ -242,7 +242,7 @@ public class ConsultarServicios extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblPasajerosAsignados);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, 680, 100));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, 680, 150));
 
         btnVolver.setBackground(new java.awt.Color(153, 153, 153));
         btnVolver.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N

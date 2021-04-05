@@ -190,5 +190,18 @@ public class EmpresaWS {
         
         return empresa;
     }
+    
+    public Empresa getEmpresaForID(String id) throws MalformedURLException, IOException{
+        String parametros = "?id=" + id;
+
+        String urlWS = this.urlWS + "/getEmpresaId" + parametros;
+        URL url = new URL(urlWS);
+
+        JsonObject jsonObject = convert.getJsonObject(url);
+        
+        empresa = new Gson().fromJson(jsonObject, Empresa.class);
+        
+        return empresa;
+    }
 
 }
