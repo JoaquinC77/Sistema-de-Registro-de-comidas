@@ -206,9 +206,11 @@ public class PasajeroAsignarAContrato extends javax.swing.JFrame {
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 680, 40));
 
         dateChooserFechaInicio.setBackground(new java.awt.Color(255, 255, 255));
+        dateChooserFechaInicio.setDateFormatString("dd-MM-yyyy");
         jPanel1.add(dateChooserFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 310, 30));
 
         dateChooserFechaFin.setBackground(new java.awt.Color(255, 255, 255));
+        dateChooserFechaFin.setDateFormatString("dd-MM-yyyy");
         jPanel1.add(dateChooserFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 410, 306, 30));
 
         btnCancelar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N

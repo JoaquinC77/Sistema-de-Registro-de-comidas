@@ -255,6 +255,7 @@ public class PasajeroCrear extends javax.swing.JFrame {
 
                     if (ok == true) {
                         pasajero = conn.getPasajero(txtRut.getText());
+                        System.out.println(txtRut.getText());
 
                         JOptionPane.showMessageDialog(this, "REGISTRO EXITOSO", "OK", JOptionPane.INFORMATION_MESSAGE, new IconOK().getIcon());
                     } else {

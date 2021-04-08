@@ -3,6 +3,7 @@ package app;
 import app.uieditor.PropiedadesCBO;
 import iconook.IconOK;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.List;
 import javax.swing.BorderFactory;
@@ -23,6 +24,8 @@ public class PasajeroEditar extends javax.swing.JFrame {
     private Pasajero pasajero;
     private EmpresaPasajeroWS connEP;
     private Empresa empresaAntigua;
+    private Empresa empresaNueva;
+    private List<Empresa> listaEmpresas;
 
     public PasajeroEditar() {
         initComponents();
@@ -37,11 +40,11 @@ public class PasajeroEditar extends javax.swing.JFrame {
         try {
             empresaAntigua = new EmpresaWS().getEmpresaForIDPasajero(pasajero.getId());
 
-            lblNombreEmpresa.setText("NOMBRE EMPRESA: " + empresaAntigua.getNombre());
+            lblNombreEmpresa.setText(empresaAntigua.getNombre());
 
             connEmpresa = new EmpresaWS();
-            List<Empresa> lista = connEmpresa.getAllEmpresas();
-            cargarCboEmpresas(lista);
+            listaEmpresas = connEmpresa.getAllEmpresas();
+            cargarCboEmpresas(listaEmpresas);
 
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "ERROR AL CARGAR EMPRESAS", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -79,6 +82,10 @@ public class PasajeroEditar extends javax.swing.JFrame {
         cboEmpresas = new javax.swing.JComboBox<>();
         btnGuardar = new javax.swing.JButton();
         btnVolver1 = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        txtRutEmpresa = new javax.swing.JTextField();
+        lblNuevaEmpresa = new javax.swing.JLabel();
+        jSeparator8 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -152,12 +159,13 @@ public class PasajeroEditar extends javax.swing.JFrame {
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
-        jLabel14.setText("Nueva Empresa: ");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
+        jLabel14.setText("Buscar por RUT: Ej (72789987-7)");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, -1, -1));
 
-        lblNombreEmpresa.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        lblNombreEmpresa.setFont(new java.awt.Font("Microsoft PhagsPa", 3, 14)); // NOI18N
         lblNombreEmpresa.setText("Nombre Empresa: ");
-        jPanel1.add(lblNombreEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
+        lblNombreEmpresa.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Empresa Actual", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft PhagsPa", 1, 10))); // NOI18N
+        jPanel1.add(lblNombreEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 220, 70));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 190, 10));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 190, 10));
         jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 190, 10));
@@ -177,7 +185,12 @@ public class PasajeroEditar extends javax.swing.JFrame {
         jLabel15.setText("RUT:");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
-        jPanel1.add(cboEmpresas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 140, -1));
+        cboEmpresas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboEmpresasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cboEmpresas, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 230, 30));
 
         btnGuardar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(238, 112, 82));
@@ -201,7 +214,7 @@ public class PasajeroEditar extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 450, 130, 50));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 530, 130, 50));
 
         btnVolver1.setBackground(new java.awt.Color(255, 255, 255));
         btnVolver1.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
@@ -226,9 +239,27 @@ public class PasajeroEditar extends javax.swing.JFrame {
                 btnVolver1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVolver1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 130, 47));
+        jPanel1.add(btnVolver1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, 130, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 510));
+        jLabel17.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        jLabel17.setText("Seleccione o Busque nueva empresa: ");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, -1, -1));
+
+        txtRutEmpresa.setBorder(null);
+        txtRutEmpresa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtRutEmpresaKeyReleased(evt);
+            }
+        });
+        jPanel1.add(txtRutEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, 230, 30));
+
+        lblNuevaEmpresa.setFont(new java.awt.Font("Microsoft PhagsPa", 3, 14)); // NOI18N
+        lblNuevaEmpresa.setText("Nueva Empresa: ");
+        lblNuevaEmpresa.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nueva Empresa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft PhagsPa", 1, 10))); // NOI18N
+        jPanel1.add(lblNuevaEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 300, 260, 70));
+        jPanel1.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 230, 10));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 590));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -254,10 +285,9 @@ public class PasajeroEditar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarMouseExited
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        Empresa empresaNueva = (Empresa) cboEmpresas.getSelectedItem();
-        if (txtApellidoM.getText().isEmpty() || txtApellidoP.getText().isEmpty() || txtDireccion.getText().isEmpty() ||
-                txtNombre.getText().isEmpty() || txtRut.getText().isEmpty()) {
-            
+        if (txtApellidoM.getText().isEmpty() || txtApellidoP.getText().isEmpty() || txtDireccion.getText().isEmpty()
+                || txtNombre.getText().isEmpty() || txtRut.getText().isEmpty()) {
+
             JOptionPane.showMessageDialog(null, "DEBE INGRESAR TODOS LOS CAMPOS SOLICITADOS", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
@@ -265,11 +295,11 @@ public class PasajeroEditar extends javax.swing.JFrame {
                 if (ok != false) {
                     JOptionPane.showMessageDialog(null, "MODIFICACION EXITOSA", "EXITO", JOptionPane.PLAIN_MESSAGE, new IconOK().getIcon());
                 } else {
-                    JOptionPane.showMessageDialog(null, "MODIFICACION FALLIDA","ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "MODIFICACION FALLIDA", "ERROR DE REGISTRO", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (IOException ex) {
                 System.out.println("ERROR: " + ex.getLocalizedMessage());
-                JOptionPane.showMessageDialog(null, "ERROR: "+ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "ERROR: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -286,6 +316,35 @@ public class PasajeroEditar extends javax.swing.JFrame {
         new Pasajeros().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnVolver1ActionPerformed
+
+    private void cboEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEmpresasActionPerformed
+        try {
+            empresaNueva = (Empresa) cboEmpresas.getSelectedItem();
+            
+            lblNuevaEmpresa.setText(empresaNueva.getNombre());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "ERROR AL CARGAR NUEVA EMPRESA", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_cboEmpresasActionPerformed
+
+    private void txtRutEmpresaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutEmpresaKeyReleased
+        try {
+            if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+                for (Empresa emp : listaEmpresas) {
+                    if (emp.getRut().equals(txtRutEmpresa.getText())) {
+                        empresaNueva = emp;
+                        lblNuevaEmpresa.setText(empresaNueva.getNombre());
+                        break;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "EMPRESA NO ENCONTRADA", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "ERROR AL CARGAR EMPRESA", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_txtRutEmpresaKeyReleased
 
     /**
      * @param args the command line arguments
@@ -346,6 +405,7 @@ public class PasajeroEditar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -357,12 +417,15 @@ public class PasajeroEditar extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JLabel lblExit;
     private javax.swing.JLabel lblNombreEmpresa;
+    private javax.swing.JLabel lblNuevaEmpresa;
     private javax.swing.JTextField txtApellidoM;
     private javax.swing.JTextField txtApellidoP;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtRut;
+    private javax.swing.JTextField txtRutEmpresa;
     // End of variables declaration//GEN-END:variables
 }

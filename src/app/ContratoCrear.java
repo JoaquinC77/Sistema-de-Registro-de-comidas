@@ -126,6 +126,7 @@ public class ContratoCrear extends javax.swing.JFrame {
 
         txtFechaFin.setBackground(new java.awt.Color(255, 255, 255));
         txtFechaFin.setForeground(new java.awt.Color(238, 112, 82));
+        txtFechaFin.setDateFormatString("dd-MM-yyyy");
         txtFechaFin.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
         jPanel1.add(txtFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 230, 160, 30));
 
@@ -136,6 +137,7 @@ public class ContratoCrear extends javax.swing.JFrame {
         txtFechaInicio.setBackground(new java.awt.Color(255, 255, 255));
         txtFechaInicio.setForeground(new java.awt.Color(238, 112, 82));
         txtFechaInicio.setToolTipText("");
+        txtFechaInicio.setDateFormatString("dd-MM-yyyy");
         txtFechaInicio.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
         jPanel1.add(txtFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 160, 30));
 
