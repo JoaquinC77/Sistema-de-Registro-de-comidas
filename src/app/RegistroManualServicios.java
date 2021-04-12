@@ -16,6 +16,7 @@ import model.ws.ContratoWS;
 import model.ws.EmpresaWS;
 import model.ws.PasajeroWS;
 import model.ws.RegistroServicioWS;
+import validacionesCampos.InsertTextField;
 
 public class RegistroManualServicios extends javax.swing.JFrame {
 
@@ -32,6 +33,7 @@ public class RegistroManualServicios extends javax.swing.JFrame {
     public RegistroManualServicios() {
         initComponents();
         setLocationRelativeTo(null);
+        txtRutABuscar.setDocument(new InsertTextField(txtRutABuscar, 10));
         
         conn = new RegistroServicioWS();
         

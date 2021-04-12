@@ -12,6 +12,7 @@ import model.clases.Empresa;
 import model.clases.Pasajero;
 import model.ws.EmpresaPasajeroWS;
 import model.ws.EmpresaWS;
+import validacionesCampos.InsertTextField;
 
 /**
  *
@@ -31,7 +32,8 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cboEmpresas.setUI(PropiedadesCBO.createUI(rootPane));
-        
+        txtRutEmpresa.setDocument(new InsertTextField(txtRutEmpresa, 10));
+
         pasajero = Pasajeros.pasajero;
 
         txtRutHuesped.setText(pasajero.getRut());
@@ -58,50 +60,46 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        cboEmpresas = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
         txtRutHuesped = new javax.swing.JTextField();
         lblNombreHuesped = new javax.swing.JLabel();
         btnAsignar = new javax.swing.JButton();
         btnVolver1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         lblExit = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
-        jLabel6 = new javax.swing.JLabel();
-        txtRutEmpresa = new javax.swing.JTextField();
-        lblNombredeEmpresa = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        txtRutEmpresa = new javax.swing.JTextField();
+        jSeparator3 = new javax.swing.JSeparator();
+        cboEmpresas = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        lblNombredeEmpresa = new javax.swing.JTextField();
+        lblRutEmpresa = new javax.swing.JTextField();
+        lblDireccionEmpresa = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setFocusable(false);
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setMinimumSize(new java.awt.Dimension(800, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         jLabel3.setText("Pasajero: Asignar a empresas");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 760, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 1050, 10));
 
         jLabel4.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         jLabel4.setText("Pasajero: Asignar a empresas");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 760, 10));
-
-        cboEmpresas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboEmpresasActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cboEmpresas, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 210, 40));
-
-        jLabel5.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
-        jLabel5.setText("Buscar por lista: ");
-        jLabel5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 190, 40));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 1050, 10));
 
         txtRutHuesped.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         txtRutHuesped.setText("RUT HUESPED:");
@@ -110,7 +108,7 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
 
         lblNombreHuesped.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
         lblNombreHuesped.setText("Pasajero: Asignar a empresas");
-        jPanel1.add(lblNombreHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 230, 20));
+        jPanel1.add(lblNombreHuesped, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 140, 230, 20));
 
         btnAsignar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnAsignar.setForeground(new java.awt.Color(238, 112, 82));
@@ -134,7 +132,7 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
                 btnAsignarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAsignar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 460, 130, 47));
+        jPanel1.add(btnAsignar, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 650, 200, 60));
 
         btnVolver1.setBackground(new java.awt.Color(255, 255, 255));
         btnVolver1.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
@@ -159,7 +157,7 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
                 btnVolver1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVolver1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, 130, 47));
+        jPanel1.add(btnVolver1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 650, 200, 60));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGOSISTEMA_80PIX.png"))); // NOI18N
@@ -180,12 +178,16 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
                 lblExitMouseExited(evt);
             }
         });
-        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 0, 40, 40));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 210, 10));
+        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 0, 40, 40));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 210, 10));
 
-        jLabel6.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
-        jLabel6.setText("Pasajero: Asignar a empresas");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder()));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel8.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 16)); // NOI18N
+        jLabel8.setText("Buscar por RUT: Ej(78777888-7):");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 240, 40));
 
         txtRutEmpresa.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         txtRutEmpresa.setBorder(null);
@@ -194,19 +196,51 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
                 txtRutEmpresaKeyReleased(evt);
             }
         });
-        jPanel1.add(txtRutEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 210, 40));
+        jPanel2.add(txtRutEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 240, 40));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 240, 10));
 
-        lblNombredeEmpresa.setFont(new java.awt.Font("Microsoft PhagsPa", 3, 14)); // NOI18N
-        lblNombredeEmpresa.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Empresa Seleccionada", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft PhagsPa", 1, 10))); // NOI18N
-        jPanel1.add(lblNombredeEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 260, 220, 60));
+        cboEmpresas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboEmpresasActionPerformed(evt);
+            }
+        });
+        jPanel2.add(cboEmpresas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 240, 40));
 
-        jLabel8.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
-        jLabel8.setText("Buscar por RUT: Ej(78777888-7)");
-        jLabel8.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, 40));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 210, 10));
+        jLabel5.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 16)); // NOI18N
+        jLabel5.setText("Buscar por lista: ");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 130, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 520));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel3.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 11)); // NOI18N
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblNombredeEmpresa.setEnabled(false);
+        jPanel3.add(lblNombredeEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 320, 40));
+
+        lblRutEmpresa.setEnabled(false);
+        jPanel3.add(lblRutEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 320, 40));
+
+        lblDireccionEmpresa.setEnabled(false);
+        jPanel3.add(lblDireccionEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 320, 40));
+
+        jLabel1.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        jLabel1.setText("Direccion: ");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, 20));
+
+        jLabel6.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        jLabel6.setText("Nombre: ");
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, 20));
+
+        jLabel7.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        jLabel7.setText("RUT: ");
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, 20));
+
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 20, 410, 290));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 1060, 330));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -232,8 +266,8 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
                 System.out.println("id p" + pasajero.getId());
                 System.out.println("---------------");
                 new EmpresaPasajeroWS().insertEmpresaPasajero(pasajero.getId(), empresa.getId());
-                
-                JOptionPane.showMessageDialog(null, "ASIGNACION CORRECTAMENTE REALIZADA","EXITO",JOptionPane.PLAIN_MESSAGE, new IconOK().getIcon());
+
+                JOptionPane.showMessageDialog(null, "ASIGNACION CORRECTAMENTE REALIZADA", "EXITO", JOptionPane.PLAIN_MESSAGE, new IconOK().getIcon());
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "ERROR AL ASIGNAR HUESPED: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }
@@ -276,26 +310,30 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
     private void cboEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEmpresasActionPerformed
         try {
             empresa = (Empresa) cboEmpresas.getSelectedItem();
-            
+
             lblNombredeEmpresa.setText(empresa.getNombre());
+            lblRutEmpresa.setText(empresa.getRut());
+            lblDireccionEmpresa.setText(empresa.getDireccion());
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "ERROR AL CARGAR EMPRESA","ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ERROR AL CARGAR EMPRESA", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_cboEmpresasActionPerformed
 
     private void txtRutEmpresaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutEmpresaKeyReleased
-        try{
-        if(evt.getKeyChar() == KeyEvent.VK_ENTER){
-            for (Empresa emp : listaEmpresa) {
-                if(emp.getRut().equals(txtRutEmpresa.getText())){
-                    empresa = emp;
-                    lblNombredeEmpresa.setText(empresa.getNombre());
-                    break;
+        try {
+            if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+                for (Empresa emp : listaEmpresa) {
+                    if (emp.getRut().equals(txtRutEmpresa.getText())) {
+                        empresa = emp;
+                        lblNombredeEmpresa.setText(empresa.getNombre());
+                        lblRutEmpresa.setText(empresa.getRut());
+                        lblDireccionEmpresa.setText(empresa.getDireccion());
+                        break;
+                    }
                 }
             }
-        }
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "ERROR AL CARGAR EMPRESA","ERROR", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "ERROR AL CARGAR EMPRESA", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_txtRutEmpresaKeyReleased
 
@@ -343,20 +381,26 @@ public class PasajeroAsignarAEmpresa extends javax.swing.JFrame {
     private javax.swing.JButton btnAsignar;
     private javax.swing.JButton btnVolver1;
     private javax.swing.JComboBox<Empresa> cboEmpresas;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JTextField lblDireccionEmpresa;
     private javax.swing.JLabel lblExit;
     private javax.swing.JLabel lblNombreHuesped;
-    private javax.swing.JLabel lblNombredeEmpresa;
+    private javax.swing.JTextField lblNombredeEmpresa;
+    private javax.swing.JTextField lblRutEmpresa;
     private javax.swing.JTextField txtRutEmpresa;
     private javax.swing.JTextField txtRutHuesped;
     // End of variables declaration//GEN-END:variables

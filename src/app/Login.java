@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import model.clases.Usuario;
 import model.ws.LoginWS;
+import validacionesCampos.InsertTextField;
 
 /**
  *
@@ -23,6 +24,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
+        txtRut.setDocument(new InsertTextField(txtRut, 10));
         
         this.setResizable(false);
         this.setLocationRelativeTo(this);

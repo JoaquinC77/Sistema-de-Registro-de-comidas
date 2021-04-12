@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import model.clases.Pasajero;
 import model.ws.PasajeroWS;
 import validacionN.ValidacionN;
+import validacionesCampos.InsertTextField;
 
 /**
  *
@@ -25,6 +26,7 @@ public class PasajeroCrear extends javax.swing.JFrame {
     public PasajeroCrear() {
         initComponents();
         this.setLocationRelativeTo(null);
+        txtRut.setDocument(new InsertTextField(txtRut, 10));
 
         conn = new PasajeroWS();
     }
@@ -289,8 +291,23 @@ public class PasajeroCrear extends javax.swing.JFrame {
                 txtApellidoP.setText(pasajero.getApellidoP());
                 txtApellidoM.setText(pasajero.getApellidoM());
                 txtDireccion.setText(pasajero.getDireccion());
+                
+                txtNombre.setEnabled(false);
+                txtApellidoP.setEnabled(false);
+                txtApellidoM.setEnabled(false);
+                txtDireccion.setEnabled(false);
 
                 btnGuardar.setEnabled(false);
+            }else{
+                txtNombre.setEnabled(true);
+                txtApellidoP.setEnabled(true);
+                txtApellidoM.setEnabled(true);
+                txtDireccion.setEnabled(true);
+                
+                txtNombre.setText("");
+                txtApellidoP.setText("");
+                txtApellidoM.setText("");
+                txtDireccion.setText("");
             }
         } catch (Exception ex) {
             System.out.println("Entro en el cach");

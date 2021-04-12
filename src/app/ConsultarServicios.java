@@ -19,6 +19,7 @@ import model.ws.ContratoWS;
 import model.ws.EmpresaPasajeroWS;
 import model.ws.EmpresaWS;
 import model.ws.PasajeroWS;
+import validacionesCampos.InsertTextField;
 
 public class ConsultarServicios extends javax.swing.JFrame {
 
@@ -40,6 +41,7 @@ public class ConsultarServicios extends javax.swing.JFrame {
         txtCodigo.setEnabled(false);
         btnVerDetalles.setEnabled(false);
         btnVerDetalles.setForeground(new Color(153, 153, 153));
+        txtRutABuscar.setDocument(new InsertTextField(txtRutABuscar, 10));
 
         conn = new ContratoWS();
 

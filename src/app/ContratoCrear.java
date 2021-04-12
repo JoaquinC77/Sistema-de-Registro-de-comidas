@@ -71,27 +71,28 @@ public class ContratoCrear extends javax.swing.JFrame {
         txtFechaInicio = new com.toedter.calendar.JDateChooser();
         jLabel9 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         lblExit = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
-        txtRutAdmin = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
-        txtNombreAdmin = new javax.swing.JTextField();
-        txtPuestoAdmin = new javax.swing.JTextField();
-        jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
-        txtTelefonoAdmin = new javax.swing.JTextField();
-        txtEmailAdmin = new javax.swing.JTextField();
-        jSeparator5 = new javax.swing.JSeparator();
-        jSeparator6 = new javax.swing.JSeparator();
         txtNombreContrato = new javax.swing.JTextField();
-        jSeparator7 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        txtRutAdmin = new javax.swing.JTextField();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel11 = new javax.swing.JLabel();
+        txtNombreAdmin = new javax.swing.JTextField();
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel10 = new javax.swing.JLabel();
+        txtEmailAdmin = new javax.swing.JTextField();
+        jSeparator7 = new javax.swing.JSeparator();
+        jLabel12 = new javax.swing.JLabel();
+        txtPuestoAdmin = new javax.swing.JTextField();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
+        txtTelefonoAdmin = new javax.swing.JTextField();
+        jSeparator6 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -104,15 +105,15 @@ public class ContratoCrear extends javax.swing.JFrame {
         lblTituloContrato.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         lblTituloContrato.setText("Contrato: Crear");
         jPanel1.add(lblTituloContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 790, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 1060, 10));
 
-        jLabel3.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 16)); // NOI18N
         jLabel3.setText("Empresa:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 16)); // NOI18N
         jLabel6.setText("Nombre: ");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 130, -1, -1));
 
         cboEmpresas.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
         cboEmpresas.setForeground(new java.awt.Color(238, 112, 82));
@@ -128,46 +129,26 @@ public class ContratoCrear extends javax.swing.JFrame {
         txtFechaFin.setForeground(new java.awt.Color(238, 112, 82));
         txtFechaFin.setDateFormatString("dd-MM-yyyy");
         txtFechaFin.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
-        jPanel1.add(txtFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 230, 160, 30));
+        jPanel1.add(txtFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 230, 160, 40));
 
-        jLabel7.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 16)); // NOI18N
         jLabel7.setText("Fecha Fin:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 230, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 230, -1, -1));
 
         txtFechaInicio.setBackground(new java.awt.Color(255, 255, 255));
         txtFechaInicio.setForeground(new java.awt.Color(238, 112, 82));
         txtFechaInicio.setToolTipText("");
         txtFechaInicio.setDateFormatString("dd-MM-yyyy");
         txtFechaInicio.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 12)); // NOI18N
-        jPanel1.add(txtFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 160, 30));
+        jPanel1.add(txtFechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 160, 40));
 
-        jLabel9.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 16)); // NOI18N
         jLabel9.setText("Fecha Inicial: ");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         jLabel5.setText("Contacto Administrador");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
-
-        jLabel13.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
-        jLabel13.setText("RUT: ");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
-
-        jLabel8.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
-        jLabel8.setText("Telefono Celular");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 320, -1, -1));
-
-        jLabel11.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
-        jLabel11.setText("Nombre:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, -1, -1));
-
-        jLabel12.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
-        jLabel12.setText("Puesto: ");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, -1, -1));
-
-        jLabel10.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
-        jLabel10.setText("Correo Electronico:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
 
         lblExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder_delete_51514.png"))); // NOI18N
@@ -184,7 +165,7 @@ public class ContratoCrear extends javax.swing.JFrame {
                 lblExitMouseExited(evt);
             }
         });
-        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, -1, -1));
+        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1036, 0, 40, 40));
 
         btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
         btnCancelar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
@@ -209,7 +190,7 @@ public class ContratoCrear extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 150, 40));
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 650, 190, 60));
 
         btnGuardar.setBackground(new java.awt.Color(153, 153, 153));
         btnGuardar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
@@ -234,7 +215,32 @@ public class ContratoCrear extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 490, 150, 40));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 650, 190, 60));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 190, 290, 10));
+
+        txtNombreContrato.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtNombreContrato.setForeground(new java.awt.Color(153, 153, 153));
+        txtNombreContrato.setToolTipText("INGRESAR RUT");
+        txtNombreContrato.setBorder(null);
+        txtNombreContrato.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtNombreContrato.setName(""); // NOI18N
+        txtNombreContrato.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreContratoKeyReleased(evt);
+            }
+        });
+        jPanel1.add(txtNombreContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 150, 290, 40));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGOSISTEMA.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 50));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel13.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 16)); // NOI18N
+        jLabel13.setText("RUT: ");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
         txtRutAdmin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtRutAdmin.setForeground(new java.awt.Color(153, 153, 153));
@@ -252,8 +258,12 @@ public class ContratoCrear extends javax.swing.JFrame {
                 txtRutAdminKeyReleased(evt);
             }
         });
-        jPanel1.add(txtRutAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 180, 30));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, 220, 10));
+        jPanel2.add(txtRutAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 200, 40));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 200, 10));
+
+        jLabel11.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 16)); // NOI18N
+        jLabel11.setText("Nombre:");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, -1, -1));
 
         txtNombreAdmin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtNombreAdmin.setForeground(new java.awt.Color(153, 153, 153));
@@ -266,7 +276,30 @@ public class ContratoCrear extends javax.swing.JFrame {
                 txtNombreAdminKeyReleased(evt);
             }
         });
-        jPanel1.add(txtNombreAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 180, 30));
+        jPanel2.add(txtNombreAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 60, 200, 40));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 200, 10));
+
+        jLabel10.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 16)); // NOI18N
+        jLabel10.setText("Correo Electronico:");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+
+        txtEmailAdmin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtEmailAdmin.setForeground(new java.awt.Color(153, 153, 153));
+        txtEmailAdmin.setToolTipText("INGRESAR RUT");
+        txtEmailAdmin.setBorder(null);
+        txtEmailAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtEmailAdmin.setName(""); // NOI18N
+        txtEmailAdmin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEmailAdminKeyReleased(evt);
+            }
+        });
+        jPanel2.add(txtEmailAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 200, 40));
+        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 200, 10));
+
+        jLabel12.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 16)); // NOI18N
+        jLabel12.setText("Puesto: ");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 20, -1, -1));
 
         txtPuestoAdmin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtPuestoAdmin.setForeground(new java.awt.Color(153, 153, 153));
@@ -280,9 +313,12 @@ public class ContratoCrear extends javax.swing.JFrame {
                 txtPuestoAdminFocusGained(evt);
             }
         });
-        jPanel1.add(txtPuestoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 350, 180, 30));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 180, 10));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 180, 10));
+        jPanel2.add(txtPuestoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 60, 200, 40));
+        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 100, 200, 10));
+
+        jLabel8.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 16)); // NOI18N
+        jLabel8.setText("Telefono Celular");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 170, -1, -1));
 
         txtTelefonoAdmin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtTelefonoAdmin.setForeground(new java.awt.Color(153, 153, 153));
@@ -296,41 +332,12 @@ public class ContratoCrear extends javax.swing.JFrame {
                 txtTelefonoAdminFocusGained(evt);
             }
         });
-        jPanel1.add(txtTelefonoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 350, 180, 30));
+        jPanel2.add(txtTelefonoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 210, 200, 40));
+        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, 200, 10));
 
-        txtEmailAdmin.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtEmailAdmin.setForeground(new java.awt.Color(153, 153, 153));
-        txtEmailAdmin.setToolTipText("INGRESAR RUT");
-        txtEmailAdmin.setBorder(null);
-        txtEmailAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtEmailAdmin.setName(""); // NOI18N
-        txtEmailAdmin.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtEmailAdminKeyReleased(evt);
-            }
-        });
-        jPanel1.add(txtEmailAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 180, 30));
-        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 380, 180, 10));
-        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 380, 180, 10));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 1020, 280));
 
-        txtNombreContrato.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtNombreContrato.setForeground(new java.awt.Color(153, 153, 153));
-        txtNombreContrato.setToolTipText("INGRESAR RUT");
-        txtNombreContrato.setBorder(null);
-        txtNombreContrato.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtNombreContrato.setName(""); // NOI18N
-        txtNombreContrato.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNombreContratoKeyReleased(evt);
-            }
-        });
-        jPanel1.add(txtNombreContrato, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, 220, 30));
-        jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 180, 10));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGOSISTEMA.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 50));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 540));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -546,6 +553,7 @@ public class ContratoCrear extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

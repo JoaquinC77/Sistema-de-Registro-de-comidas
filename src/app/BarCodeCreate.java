@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import model.clases.Pasajero;
 import model.ws.EmpresaWS;
 import model.ws.PasajeroWS;
+import validacionesCampos.InsertTextField;
 
 public class BarCodeCreate extends javax.swing.JFrame {
 
@@ -31,6 +32,7 @@ public class BarCodeCreate extends javax.swing.JFrame {
     public BarCodeCreate() {
         initComponents();
         this.setLocationRelativeTo(null);
+        txtRutBuscar.setDocument(new InsertTextField(txtRutBuscar, 10));
 
         txtNombre.setEnabled(false);
         txtApellidoP.setEnabled(false);
@@ -69,16 +71,19 @@ public class BarCodeCreate extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         jLabel3.setText("Buscar Pasajero: (EJ: 12123456-7):");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 470, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 1050, 10));
 
-        txtRutBuscar.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        txtRutBuscar.setBackground(new java.awt.Color(240, 240, 240));
+        txtRutBuscar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 20)); // NOI18N
+        txtRutBuscar.setForeground(new java.awt.Color(238, 112, 82));
+        txtRutBuscar.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtRutBuscar.setBorder(null);
         txtRutBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtRutBuscarKeyReleased(evt);
             }
         });
-        jPanel1.add(txtRutBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 170, 30));
+        jPanel1.add(txtRutBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 970, 50));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGOSISTEMA_80PIX.png"))); // NOI18N
@@ -99,25 +104,25 @@ public class BarCodeCreate extends javax.swing.JFrame {
                 lblExitMouseExited(evt);
             }
         });
-        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 40, 30));
+        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 0, 50, 40));
 
-        txtNombre.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        txtNombre.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 16)); // NOI18N
         txtNombre.setBorder(null);
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 190, 30));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, 300, 40));
 
-        txtApellidoP.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        txtApellidoP.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 16)); // NOI18N
         txtApellidoP.setBorder(null);
-        jPanel1.add(txtApellidoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 190, 30));
+        jPanel1.add(txtApellidoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 390, 300, 40));
 
-        jLabel13.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 16)); // NOI18N
         jLabel13.setText("Nombre: ");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, -1, -1));
 
-        jLabel15.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 16)); // NOI18N
         jLabel15.setText("Apellido Paterno:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 120, -1));
-        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 190, 10));
-        jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 190, 10));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 370, 120, -1));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 300, 10));
+        jPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, 300, 10));
 
         btnGenerarBarCode.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
         btnGenerarBarCode.setForeground(new java.awt.Color(238, 112, 82));
@@ -140,7 +145,7 @@ public class BarCodeCreate extends javax.swing.JFrame {
                 btnGenerarBarCodeActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGenerarBarCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, 190, 50));
+        jPanel1.add(btnGenerarBarCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 650, 200, 60));
 
         btnCancelar.setBackground(new java.awt.Color(153, 153, 153));
         btnCancelar.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 14)); // NOI18N
@@ -164,9 +169,9 @@ public class BarCodeCreate extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 130, 50));
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 650, 200, 60));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 360));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -187,9 +192,20 @@ public class BarCodeCreate extends javax.swing.JFrame {
         try {
             try {
                 abrirPdfBarCode();
+
+                txtRutBuscar.setText("");
+                txtNombre.setText("");
+                txtApellidoP.setText("");
+                txtRutBuscar.setFocusable(true);
             } catch (Exception e) {
                 generarPdfBarCode();
                 abrirPdfBarCode();
+
+                txtRutBuscar.setText("");
+                txtNombre.setText("");
+                txtApellidoP.setText("");
+                txtRutBuscar.setFocusable(true);
+
             }
         } catch (Exception ex) {
             System.out.println("ERROR " + ex.getMessage());
@@ -206,7 +222,7 @@ public class BarCodeCreate extends javax.swing.JFrame {
                     txtApellidoP.setText(pasajero.getApellidoP());
 
                     btnGenerarBarCode.setEnabled(true);
-                    btnGenerarBarCode.setForeground(new Color(238,112,82));
+                    btnGenerarBarCode.setForeground(new Color(238, 112, 82));
                 } else {
                     JOptionPane.showMessageDialog(null, "ERROR DE BUSQUEDA");
                 }

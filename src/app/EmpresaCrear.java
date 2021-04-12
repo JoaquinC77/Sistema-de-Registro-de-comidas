@@ -2,6 +2,7 @@ package app;
 
 import iconook.IconOK;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
@@ -10,6 +11,7 @@ import model.clases.Encargado;
 import model.ws.EmpresaWS;
 import model.ws.EncargadoWS;
 import validacionN.ValidacionN;
+import validacionesCampos.InsertTextField;
 
 /**
  *
@@ -24,6 +26,11 @@ public class EmpresaCrear extends javax.swing.JFrame {
     public EmpresaCrear() {
         initComponents();
         this.setLocationRelativeTo(null);
+        txtRut.setDocument(new InsertTextField(txtRut, 10));
+        txtRutRepre.setDocument(new InsertTextField(txtRutRepre, 10));
+        
+        
+        
 
         conn = new EmpresaWS();
         representante = null;
@@ -95,7 +102,7 @@ public class EmpresaCrear extends javax.swing.JFrame {
                 lblExitMouseExited(evt);
             }
         });
-        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 0, 30, 30));
+        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, 40, 40));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 730, 10));
 
         jLabel4.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
@@ -113,6 +120,11 @@ public class EmpresaCrear extends javax.swing.JFrame {
 
         txtRut.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
         txtRut.setBorder(null);
+        txtRut.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtRutKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 200, 30));
 
         txtDireccion.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 14)); // NOI18N
@@ -425,6 +437,20 @@ public class EmpresaCrear extends javax.swing.JFrame {
     private void txtEmailRepreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailRepreFocusGained
         txtEmailRepre.selectAll();
     }//GEN-LAST:event_txtEmailRepreFocusGained
+
+    private void txtRutKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutKeyReleased
+        String campoMaximo = "";
+        String campo = txtRut.getText();
+        
+        if(campo.length() == 10 || campo.length() == 9){
+            campoMaximo = campo;
+            txtRut.setText(campoMaximo);
+        }
+        
+        if(campo.length() > 10){
+            campo = campoMaximo;
+        }
+    }//GEN-LAST:event_txtRutKeyReleased
 
     /**
      * @param args the command line arguments

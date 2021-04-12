@@ -14,6 +14,7 @@ import model.clases.Empresa;
 import model.clases.Encargado;
 import model.ws.EmpresaWS;
 import model.ws.EncargadoWS;
+import validacionesCampos.InsertTextField;
 
 /**
  *
@@ -29,6 +30,7 @@ public class Empresas extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cboEmpresas.setUI(PropiedadesCBO.createUI(rootPane));
+        txtRutBuscar.setDocument(new InsertTextField(txtRutBuscar, 10));
 
         conn = new EmpresaWS();
 

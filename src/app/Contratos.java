@@ -13,6 +13,7 @@ import model.clases.Contrato;
 import model.clases.Empresa;
 import model.ws.ContratoWS;
 import model.ws.EmpresaWS;
+import validacionesCampos.InsertTextField;
 
 /**
  *
@@ -30,6 +31,7 @@ public class Contratos extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cboEmpresas.setUI(PropiedadesCBO.createUI(rootPane));
+        txtRutABuscar.setDocument(new InsertTextField(txtRutABuscar, 10));
 
         conn = new ContratoWS();
 

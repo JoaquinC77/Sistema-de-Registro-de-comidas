@@ -43,7 +43,7 @@ public class InicioUsuario extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         jLabel3.setText("Servicios");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 410, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 470, 10));
 
         btnConsultarServicios.setBackground(new java.awt.Color(153, 153, 153));
         btnConsultarServicios.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
@@ -67,7 +67,7 @@ public class InicioUsuario extends javax.swing.JFrame {
                 btnConsultarServiciosActionPerformed(evt);
             }
         });
-        jPanel1.add(btnConsultarServicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, 230, 40));
+        jPanel1.add(btnConsultarServicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 230, 40));
 
         btnContratos.setBackground(new java.awt.Color(153, 153, 153));
         btnContratos.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
@@ -91,8 +91,8 @@ public class InicioUsuario extends javax.swing.JFrame {
                 btnContratosActionPerformed(evt);
             }
         });
-        jPanel1.add(btnContratos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 150, 40));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 420, 10));
+        jPanel1.add(btnContratos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 150, 40));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 470, 10));
 
         btnEmpresas.setBackground(new java.awt.Color(153, 153, 153));
         btnEmpresas.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
@@ -116,7 +116,7 @@ public class InicioUsuario extends javax.swing.JFrame {
                 btnEmpresasActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEmpresas, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 150, 40));
+        jPanel1.add(btnEmpresas, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 150, 40));
 
         btnPasajeros.setBackground(new java.awt.Color(153, 153, 153));
         btnPasajeros.setFont(new java.awt.Font("Microsoft PhagsPa", 0, 18)); // NOI18N
@@ -140,7 +140,7 @@ public class InicioUsuario extends javax.swing.JFrame {
                 btnPasajerosActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPasajeros, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 150, 40));
+        jPanel1.add(btnPasajeros, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 150, 40));
 
         jLabel5.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 18)); // NOI18N
         jLabel5.setText("Bienvenido: Administrador");
@@ -161,14 +161,14 @@ public class InicioUsuario extends javax.swing.JFrame {
                 lblExitMouseExited(evt);
             }
         });
-        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
+        jPanel1.add(lblExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 0, 40, 40));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LOGOSISTEMA_80PIX.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 410));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
